@@ -1,10 +1,8 @@
-<br/>
 <p align="center">
-  <a href="http://devlight.io">
-      <img src ="https://blog.platon.ua/files/modules/main/44444-300x179.png" alt="Devlight"/>
+  <a href="https://platon.ua">
+      <img src ="https://blog.platon.ua/files/modules/main/44444-300x179.png" alt="Platon"/>
   </a>
 </p>
-<br/>
 
 Platon Андроид СДК (Platon Android SDK)
 =======================================
@@ -62,6 +60,18 @@ compile('com.platon.sdk:platon:${latest_version_from_releases_page}@aar') {
 * Предоставляет торговцу личный кабинет, в котором тот может просмотреть всю необходимую статистику по транзакциям
 * Предоставляет техническую и клиентскую поддержку.
 
+
+Нашэ приложение
+===============
+
+Перевод денег с карты на карту - удобное мобильное приложение создан для людей, которые ценят время, умеют выбирать лучшее и не привыкли переплачивать. Сервис мгновенных переводов позволяет в режиме реального времени из любой точки земного шара, перевести деньги на карту эмитированных любым украинским банком и различных платежных систем, например перевод с карты VISA на карту MasterCard или наоборот.
+
+<p align="center">
+  <a href="https://play.google.com/store/apps/details?id=ua.platon.p2p.app&referrer=utm_source%3Dcontacts%26utm_medium%3Dbanner%26utm_campaign%3Dplaton_site%26anid%3Dadmob">
+      <img src ="https://platon.ua/projects/platon.ua/uploads/platon590x200.jpg" alt="Platon Android App"/>
+  </a>
+</p>
+
 Контакты
 ========
 
@@ -70,3 +80,7 @@ compile('com.platon.sdk:platon:${latest_version_from_releases_page}@aar') {
 **Электронная почта:** [support@platonline.com](mailto:support@platonline.com)  
 **Адрес:** ул. Воздвиженская, 10 Б, оф. 22 Киев 04071, Украина  
 
+<br/>
+
+© Platon, 2011–2017.  
+Все права защищены.
