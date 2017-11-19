@@ -12,7 +12,7 @@ ext {
     siteUrl = ''
     gitUrl = ''
 
-    libraryVersion = '1.0.1'
+    libraryVersion = '1.0.0'
 
     developerId = 'platon'
     developerName = 'Platonline'
