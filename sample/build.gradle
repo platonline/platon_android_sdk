@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+
+android {
+
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+
+    defaultConfig {
+        applicationId "com.platon.sample"
+
+        minSdkVersion 16
+        targetSdkVersion 26
+
+        versionCode 1
+        versionName "1.0"
+    }
+
+}
+
+dependencies {
+    // Support
+    compile 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:cardview-v7:26.1.0'
+    compile 'com.android.support:customtabs:26.1.0'
+
+    // Platon SDK
+    compile project(':platon')
+//    compile('com.platon.sdk:platon:1.0.0@aar') {
+//        transitive = true
+//    }
+
+    // Utils
+    compile 'com.github.stankoutils:app:1.67'
+    compile 'com.github.slmyldz:AndroidRandom:1.0'
+    compile 'com.github.thiagokimo:faker:1.4.3'
+}

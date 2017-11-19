@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etxt_first_trans_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="First Trans ID"/>
+
+        <EditText
+            android:id="@+id/etxt_recurring_token"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Recurring Token"/>
+
+        <Button
+            android:id="@+id/btn_randomize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RANDOMIZE"/>
+
+        <EditText
+            android:id="@+id/etxt_order_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Order Amount"/>
+
+        <EditText
+            android:id="@+id/etxt_order_currency_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Order Currency Code"/>
+
+        <EditText
+            android:id="@+id/etxt_order_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Order Description"/>
+
+        <EditText
+            android:id="@+id/etxt_success_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Success URL"/>
+
+        <EditText
+            android:id="@+id/etxt_order_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Order ID"/>
+
+        <EditText
+            android:id="@+id/etxt_language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Language"/>
+
+        <EditText
+            android:id="@+id/etxt_error_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Error url"/>
+
+        <EditText
+            android:id="@+id/etxt_form_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Form ID"/>
+
+        <EditText
+            android:id="@+id/etxt_ext_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ext 1"/>
+
+        <EditText
+            android:id="@+id/etxt_ext_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ext 2"/>
+
+        <EditText
+            android:id="@+id/etxt_ext_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ext 3"/>
+
+        <EditText
+            android:id="@+id/etxt_ext_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ext 4"/>
+
+        <Button
+            android:id="@+id/btn_one_click_sale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="ONE_CLICK_SALE"/>
+
+    </LinearLayout>
+
+</ScrollView>

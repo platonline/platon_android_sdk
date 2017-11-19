@@ -1,0 +1,72 @@
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'platon_android_sdk'
+    bintrayName = 'platon_android_sdk'
+
+    publishedGroupId = 'com.platon.sdk'
+    libraryName = 'platon_android_sdk'
+    artifact = 'platon'
+
+    libraryDescription = ''
+    siteUrl = ''
+    gitUrl = ''
+
+    libraryVersion = '1.0.1'
+
+    developerId = 'platon'
+    developerName = 'Platonline'
+    developerEmail = 'https://platon.ua'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+
+ext {
+    // SDK
+    libraryCode = 1
+
+    // Android
+    androidMinSdkVersion = 16
+    androidBuildSdkVersion = 26
+    androidSupportVersion = '26.0.2'
+
+    // Support
+    androidSupport = '26.1.0'
+
+    // API
+    okhttp = '3.8.1'
+    retrofit = '2.3.0'
+}
+
+android {
+
+    compileSdkVersion androidBuildSdkVersion
+    buildToolsVersion androidSupportVersion
+
+    defaultConfig {
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidBuildSdkVersion
+
+        versionCode libraryCode
+        versionName libraryVersion
+    }
+}
+
+dependencies {
+
+    // Support
+    compile "com.android.support:appcompat-v7:$androidSupport"
+
+    // API
+    compile "com.squareup.okhttp3:okhttp:$okhttp"
+    compile "com.squareup.okhttp3:logging-interceptor:$okhttp"
+    compile "com.squareup.retrofit2:retrofit:$retrofit"
+    compile "com.squareup.retrofit2:converter-gson:$retrofit"
+
+}
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

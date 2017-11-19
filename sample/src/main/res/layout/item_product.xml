@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="4dp">
+
+    <android.support.v7.widget.CardView
+        style="@style/CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etxt_item_product_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Product Amount"/>
+
+            <EditText
+                android:id="@+id/etxt_item_product_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Product Description"/>
+
+            <EditText
+                android:id="@+id/etxt_item_product_currency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Product Currency"/>
+
+            <CheckBox
+                android:id="@+id/cb_item_product_selected"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Selected"/>
+
+            <CheckBox
+                android:id="@+id/cb_item_product_recurring"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Recurring"/>
+
+            <Button
+                android:id="@+id/btn_item_product_remove"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="REMOVE"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</FrameLayout>

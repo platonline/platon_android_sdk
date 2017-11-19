@@ -1,0 +1,40 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url 'https://maven.google.com' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.0-rc1'
+        classpath 'io.realm:realm-gradle-plugin:3.5.0'
+
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+        maven { url 'https://maven.google.com' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+allprojects {
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name == 'androidJavadocs') {
+        task.configure {
+            classpath += project.files(android.getBootClasspath().join(File.pathSeparator)) + configurations.compile
+        }
+    }
+}

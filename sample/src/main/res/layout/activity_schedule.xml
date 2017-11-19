@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_randomize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RANDOMIZE"/>
+
+        <EditText
+            android:id="@+id/etxt_order_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Order Amount"/>
+
+        <EditText
+            android:id="@+id/etxt_order_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Order Description"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#232323"/>
+
+        <EditText
+            android:id="@+id/etxt_payer_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Payer Email"/>
+
+        <EditText
+            android:id="@+id/etxt_card_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Card Number"/>
+
+        <EditText
+            android:id="@+id/etxt_first_trans_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="First Trans ID"/>
+
+        <EditText
+            android:id="@+id/etxt_recurring_token"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Recurring Token"/>
+
+        <EditText
+            android:id="@+id/etxt_period"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Period"/>
+
+        <EditText
+            android:id="@+id/etxt_init_period"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Init Period"/>
+
+        <EditText
+            android:id="@+id/etxt_repeat_times"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Repeat Times"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_schedule"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="SCHEDULE"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etxt_response"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Response"
+            android:minHeight="200dp"/>
+
+    </LinearLayout>
+
+</ScrollView>
