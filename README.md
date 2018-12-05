@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://platon.ua">
-      <img src ="https://blog.platon.ua/files/modules/main/44444-300x179.png" alt="Platon"/>
+      <img src ="https://platon.ua/wp-content/uploads/2015/02/footer-logo.png" alt="Platon"/>
   </a>
 </p>
 
