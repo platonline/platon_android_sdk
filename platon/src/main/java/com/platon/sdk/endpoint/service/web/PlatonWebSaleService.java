@@ -46,6 +46,7 @@ public interface PlatonWebSaleService {
 			@Field(MethodProperties.LANG) @Nullable @Size(max = LANG) final String language,
 			@Field(MethodProperties.ERROR_URL) @Nullable final String errorUrl,
 			@Field(MethodProperties.FORM_ID) @Nullable final String formId,
+			@Field(MethodProperties.REQ_TOKEN) @Nullable final String reqToken,
 			@Field(MethodProperties.EXT_1) @Nullable final String ext1,
 			@Field(MethodProperties.EXT_2) @Nullable final String ext2,
 			@Field(MethodProperties.EXT_3) @Nullable final String ext3,

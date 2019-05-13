@@ -17,6 +17,12 @@
             android:text="SALE_WEB"/>
 
         <Button
+            android:id="@+id/btn_token_web_sale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SALE_TOKEN_WEB"/>
+
+        <Button
             android:id="@+id/btn_web_one_click_sale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

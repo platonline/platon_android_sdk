@@ -12,7 +12,8 @@ import com.platon.sdk.core.PlatonCredentials;
 import com.platon.sdk.endpoint.adapter.PlatonBaseAdapter;
 import com.platon.sdk.endpoint.adapter.post.PlatonSaleAdapter;
 import com.platon.sdk.endpoint.service.web.PlatonWebSaleService;
-import com.platon.sdk.model.request.option.web.PlatonWebSaleOptions;
+import com.platon.sdk.endpoint.service.web.PlatonWebTokenSaleService;
+import com.platon.sdk.model.request.option.web.PlatonWebTokenSaleOptions;
 import com.platon.sdk.model.request.order.product.PlatonProductSale;
 import com.platon.sdk.model.request.payer.PlatonPayerSale;
 import com.platon.sdk.model.request.payer.PlatonPayerWebSale;
@@ -31,21 +32,21 @@ import static com.platon.sdk.constant.api.PlatonApiConstants.Formats.General.TEX
  * <p>
  * See {@link PlatonSaleAdapter} for post SALE payments
  */
-public class PlatonWebSaleAdapter extends PlatonBaseAdapter<PlatonWebSaleService> {
+public class PlatonWebTokenSaleAdapter extends PlatonBaseAdapter<PlatonWebTokenSaleService> {
 
-	private static PlatonWebSaleAdapter sInstance;
+	private static PlatonWebTokenSaleAdapter sInstance;
 
-	private PlatonWebSaleAdapter() {
+	private PlatonWebTokenSaleAdapter() {
 	}
 
-	public synchronized static PlatonWebSaleAdapter getInstance() {
-		if (sInstance == null) sInstance = new PlatonWebSaleAdapter();
+	public synchronized static PlatonWebTokenSaleAdapter getInstance() {
+		if (sInstance == null) sInstance = new PlatonWebTokenSaleAdapter();
 		return sInstance;
 	}
 
 	@Override
-	protected Class<PlatonWebSaleService> getServiceClass() {
-		return PlatonWebSaleService.class;
+	protected Class<PlatonWebTokenSaleService> getServiceClass() {
+		return PlatonWebTokenSaleService.class;
 	}
 
 	@Override
@@ -56,7 +57,7 @@ public class PlatonWebSaleAdapter extends PlatonBaseAdapter<PlatonWebSaleService
 
 	/**
 	 * For params description see {@link #sale(
-	 *List, String, String, PlatonPayerWebSale, PlatonWebSaleOptions, PlatonWebCallback)}
+	 *List, String, String, PlatonPayerWebSale, PlatonWebTokenSaleOptions, PlatonWebCallback)}
 	 * <p>
 	 * PlatonSale request with single {@link PlatonProductSale} and without optional fields
 	 */
@@ -70,7 +71,7 @@ public class PlatonWebSaleAdapter extends PlatonBaseAdapter<PlatonWebSaleService
 
 	/**
 	 * For params description see {@link #sale(
-	 *List, String, String, PlatonPayerWebSale, PlatonWebSaleOptions, PlatonWebCallback)}
+	 *List, String, String, PlatonPayerWebSale, PlatonWebTokenSaleOptions, PlatonWebCallback)}
 	 * <p>
 	 * PlatonSale request without optional fields
 	 */
@@ -84,7 +85,7 @@ public class PlatonWebSaleAdapter extends PlatonBaseAdapter<PlatonWebSaleService
 
 	/**
 	 * For params description see {@link #sale(
-	 *List, String, String, PlatonPayerWebSale, PlatonWebSaleOptions, PlatonWebCallback)}
+	 *List, String, String, PlatonPayerWebSale, PlatonWebTokenSaleOptions, PlatonWebCallback)}
 	 * <p>
 	 * PlatonSale request with single {@link PlatonProductSale}
 	 */
@@ -93,7 +94,7 @@ public class PlatonWebSaleAdapter extends PlatonBaseAdapter<PlatonWebSaleService
 			@NonNull final String successUrl,
 			@Nullable @Size(max = TEXT_MIN) final String orderId,
 			@Nullable final PlatonPayerWebSale payerWebSale,
-			@Nullable final PlatonWebSaleOptions webSaleOptions,
+			@Nullable final PlatonWebTokenSaleOptions webTokenSaleOptions,
 			@NonNull final PlatonWebCallback callback
 	) {
 		return sale(
@@ -101,7 +102,7 @@ public class PlatonWebSaleAdapter extends PlatonBaseAdapter<PlatonWebSaleService
 				successUrl,
 				orderId,
 				payerWebSale,
-				webSaleOptions,
+				webTokenSaleOptions,
 				callback
 		);
 	}
@@ -118,9 +119,9 @@ public class PlatonWebSaleAdapter extends PlatonBaseAdapter<PlatonWebSaleService
 	 * @param payerWebSale   - info holder of payer
 	 *                       See {@link PlatonPayerWebSale} or {@link PlatonPayerSale}
 	 * @param webSaleOptions - options to control web form representation
-	 *                       See {@link PlatonWebSaleOptions} for its params
+	 *                       See {@link PlatonWebTokenSaleOptions} for its params
 	 * @param callback       - callback which will hold url for web request
-	 * @return original call of {@link PlatonWebSaleService sale(...)} request
+	 * @return original call of {@link PlatonWebTokenSaleService sale(...)} request
 	 */
 	@SuppressWarnings({"ConstantConditions", "unchecked"})
 	public Call sale(
@@ -128,11 +129,11 @@ public class PlatonWebSaleAdapter extends PlatonBaseAdapter<PlatonWebSaleService
 			@NonNull final String successUrl,
 			@Nullable @Size(max = TEXT_MIN) final String orderId,
 			@Nullable final PlatonPayerWebSale payerWebSale,
-			@Nullable final PlatonWebSaleOptions webSaleOptions,
+			@Nullable final PlatonWebTokenSaleOptions webSaleOptions,
 			@NonNull final PlatonWebCallback callback
 	) {
-		final String payment = Payment.CC;
-		final String data = PlatonBase64Util.encodeProducts(productSales);
+		final String payment = Payment.CCT;
+		final String data = PlatonBase64Util.encodeProductsToken(productSales);
 
 		final boolean isPayerWebSaleNull = payerWebSale == null;
 		final boolean isSaleFormOptionsNull = webSaleOptions == null;
@@ -170,10 +171,10 @@ public class PlatonWebSaleAdapter extends PlatonBaseAdapter<PlatonWebSaleService
 						null : webSaleOptions.getErrorUrl(),
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getFormId())
 						? null : webSaleOptions.getFormId(),
-				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getReqToken())
-						? null : webSaleOptions.getReqToken(),
-				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt1())
-						? null : webSaleOptions.getExt1(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getCardToken())
+						? null : webSaleOptions.getCardToken(),
+				//isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt1())
+				//		? null : webSaleOptions.getExt1(),
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt2())
 						? null : webSaleOptions.getExt2(),
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt3())
@@ -181,7 +182,7 @@ public class PlatonWebSaleAdapter extends PlatonBaseAdapter<PlatonWebSaleService
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt4())
 						? null : webSaleOptions.getExt4(),
 
-				PlatonHashUtil.encryptSaleWeb(payment, data, successUrl)
+				PlatonHashUtil.encryptSaleTokenWeb(payment, data, successUrl, webSaleOptions.getCardToken())
 		);
 		call.enqueue(callback);
 

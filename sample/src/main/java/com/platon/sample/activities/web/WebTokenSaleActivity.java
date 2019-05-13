@@ -18,6 +18,7 @@ import com.platon.sample.adapters.ProductPagerAdapter;
 import com.platon.sdk.callback.PlatonWebCallback;
 import com.platon.sdk.core.PlatonSdk;
 import com.platon.sdk.model.request.option.web.PlatonWebSaleOptions;
+import com.platon.sdk.model.request.option.web.PlatonWebTokenSaleOptions;
 import com.platon.sdk.model.request.order.product.PlatonProductSale;
 import com.platon.sdk.model.request.payer.PlatonPayerWebSale;
 import com.slmyldz.random.Randoms;
@@ -35,7 +36,7 @@ import static com.platon.sample.app.PlatonApp.isValidURL;
 import static com.platon.sdk.constant.api.PlatonApiConstants.Formats.Amount.MAX_AMOUNT;
 import static com.platon.sdk.constant.api.PlatonApiConstants.Formats.Amount.MIN_AMOUNT;
 
-public class WebSaleActivity extends BaseActivity implements
+public class WebTokenSaleActivity extends BaseActivity implements
         ProductPagerAdapter.OnItemCountChangeListener,
         View.OnClickListener,
         PlatonWebCallback {
@@ -57,7 +58,8 @@ public class WebSaleActivity extends BaseActivity implements
     private EditText mEtxtLanguage;
     private EditText mEtxtErrorUrl;
     private EditText mEtxtFormId;
-    private EditText mEtxtExt1;
+    //private EditText mEtxtExt1;
+    private EditText mCardToken;
     private EditText mEtxtExt2;
     private EditText mEtxtExt3;
     private EditText mEtxtExt4;
@@ -68,7 +70,7 @@ public class WebSaleActivity extends BaseActivity implements
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_sale);
+        setContentView(R.layout.activity_web_token_sale);
 
         assignViews();
         configureViews();
@@ -92,7 +94,8 @@ public class WebSaleActivity extends BaseActivity implements
         mEtxtLanguage = findViewById(R.id.etxt_language);
         mEtxtErrorUrl = findViewById(R.id.etxt_error_url);
         mEtxtFormId = findViewById(R.id.etxt_form_id);
-        mEtxtExt1 = findViewById(R.id.etxt_ext_1);
+        mCardToken = findViewById(R.id.card_token);
+        //mEtxtExt1 = findViewById(R.id.etxt_ext_1);
         mEtxtExt2 = findViewById(R.id.etxt_ext_2);
         mEtxtExt3 = findViewById(R.id.etxt_ext_3);
         mEtxtExt4 = findViewById(R.id.etxt_ext_4);
@@ -161,7 +164,7 @@ public class WebSaleActivity extends BaseActivity implements
         mEtxtLanguage.setText(language);
         mEtxtErrorUrl.setText(Faker.with(this).Internet.url());
 //        mEtxtFormId.setText(UUID.randomUUID().toString());
-        mEtxtExt1.setText(Faker.with(this).Url.avatar());
+//        mEtxtExt1.setText(Faker.with(this).Url.avatar());
         mEtxtExt2.setText(Faker.with(this).Url.avatar());
         mEtxtExt3.setText(Faker.with(this).Url.avatar());
         mEtxtExt4.setText(Faker.with(this).Url.avatar());
@@ -206,24 +209,23 @@ public class WebSaleActivity extends BaseActivity implements
                         .phone(String.valueOf(mEtxtPayerPhone.getText()))
                         .build();
 
-                final PlatonWebSaleOptions webSaleOptions = new PlatonWebSaleOptions.Builder()
+                final PlatonWebTokenSaleOptions webTokenSaleOptions = new PlatonWebTokenSaleOptions.Builder()
                         .language(String.valueOf(mEtxtLanguage.getText()))
                         .errorUrl(String.valueOf(mEtxtErrorUrl.getText()))
                         .formId(String.valueOf(mEtxtFormId.getText()))
-                        .reqToken("Y")
-                        .ext1(String.valueOf(mEtxtExt1.getText()))
+                        .cardToken(String.valueOf(mCardToken.getText()))
                         .ext2(String.valueOf(mEtxtExt2.getText()))
                         .ext3(String.valueOf(mEtxtExt3.getText()))
                         .ext4(String.valueOf(mEtxtExt4.getText()))
                         .build();
 
                 showProgress();
-                PlatonSdk.WebPayments.getSaleAdapter().sale(
+                PlatonSdk.WebPayments.getTokenSaleAdapter().sale(
                         productSales,
                         successUrl,
                         String.valueOf(mEtxtOrderId.getText()),
                         payer,
-                        webSaleOptions,
+                        webTokenSaleOptions,
                         this
                 );
                 break;

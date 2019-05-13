@@ -62,6 +62,33 @@ public class PlatonHashUtil {
 		);
 	}
 
+	public static String encryptSaleTokenWeb(final String payment, final String data, final String successUrl, final String card_token) {
+		if (TextUtils.isEmpty(payment) || TextUtils.isEmpty(data) || TextUtils.isEmpty(successUrl) || TextUtils.isEmpty(card_token)) return null;
+
+		final String reverseClientKey =
+				new StringBuilder(PlatonCredentials.getClientKey()).reverse().toString();
+		final String reversePayment =
+				new StringBuilder(payment).reverse().toString();
+		final String reverseData =
+				new StringBuilder(data).reverse().toString();
+		final String reverseSuccessUrl =
+				new StringBuilder(successUrl).reverse().toString();
+		final String reverseToken =
+				new StringBuilder(card_token).reverse().toString();
+		final String reverseClientPass =
+				new StringBuilder(PlatonCredentials.getClientPass()).reverse().toString();
+
+		return md5(
+				reverseClientKey
+						.concat(reversePayment)
+						.concat(reverseData)
+						.concat(reverseSuccessUrl)
+						.concat(reverseToken)
+						.concat(reverseClientPass)
+						.toUpperCase()
+		);
+	}
+
 	/**
 	 * md5(strtoupper(strrev(CLIENT_KEY).strrev(data).strrev(rc_id).strrev(rc_token).strrev(url).strrev(CLIENT_PASS)))
 	 *

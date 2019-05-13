@@ -106,6 +106,10 @@
             android:name=".activities.post.Submit3dsDataActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".activities.web.WebTokenSaleActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

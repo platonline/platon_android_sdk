@@ -133,6 +133,7 @@ public interface PlatonApiConstants {
 		interface Payment {
 			String CC = "CC";
 			String RF = "RF";
+			String CCT = "CCT";
 		}
 	}
 
@@ -481,6 +482,10 @@ public interface PlatonApiConstants {
 		 * (In case the Client's account has multiple payment pages configured)
 		 */
 		String FORM_ID = "formid";
+
+		String REQ_TOKEN = "req_token";
+
+		String CARD_TOKEN = "card_token";
 
 		/**
 		 * Client Parameter 1

@@ -23,6 +23,7 @@ import com.platon.sdk.endpoint.adapter.web.PlatonWebOneClickSaleAdapter;
 import com.platon.sdk.endpoint.adapter.web.PlatonWebRecurringAdapter;
 import com.platon.sdk.endpoint.adapter.web.PlatonWebSaleAdapter;
 import com.platon.sdk.endpoint.adapter.web.PlatonWebScheduleAdapter;
+import com.platon.sdk.endpoint.adapter.web.PlatonWebTokenSaleAdapter;
 import com.platon.sdk.exception.PlatonSdkNotInitializedException;
 import com.platon.sdk.model.request.PlatonCard;
 
@@ -269,6 +270,14 @@ public final class PlatonSdk {
 		public static PlatonWebSaleAdapter getSaleAdapter() {
 			checkIsInited();
 			return PlatonWebSaleAdapter.getInstance();
+		}
+
+		/**
+		 * @return adapter for web token sale requests
+		 */
+		public static PlatonWebTokenSaleAdapter getTokenSaleAdapter() {
+			checkIsInited();
+			return PlatonWebTokenSaleAdapter.getInstance();
 		}
 
 		/**

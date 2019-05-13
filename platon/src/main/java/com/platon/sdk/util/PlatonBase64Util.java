@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.text.TextUtils;
 import android.util.Base64;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.platon.sdk.model.request.order.product.PlatonProductSale;
 
@@ -88,6 +89,22 @@ public class PlatonBase64Util {
 				);
 			}
 
+			return base64(jsonObject.toString());
+		}
+	}
+
+	@SuppressLint("LongLogTag")
+	public static String encodeProductsToken(final List<PlatonProductSale> productSales) {
+		if (productSales.isEmpty()) return null;
+		else if (productSales.size() == 1) {
+			final JsonObject jsonObject = createJsonObjectFromProduct(productSales.get(0));
+			return base64(jsonObject.toString());
+		} else {
+			final JsonArray jsonObject = new JsonArray();
+			StringBuilder params = new StringBuilder("");
+			for (int i = 0; i < productSales.size(); i++) {
+				jsonObject.add(createJsonObjectFromProduct(productSales.get(i)));
+			}
 			return base64(jsonObject.toString());
 		}
 	}

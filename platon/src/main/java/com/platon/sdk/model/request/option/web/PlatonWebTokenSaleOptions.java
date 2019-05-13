@@ -10,7 +10,7 @@ import com.platon.sdk.endpoint.adapter.web.PlatonWebSaleAdapter;
  * This class extends {@link PlatonWebOptions} and provide some new fields which handle representation of
  * requests from {@link PlatonWebSaleAdapter}
  */
-public class PlatonWebSaleOptions extends PlatonWebOptions {
+public class PlatonWebTokenSaleOptions extends PlatonWebOptions {
 
 	/**
 	 * Localization language to be selected on the payment page by default
@@ -38,17 +38,16 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 	private String mFormId;
 
 	@Nullable
-	private String mReqToken;
+	private String mCardToken;
 
-	public PlatonWebSaleOptions() {
+	public PlatonWebTokenSaleOptions() {
 	}
 
-	public PlatonWebSaleOptions(
+	public PlatonWebTokenSaleOptions(
 			@Nullable final String language,
 			@Nullable final String errorUrl,
 			@Nullable final String formId,
-			@Nullable final String reqToken,
-			@Nullable final String ext1,
+			@Nullable final String cardToken,
 			@Nullable final String ext2,
 			@Nullable final String ext3,
 			@Nullable final String ext4
@@ -56,25 +55,23 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 		mLanguage = language;
 		mErrorUrl = errorUrl;
 		mFormId = formId;
-		mReqToken = reqToken;
-		mExt1 = ext1;
+		mCardToken = cardToken;
 		mExt2 = ext2;
 		mExt3 = ext3;
 		mExt4 = ext4;
 	}
 
-	private PlatonWebSaleOptions(final Builder builder) {
+	private PlatonWebTokenSaleOptions(final Builder builder) {
 		mLanguage = builder.mLanguage;
 		mErrorUrl = builder.mErrorUrl;
 		mFormId = builder.mFormId;
-		mReqToken = builder.mReqToken;
-		mExt1 = builder.mExt1;
+		mCardToken = builder.mCardToken;
 		mExt2 = builder.mExt2;
 		mExt3 = builder.mExt3;
 		mExt4 = builder.mExt4;
 	}
 
-	protected PlatonWebSaleOptions(final Parcel in) {
+	protected PlatonWebTokenSaleOptions(final Parcel in) {
 		super(in);
 		mLanguage = in.readString();
 		mErrorUrl = in.readString();
@@ -88,15 +85,6 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 
 	public void setLanguage(@Nullable  final String language) {
 		mLanguage = language;
-	}
-
-	@Nullable
-	public String getReqToken() {
-		return mReqToken;
-	}
-
-	public void setReqToken(@Nullable  final String reqToken) {
-		mReqToken = reqToken;
 	}
 
 	@Nullable
@@ -115,6 +103,15 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 
 	public void setFormId(@Nullable final String formId) {
 		mFormId = formId;
+	}
+
+	@Nullable
+	public String getCardToken() {
+		return mCardToken;
+	}
+
+	public void setCardToken(@Nullable final String cardToken) {
+		mCardToken = cardToken;
 	}
 
 	@Override
@@ -137,12 +134,6 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 		private String mFormId;
 
 		@Nullable
-		private String mReqToken;
-
-		@Nullable
-		private String mExt1;
-
-		@Nullable
 		private String mExt2;
 
 		@Nullable
@@ -150,6 +141,9 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 
 		@Nullable
 		private String mExt4;
+		@Nullable
+		private String mCardToken;
+
 
 		public Builder language(@Nullable final String language) {
 			mLanguage = language;
@@ -166,13 +160,8 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 			return this;
 		}
 
-		public Builder reqToken(@Nullable final String reqToken) {
-			mReqToken = reqToken;
-			return this;
-		}
-
-		public Builder ext1(@Nullable final String ext1) {
-			mExt1 = ext1;
+		public Builder cardToken(@Nullable final String cardToken) {
+			mCardToken = cardToken;
 			return this;
 		}
 
@@ -191,8 +180,8 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 			return this;
 		}
 
-		public PlatonWebSaleOptions build() {
-			return new PlatonWebSaleOptions(this);
+		public PlatonWebTokenSaleOptions build() {
+			return new PlatonWebTokenSaleOptions(this);
 		}
 	}
 
@@ -202,8 +191,7 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 				"mLanguage='" + mLanguage + '\'' +
 				", mErrorUrl='" + mErrorUrl + '\'' +
 				", mFormId='" + mFormId + '\'' +
-				", mReqToken='" + mReqToken + '\'' +
-				", mExt1='" + mExt1 + '\'' +
+				", mCardToken='" + mCardToken + '\'' +
 				", mExt2='" + mExt2 + '\'' +
 				", mExt3='" + mExt3 + '\'' +
 				", mExt4='" + mExt4 + '\'' +

@@ -33,6 +33,7 @@ public class WebPaymentActivity extends AppCompatActivity implements View.OnClic
         Log.d(PlatonCredentials.getPaymentUrl());
 
         findViewById(R.id.btn_web_sale).setOnClickListener(this);
+        findViewById(R.id.btn_token_web_sale).setOnClickListener(this);
         findViewById(R.id.btn_web_one_click_sale).setOnClickListener(this);
         findViewById(R.id.btn_web_recurring_sale).setOnClickListener(this);
         findViewById(R.id.btn_web_schedule).setOnClickListener(this);
@@ -44,6 +45,9 @@ public class WebPaymentActivity extends AppCompatActivity implements View.OnClic
         switch (v.getId()) {
             case R.id.btn_web_sale:
                 startActivity(new Intent(WebPaymentActivity.this, WebSaleActivity.class));
+                break;
+            case R.id.btn_token_web_sale:
+                startActivity(new Intent(WebPaymentActivity.this, WebTokenSaleActivity.class));
                 break;
             case R.id.btn_web_one_click_sale:
                 startActivity(new Intent(WebPaymentActivity.this, WebOneClickSaleActivity.class));

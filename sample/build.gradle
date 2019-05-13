@@ -3,14 +3,14 @@ apply plugin: 'realm-android'
 
 android {
 
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "com.platon.sample"
 
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 28
 
         versionCode 1
         versionName "1.0"
@@ -20,19 +20,19 @@ android {
 
 dependencies {
     // Support
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support:design:26.1.0'
-    compile 'com.android.support:cardview-v7:26.1.0'
-    compile 'com.android.support:customtabs:26.1.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:customtabs:28.0.0'
 
     // Platon SDK
-    compile project(':platon')
+    implementation project(':platon')
 //    compile('com.platon.sdk:platon:1.0.0@aar') {
 //        transitive = true
 //    }
 
     // Utils
-    compile 'com.github.stankoutils:app:1.67'
-    compile 'com.github.slmyldz:AndroidRandom:1.0'
-    compile 'com.github.thiagokimo:faker:1.4.3'
+    implementation 'com.github.stankoutils:app:1.67'
+    implementation 'com.github.slmyldz:AndroidRandom:1.0'
+    implementation 'com.github.thiagokimo:faker:1.4.3'
 }
