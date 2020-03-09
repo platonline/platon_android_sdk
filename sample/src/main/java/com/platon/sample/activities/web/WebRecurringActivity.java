@@ -2,8 +2,8 @@ package com.platon.sample.activities.web;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.customtabs.CustomTabsIntent;
+import androidx.annotation.Nullable;
+import androidx.browser.customtabs.CustomTabsIntent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;

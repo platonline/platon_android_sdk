@@ -34,7 +34,7 @@ ext {
     androidSupportVersion = '28.0.3'
 
     // Support
-    androidSupport = '28.0.0'
+    appcompat_version = '1.1.0'
 
     // API
     okhttp = '3.8.1'
@@ -58,7 +58,7 @@ android {
 dependencies {
 
     // Support
-    implementation "com.android.support:appcompat-v7:$androidSupport"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
 
     // API
     api "com.squareup.okhttp3:okhttp:$okhttp"

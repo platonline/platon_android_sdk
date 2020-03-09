@@ -2,8 +2,8 @@ package com.platon.sdk.model.request.option;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import android.support.annotation.Size;
+import androidx.annotation.Nullable;
+import androidx.annotation.Size;
 import android.text.TextUtils;
 
 import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;

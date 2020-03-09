@@ -1,7 +1,7 @@
 package com.platon.sdk.model.request.payer;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Size;
+import androidx.annotation.NonNull;
+import androidx.annotation.Size;
 
 import com.platon.sdk.endpoint.adapter.post.PlatonSaleAdapter;
 

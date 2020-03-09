@@ -1,6 +1,6 @@
 package com.platon.sdk.constant.api;
 
-import android.support.annotation.StringDef;
+import androidx.annotation.StringDef;
 
 import com.platon.sdk.constant.api.PlatonApiConstants.SerializedNames;
 import com.platon.sdk.model.response.sale.PlatonSale3DSecure;

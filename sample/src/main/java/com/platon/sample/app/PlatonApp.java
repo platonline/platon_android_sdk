@@ -6,8 +6,7 @@ import com.platon.sample.db.DBHelper;
 import com.stanko.tools.Initializer;
 import com.stanko.tools.Log;
 
-import static android.support.v4.util.PatternsCompat.WEB_URL;
-
+import static androidx.core.util.PatternsCompat.WEB_URL;
 public class PlatonApp extends Application {
 
 	@Override

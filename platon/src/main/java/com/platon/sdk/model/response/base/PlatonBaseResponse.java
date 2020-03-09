@@ -1,6 +1,6 @@
 package com.platon.sdk.model.response.base;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.platon.sdk.deserializer.PlatonBaseDeserializer;
 import com.platon.sdk.endpoint.adapter.PlatonBaseAdapter;

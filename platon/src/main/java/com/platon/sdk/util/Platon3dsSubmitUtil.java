@@ -1,6 +1,6 @@
 package com.platon.sdk.util;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.platon.sdk.constant.api.PlatonApiConstants.SerializedNames;

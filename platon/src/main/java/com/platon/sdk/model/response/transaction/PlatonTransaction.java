@@ -2,7 +2,7 @@ package com.platon.sdk.model.response.transaction;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.FloatRange;
+import androidx.annotation.FloatRange;
 
 import com.google.gson.annotations.SerializedName;
 import com.platon.sdk.constant.api.PlatonTransactionStatus;

@@ -2,8 +2,8 @@ package com.platon.sdk.model.request.recurring;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Size;
+import androidx.annotation.NonNull;
+import androidx.annotation.Size;
 
 import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
 import com.platon.sdk.endpoint.adapter.post.PlatonRecurringAdapter;

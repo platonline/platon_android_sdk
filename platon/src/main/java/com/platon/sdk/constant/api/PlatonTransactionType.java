@@ -1,6 +1,6 @@
 package com.platon.sdk.constant.api;
 
-import android.support.annotation.StringDef;
+import androidx.annotation.StringDef;
 
 import com.platon.sdk.model.response.transaction.PlatonTransaction;
 

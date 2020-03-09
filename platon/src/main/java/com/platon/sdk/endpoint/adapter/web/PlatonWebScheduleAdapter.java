@@ -1,6 +1,6 @@
 package com.platon.sdk.endpoint.adapter.web;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.google.gson.GsonBuilder;
 import com.platon.sdk.callback.PlatonWebCallback;

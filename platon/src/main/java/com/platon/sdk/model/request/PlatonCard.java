@@ -2,9 +2,9 @@ package com.platon.sdk.model.request;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
-import android.support.annotation.Size;
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
+import androidx.annotation.Size;
 
 import com.platon.sdk.constant.api.PlatonApiConstants;
 import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;

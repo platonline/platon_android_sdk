@@ -2,8 +2,8 @@ package com.platon.sdk.core;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.platon.sdk.constant.PlatonSdkConstants;

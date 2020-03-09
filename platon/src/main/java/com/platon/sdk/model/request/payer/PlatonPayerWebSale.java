@@ -1,6 +1,6 @@
 package com.platon.sdk.model.request.payer;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.platon.sdk.endpoint.adapter.web.PlatonWebSaleAdapter;
 

@@ -1,10 +1,11 @@
 package com.platon.sdk.model.request.order.product;
 
 import android.os.Parcel;
-import android.support.annotation.FloatRange;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.Size;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Size;
+import androidx.annotation.FloatRange;
 
 import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
 import com.platon.sdk.endpoint.adapter.web.PlatonWebSaleAdapter;

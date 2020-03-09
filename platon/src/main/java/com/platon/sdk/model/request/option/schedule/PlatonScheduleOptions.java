@@ -2,8 +2,9 @@ package com.platon.sdk.model.request.option.schedule;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.IntRange;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
+import androidx.annotation.IntRange;
+
 
 import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
 import com.platon.sdk.constant.api.action.PlatonAction;

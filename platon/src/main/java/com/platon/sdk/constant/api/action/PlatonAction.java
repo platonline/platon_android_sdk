@@ -1,6 +1,6 @@
 package com.platon.sdk.constant.api.action;
 
-import android.support.annotation.StringDef;
+import androidx.annotation.StringDef;
 
 import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
 

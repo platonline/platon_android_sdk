@@ -1,6 +1,6 @@
 package com.platon.sdk.util;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.platon.sdk.constant.api.PlatonApiConstants.Formats.Amount;
 
