@@ -1,5 +1,8 @@
 apply plugin: 'com.android.library'
 
+def buildProperties = new Properties()
+buildProperties.load(new FileInputStream("$projectDir/build.properties"))
+
 ext {
     bintrayRepo = 'platon_android_sdk'
     bintrayName = 'platon_android_sdk'
@@ -12,8 +15,6 @@ ext {
     siteUrl = ''
     gitUrl = ''
 
-    libraryVersion = '1.0.0'
-
     developerId = 'platon'
     developerName = 'Platonline'
     developerEmail = 'https://platon.ua'
@@ -25,8 +26,6 @@ ext {
 
 
 ext {
-    // SDK
-    libraryCode = 1
 
     // Android
     androidMinSdkVersion = 16
@@ -46,12 +45,11 @@ android {
     compileSdkVersion androidBuildSdkVersion
     buildToolsVersion androidSupportVersion
 
+    defaultPublishConfig 'release' //expects a release variant
+
     defaultConfig {
         minSdkVersion androidMinSdkVersion
         targetSdkVersion androidBuildSdkVersion
-
-        versionCode libraryCode
-        versionName libraryVersion
     }
 }
 
@@ -65,8 +63,14 @@ dependencies {
     api "com.squareup.okhttp3:logging-interceptor:$okhttp"
     api "com.squareup.retrofit2:retrofit:$retrofit"
     api "com.squareup.retrofit2:converter-gson:$retrofit"
+    //For serialising JSONP add converter-scalars
+    implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
 
 }
 
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+ext {
+    bintrayPropertiesFile = "${projectDir.absolutePath}/bintray.properties"
+    libraryVersion = buildProperties['versionName']
+}
+
+apply from: "${project.rootDir}/bintrayUploader.gradle"

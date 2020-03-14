@@ -19,6 +19,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Retrofit adapter which unify all logic between its service
@@ -47,9 +48,10 @@ public abstract class PlatonBaseAdapter<Service> {
 		configureGson(gsonBuilder);
 
 		final Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
+				.baseUrl(getBaseUrl())
+				.addConverterFactory(ScalarsConverterFactory.create())
 				.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
-				.client(okHttpClient.build())
-				.baseUrl(getBaseUrl());
+				.client(okHttpClient.build());
 		configureRetrofit(retrofitBuilder);
 
 		mService = retrofitBuilder.build().create(getServiceClass());
