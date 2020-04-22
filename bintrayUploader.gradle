@@ -31,7 +31,7 @@ bintrayUpload.doLast{
     println "Remove unwanted artifacts from bintray"
     android.libraryVariants.all { variant ->
         def fileName = "${project.name}-$libraryVersion-${variant.name}.aar"
-        def filePath = "com/platon/${project.name}/$libraryVersion/$fileName"
+        def filePath = "com/platonua/${project.name}/$libraryVersion/$fileName"
 
         println "removing: $filePath"
         def cleanupFileScript = "${project.rootDir}/cleanup_bintray_repo.sh"
