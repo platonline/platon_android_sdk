@@ -1,0 +1,460 @@
+Index: bintrayUploader.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- bintrayUploader.gradle	(date 1584000585000)
++++ bintrayUploader.gradle	(date 1584000585000)
+@@ -0,0 +1,107 @@
++apply plugin: 'com.jfrog.bintray'
++apply plugin: 'com.github.dcendents.android-maven'
++
++version = libraryVersion
++def bintrayProperties = loadProperties(bintrayPropertiesFile)
++def bintrayAuth = getAuthProperties()
++afterEvaluate {
++    bintray {
++        user = "evgeniyplaton"
++        key = "caae0b4bcc662fa872ab0ae3e7ad68803e248f18"
++
++        configurations = ['archives']
++        pkg {
++            repo = bintrayProperties['pkgRepo']
++            name = bintrayProperties['artifactName']
++            userOrg = bintrayProperties['pkgUserOrg']
++
++            desc = bintrayProperties['description']
++            websiteUrl = bintrayProperties['siteUrl']
++            vcsUrl = bintrayProperties['gitUrl']
++            publish = true
++            publicDownloadNumbers = true
++            version {
++                desc = bintrayProperties['description']
++            }
++        }
++    }
++}
++
++bintrayUpload.doLast{
++    println "Remove unwanted artifacts from bintray"
++    android.libraryVariants.all { variant ->
++        def fileName = "${project.name}-$libraryVersion-${variant.name}.aar"
++        def filePath = "com/platon/${project.name}/$libraryVersion/$fileName"
++
++        println "removing: $filePath"
++        def cleanupFileScript = "${project.rootDir}/cleanup_bintray_repo.sh"
++        exec { commandLine "chmod","+", cleanupFileScript }
++        exec {
++            commandLine cleanupFileScript,
++                    bintrayProperties['pkgUserOrg'], bintrayProperties['pkgRepo'],
++                    filePath,
++                    "${bintrayAuth['bintrayUser']}:${bintrayAuth['bintrayApiKey']}"
++        }
++    }
++}
++
++group = bintrayProperties['groupId']
++
++install {
++    repositories.mavenInstaller {
++        filter { artifact, file -> artifact.attributes.classifier == null }
++        pom {
++            project {
++                packaging 'aar'
++                groupId bintrayProperties['groupId']
++                artifactId bintrayProperties['artifactName']
++                name bintrayProperties['artifactName']
++                description bintrayProperties['description']
++                url bintrayProperties['siteUrl']
++                scm {
++                    connection bintrayProperties['gitUrl']
++                    developerConnection bintrayProperties['gitUrl']
++                    url bintrayProperties['siteUrl']
++                }
++            }
++        }
++//        pom.withXml {
++//            // for dependencies and exclusions
++//            def dependenciesNode = asNode().appendNode('dependencies')
++//            configurations.api.allDependencies.each { dp ->
++//                def dependencyNode = dependenciesNode.appendNode('dependency')
++//                dependencyNode.appendNode('groupId', dp.group)
++//                dependencyNode.appendNode('artifactId', dp.name)
++//                dependencyNode.appendNode('version', dp.version)
++//            }
++//        }
++    }
++}
++
++static def getAuthProperties(){
++    def authFileName="bintrayAuth"
++    def authFileLocation="$System.env.HOME/android"
++    def authPropFilePath = "$authFileLocation/$authFileName"
++    def authPropFile = new File(authPropFilePath)
++    if(!authPropFile.exists()){
++        throw new RuntimeException(
++                "Cannot publish to bintray: doesn't exist $authPropFilePath \n" +
++                        "\tCreate file '$authFileName' at '$authFileLocation' and add:\n" +
++                        "\t\t'bintrayUser=<YOUR_BINTRAY_NICKNAME>'\n" +
++                        "\t\t'bintrayApiKey=<YOUR_BINTRAY_API_KEY>'"
++        )
++    }
++    def bintrayAuth = new Properties()
++    bintrayAuth.load(new FileInputStream(authPropFile))
++    return bintrayAuth
++}
++
++static def loadProperties(filePath){
++    def propFile = new File(filePath)
++    if(!propFile.exists()){
++        System.err.println("$filePath doesn't exist")
++    }
++    def properties = new Properties()
++    properties.load(new FileInputStream(propFile))
++    return properties
++}
+\ No newline at end of file
+Index: cleanup_bintray_repo.sh
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- cleanup_bintray_repo.sh	(date 1568137293000)
++++ cleanup_bintray_repo.sh	(date 1568137293000)
+@@ -0,0 +1,10 @@
++#!/usr/bin/env bash
++
++REPO_OWNER=$1
++REPO_NAME=$2
++FILE_PATH=$3
++USER_AND_API_KEY=$4
++
++DELETE_FILE_BINTRAY_API_URL="https://api.bintray.com/content/$REPO_OWNER/$REPO_NAME/$FILE_PATH"
++echo "DELETE_FILE_BINTRAY_API_URL $DELETE_FILE_BINTRAY_API_URL"
++curl -X "DELETE" "https://api.bintray.com/content/$REPO_OWNER/$REPO_NAME/$FILE_PATH" --user "$USER_AND_API_KEY"
+\ No newline at end of file
+Index: platon/build.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/build.properties	(date 1583950967000)
++++ platon/build.properties	(date 1583950967000)
+@@ -0,0 +1,2 @@
++versionCode=2
++versionName=1.0.1
+Index: platon/bintray.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/bintray.properties	(date 1584001221000)
++++ platon/bintray.properties	(date 1584001221000)
+@@ -0,0 +1,10 @@
++groupId=com.platononline
++pkgUserOrg=platononline
++pkgRepo=maven
++pkgName=platon
++artifactName=platon
++
++description=Platon SDK
++
++siteUrl=https://github.com/platonline/platon_android_sdk
++gitUrl=https://github.com/platonline/platon_android_sdk.git
+\ No newline at end of file
+Index: sample/src/main/java/com/platon/sample/activities/web/WebSaleActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/web/WebSaleActivity.java	(date 1583747889000)
++++ sample/src/main/java/com/platon/sample/activities/web/WebSaleActivity.java	(date 1583922764000)
+@@ -116,23 +116,34 @@
+ 
+         final List<PlatonProductSale> productSales = new ArrayList<>();
+         final int size = random.nextInt(5) + 1;
+-        for (int i = 0; i < size; i++) {
+-            final PlatonProductSale productSale = new PlatonProductSale(
+-                    Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F),
+-                    Faker.with(this).Lorem.sentences()
+-            );
++//        for (int i = 0; i < size; i++) {
++//            final PlatonProductSale productSale = new PlatonProductSale(
++//                    Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F),
++//                    Faker.with(this).Lorem.sentences()
++//            );
++//
++//            productSale.setCurrencyCode("UAH");
++//            productSale.setSelected(false);
++//            productSale.setRecurring(random.nextBoolean());
++//
++//            productSales.add(productSale);
++//        }
+ 
+-            productSale.setCurrencyCode("UAH");
+-            productSale.setSelected(false);
+-            productSale.setRecurring(random.nextBoolean());
++
++//        productSales.get(random.nextInt(productSales.size())).setSelected(true);
++        final PlatonProductSale productSale  = new PlatonProductSale(5.00f, "Тест");
++        productSale.setCurrencyCode("UAH");
+ 
+-            productSales.add(productSale);
+-        }
+-        productSales.get(random.nextInt(productSales.size())).setSelected(true);
++        productSales.add(productSale);
++
+         mProductPagerAdapter.setProductSales(productSales);
+ 
+-        mEtxtSuccessUrl.setText(Faker.with(this).Internet.url());
+-        mEtxtOrderId.setText(String.valueOf(UUID.randomUUID()));
++        //String url = Faker.with(this).Internet.url();
++        String url = "http://ua.briz.ua/succes";
++        mEtxtSuccessUrl.setText(url);
++//        mEtxtOrderId.setText(String.valueOf(UUID.randomUUID()));
++
++        mEtxtOrderId.setText(UUID.randomUUID().toString());
+ 
+         mEtxtPayerFirstName.setText(Faker.with(this).Name.firstName());
+         mEtxtPayerLastName.setText(Faker.with(this).Name.lastName());
+@@ -159,7 +170,8 @@
+                 break;
+         }
+         mEtxtLanguage.setText(language);
+-        mEtxtErrorUrl.setText(Faker.with(this).Internet.url());
++        String failUrl = "http://ua.briz.ua/failed";
++        mEtxtErrorUrl.setText(failUrl);
+ //        mEtxtFormId.setText(UUID.randomUUID().toString());
+         mEtxtExt1.setText(Faker.with(this).Url.avatar());
+         mEtxtExt2.setText(Faker.with(this).Url.avatar());
+@@ -184,7 +196,8 @@
+                     return;
+                 }
+ 
+-                final List<PlatonProductSale> productSales = mProductPagerAdapter.getProductSales();
++                List<PlatonProductSale> productSales = mProductPagerAdapter.getProductSales();
++                final PlatonProductSale productSale = productSales.get(0);
+                 int selectedProducts = 0;
+                 for (int i = productSales.size() - 1; i >= 0; i--) {
+                     if (selectedProducts > 1) {
+@@ -194,34 +207,49 @@
+                     if (productSales.get(i).isSelected()) selectedProducts++;
+                 }
+ 
++//                final PlatonPayerWebSale payer = new PlatonPayerWebSale.Builder()
++//                        .firstName(String.valueOf(mEtxtPayerFirstName.getText()))
++//                        .lastName(String.valueOf(mEtxtPayerLastName.getText()))
++//                        .address(String.valueOf(mEtxtPayerAddress.getText()))
++//                        .countryCode(String.valueOf(mEtxtPayerCountryCode.getText()))
++//                        .state(String.valueOf(mEtxtPayerState.getText()))
++//                        .city(String.valueOf(mEtxtPayerCity.getText()))
++//                        .zip(String.valueOf(mEtxtPayerZip.getText()))
++//                        .email(String.valueOf(mEtxtPayerEmail.getText()))
++//                        .phone(String.valueOf(mEtxtPayerPhone.getText()))
++//                        .build();
++
+                 final PlatonPayerWebSale payer = new PlatonPayerWebSale.Builder()
+-                        .firstName(String.valueOf(mEtxtPayerFirstName.getText()))
+-                        .lastName(String.valueOf(mEtxtPayerLastName.getText()))
+-                        .address(String.valueOf(mEtxtPayerAddress.getText()))
+-                        .countryCode(String.valueOf(mEtxtPayerCountryCode.getText()))
+-                        .state(String.valueOf(mEtxtPayerState.getText()))
+-                        .city(String.valueOf(mEtxtPayerCity.getText()))
+-                        .zip(String.valueOf(mEtxtPayerZip.getText()))
+-                        .email(String.valueOf(mEtxtPayerEmail.getText()))
+-                        .phone(String.valueOf(mEtxtPayerPhone.getText()))
++                        .firstName("Тест")
++                        .email("test@gmail.com")
+                         .build();
+ 
++//                final PlatonWebSaleOptions webSaleOptions = new PlatonWebSaleOptions.Builder()
++//                        .language(String.valueOf(mEtxtLanguage.getText()))
++//                        .errorUrl(String.valueOf(mEtxtErrorUrl.getText()))
++//                        .formId(String.valueOf(mEtxtFormId.getText()))
++//                        .reqToken("Y")
++//                        .ext1(String.valueOf(mEtxtExt1.getText()))
++//                        .ext2(String.valueOf(mEtxtExt2.getText()))
++//                        .ext3(String.valueOf(mEtxtExt3.getText()))
++//                        .ext4(String.valueOf(mEtxtExt4.getText()))
++//                        .build();
++
+                 final PlatonWebSaleOptions webSaleOptions = new PlatonWebSaleOptions.Builder()
+-                        .language(String.valueOf(mEtxtLanguage.getText()))
++                        .language("UK")
+                         .errorUrl(String.valueOf(mEtxtErrorUrl.getText()))
+-                        .formId(String.valueOf(mEtxtFormId.getText()))
+-                        .reqToken("Y")
+-                        .ext1(String.valueOf(mEtxtExt1.getText()))
+-                        .ext2(String.valueOf(mEtxtExt2.getText()))
+-                        .ext3(String.valueOf(mEtxtExt3.getText()))
+-                        .ext4(String.valueOf(mEtxtExt4.getText()))
++                        .formId("")
++                        .ext1("137787") // номер счета клиента
+                         .build();
+ 
++
+                 showProgress();
++                String ordedrId = UUID.randomUUID().toString();
++
+                 PlatonSdk.WebPayments.getSaleAdapter().sale(
+-                        productSales,
++                        productSale,
+                         successUrl,
+-                        String.valueOf(mEtxtOrderId.getText()),
++                        ordedrId,
+                         payer,
+                         webSaleOptions,
+                         this
+Index: sample/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/build.gradle	(date 1583747889000)
++++ sample/build.gradle	(date 1584001650000)
+@@ -48,10 +48,17 @@
+     implementation "androidx.browser:browser:$customtabs"
+ 
+     // Platon SDK
+-    implementation project(':platon')
+-//    compile('com.platon.sdk:platon:1.0.0@aar') {
++//    implementation project(':platon')
++//    implementation('com.platononline:sdk:1.0.1'){
+ //        transitive = true
+ //    }
++//    implementation('com.platon.sdk:platon:1.0.0') {
++//        transitive = true
++//    }
++
++    implementation ('com.platononline:platon:1.0.1@aar'){
++        transitive = true
++    }
+ 
+     // Utils
+     implementation 'com.github.stankoutils:app:1.67'
+Index: settings.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- settings.gradle	(date 1583747889000)
++++ settings.gradle	(date 1583949270000)
+@@ -1,2 +1,2 @@
+ include ':sample'
+-include ':platon'
++include ':platon'
+\ No newline at end of file
+Index: sample/src/main/res/values/credentials.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/res/values/credentials.xml	(date 1583747889000)
++++ sample/src/main/res/values/credentials.xml	(date 1583921847000)
+@@ -1,8 +1,10 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+ 
+-    <string name="platon_sdk_client_key_web">3WQKWN0UJV</string>
+-    <string name="platon_sdk_client_pass_web">bd9CGBFr8pC7TH2jQu6h68dEzyB0H7HR</string>
++<!--    <string name="platon_sdk_client_key_web">3WQKWN0UJV</string>-->
++    <string name="platon_sdk_client_key_web">TJCDY0JNMG</string>
++<!--    <string name="platon_sdk_client_pass_web">bd9CGBFr8pC7TH2jQu6h68dEzyB0H7HR</string>-->
++    <string name="platon_sdk_client_pass_web">9dQnsncTnrMDvB5AF5B8B2CzhmGERCah</string>
+     <string name="platon_sdk_payment_url_web">https://secure.platononline.com/payment/auth</string>
+ 
+     <string name="platon_sdk_client_key_post">AZSLZN9HFB</string>
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(date 1583747889000)
++++ build.gradle	(date 1583951712000)
+@@ -10,6 +10,7 @@
+ 
+         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
++
+     }
+ }
+ 
+Index: platon/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/build.gradle	(date 1583747889000)
++++ platon/build.gradle	(date 1583953226000)
+@@ -1,5 +1,8 @@
+ apply plugin: 'com.android.library'
+ 
++def buildProperties = new Properties()
++buildProperties.load(new FileInputStream("$projectDir/build.properties"))
++
+ ext {
+     bintrayRepo = 'platon_android_sdk'
+     bintrayName = 'platon_android_sdk'
+@@ -12,8 +15,6 @@
+     siteUrl = ''
+     gitUrl = ''
+ 
+-    libraryVersion = '1.0.0'
+-
+     developerId = 'platon'
+     developerName = 'Platonline'
+     developerEmail = 'https://platon.ua'
+@@ -25,8 +26,6 @@
+ 
+ 
+ ext {
+-    // SDK
+-    libraryCode = 1
+ 
+     // Android
+     androidMinSdkVersion = 16
+@@ -46,13 +45,27 @@
+     compileSdkVersion androidBuildSdkVersion
+     buildToolsVersion androidSupportVersion
+ 
++    defaultPublishConfig 'release' //expects a release variant
++
+     defaultConfig {
+         minSdkVersion androidMinSdkVersion
+         targetSdkVersion androidBuildSdkVersion
+-
+-        versionCode libraryCode
+-        versionName libraryVersion
+     }
++
++    // Fix for defaultPublishConfig not working as expected
++    // ref: https://github.com/dcendents/android-maven-gradle-plugin/issues/11
++//    libraryVariants.all { variant ->
++//        if( publishNonDefault && variant.name == defaultPublishConfig ) {
++//            def bundleTask = tasks["bundle${variant.name.capitalize()}"]
++//            artifacts {
++//                archives(bundleTask.archivePath) {
++//                    classifier null //necessary to get rid of the suffix in the artifact
++//                    builtBy bundleTask
++//                    name name.replace('-' + variant.name, '')//necessary to get rid of the suffix from the folder name
++//                }
++//            }
++//        }
++//    }
+ }
+ 
+ dependencies {
+@@ -68,5 +81,9 @@
+ 
+ }
+ 
+-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+\ No newline at end of file
++ext {
++    bintrayPropertiesFile = "${projectDir.absolutePath}/bintray.properties"
++    libraryVersion = buildProperties['versionName']
++}
++
++apply from: "${project.rootDir}/bintrayUploader.gradle"
+\ No newline at end of file

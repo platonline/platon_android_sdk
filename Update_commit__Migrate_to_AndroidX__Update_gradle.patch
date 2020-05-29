@@ -1,0 +1,1577 @@
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ build.gradle	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -5,7 +5,7 @@
+         google()
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.3.1'
++        classpath 'com.android.tools.build:gradle:3.5.3'
+         classpath 'io.realm:realm-gradle-plugin:3.5.0'
+ 
+         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+@@ -18,6 +18,7 @@
+         jcenter()
+         maven { url "https://jitpack.io" }
+         maven { url 'https://maven.google.com' }
++        google()
+     }
+ }
+ 
+Index: gradle.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradle.properties	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ gradle.properties	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -7,6 +7,8 @@
+ # Specifies the JVM arguments used for the daemon process.
+ # The setting is particularly useful for tweaking memory settings.
+ org.gradle.jvmargs=-Xmx1536m
++android.enableJetifier=true
++android.useAndroidX=true
+ # When configured, Gradle will run in incubating parallel mode.
+ # This option should only be used with decoupled projects. More details, visit
+ # http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradle/wrapper/gradle-wrapper.properties	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ gradle/wrapper/gradle-wrapper.properties	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+-#Sat Feb 09 19:53:22 GMT+02:00 2019
++#Mon Mar 09 10:45:39 EET 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.1-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-5.4.1-all.zip
+Index: platon/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/build.gradle	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/build.gradle	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -34,7 +34,7 @@
+     androidSupportVersion = '28.0.3'
+ 
+     // Support
+-    androidSupport = '28.0.0'
++    appcompat_version = '1.1.0'
+ 
+     // API
+     okhttp = '3.8.1'
+@@ -58,7 +58,7 @@
+ dependencies {
+ 
+     // Support
+-    implementation "com.android.support:appcompat-v7:$androidSupport"
++    implementation "androidx.appcompat:appcompat:$appcompat_version"
+ 
+     // API
+     api "com.squareup.okhttp3:okhttp:$okhttp"
+Index: platon/src/main/java/com/platon/sdk/constant/api/PlatonOption.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/constant/api/PlatonOption.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/constant/api/PlatonOption.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.constant.api;
+ 
+-import android.support.annotation.StringDef;
++import androidx.annotation.StringDef;
+ 
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+Index: platon/src/main/java/com/platon/sdk/constant/api/PlatonRedirectMethod.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/constant/api/PlatonRedirectMethod.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/constant/api/PlatonRedirectMethod.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.constant.api;
+ 
+-import android.support.annotation.StringDef;
++import androidx.annotation.StringDef;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.SerializedNames;
+ import com.platon.sdk.model.response.sale.PlatonSale3DSecure;
+Index: platon/src/main/java/com/platon/sdk/constant/api/PlatonResult.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/constant/api/PlatonResult.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/constant/api/PlatonResult.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.constant.api;
+ 
+-import android.support.annotation.StringDef;
++import androidx.annotation.StringDef;
+ 
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+Index: platon/src/main/java/com/platon/sdk/constant/api/PlatonStatus.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/constant/api/PlatonStatus.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/constant/api/PlatonStatus.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.constant.api;
+ 
+-import android.support.annotation.StringDef;
++import androidx.annotation.StringDef;
+ 
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+Index: platon/src/main/java/com/platon/sdk/constant/api/PlatonTransactionStatus.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/constant/api/PlatonTransactionStatus.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/constant/api/PlatonTransactionStatus.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.constant.api;
+ 
+-import android.support.annotation.IntDef;
++import androidx.annotation.IntDef;
+ 
+ import com.platon.sdk.model.response.transaction.PlatonTransaction;
+ 
+Index: platon/src/main/java/com/platon/sdk/constant/api/PlatonTransactionType.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/constant/api/PlatonTransactionType.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/constant/api/PlatonTransactionType.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.constant.api;
+ 
+-import android.support.annotation.StringDef;
++import androidx.annotation.StringDef;
+ 
+ import com.platon.sdk.model.response.transaction.PlatonTransaction;
+ 
+Index: platon/src/main/java/com/platon/sdk/constant/api/action/PlatonAction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/constant/api/action/PlatonAction.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/constant/api/action/PlatonAction.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.constant.api.action;
+ 
+-import android.support.annotation.StringDef;
++import androidx.annotation.StringDef;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ 
+Index: platon/src/main/java/com/platon/sdk/constant/api/action/PlatonRequestAction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/constant/api/action/PlatonRequestAction.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/constant/api/action/PlatonRequestAction.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.constant.api.action;
+ 
+-import android.support.annotation.StringDef;
++import androidx.annotation.StringDef;
+ 
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+Index: platon/src/main/java/com/platon/sdk/constant/api/action/PlatonResponseAction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/constant/api/action/PlatonResponseAction.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/constant/api/action/PlatonResponseAction.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.constant.api.action;
+ 
+-import android.support.annotation.StringDef;
++import androidx.annotation.StringDef;
+ 
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+Index: platon/src/main/java/com/platon/sdk/constant/api/action/PlatonScheduleAction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/constant/api/action/PlatonScheduleAction.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/constant/api/action/PlatonScheduleAction.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.constant.api.action;
+ 
+-import android.support.annotation.StringDef;
++import androidx.annotation.StringDef;
+ 
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+Index: platon/src/main/java/com/platon/sdk/constant/api/action/PlatonTransactionAction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/constant/api/action/PlatonTransactionAction.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/constant/api/action/PlatonTransactionAction.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.constant.api.action;
+ 
+-import android.support.annotation.StringDef;
++import androidx.annotation.StringDef;
+ 
+ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+Index: platon/src/main/java/com/platon/sdk/core/PlatonCredentials.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/core/PlatonCredentials.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/core/PlatonCredentials.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,8 +2,8 @@
+ 
+ import android.content.Context;
+ import android.content.SharedPreferences;
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
+ import android.text.TextUtils;
+ 
+ import com.platon.sdk.constant.PlatonSdkConstants;
+Index: platon/src/main/java/com/platon/sdk/core/PlatonSdk.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/core/PlatonSdk.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/core/PlatonSdk.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -5,8 +5,8 @@
+ import android.content.SharedPreferences;
+ import android.content.pm.PackageManager;
+ import android.os.Bundle;
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
+ import android.text.TextUtils;
+ 
+ import com.platon.sdk.constant.PlatonSdkConstants;
+Index: platon/src/main/java/com/platon/sdk/endpoint/adapter/PlatonBaseAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/adapter/PlatonBaseAdapter.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/adapter/PlatonBaseAdapter.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.endpoint.adapter;
+ 
+-import android.support.annotation.NonNull;
++import androidx.annotation.NonNull;
+ 
+ import com.google.gson.GsonBuilder;
+ import com.platon.sdk.callback.PlatonBaseCallback;
+Index: platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonCaptureAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonCaptureAdapter.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonCaptureAdapter.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,9 +1,9 @@
+ package com.platon.sdk.endpoint.adapter.post;
+ 
+-import android.support.annotation.FloatRange;
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.FloatRange;
++import androidx.annotation.Size;
+ 
+ import com.google.gson.GsonBuilder;
+ import com.google.gson.reflect.TypeToken;
+Index: platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonCreditVoidAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonCreditVoidAdapter.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonCreditVoidAdapter.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,9 +1,9 @@
+ package com.platon.sdk.endpoint.adapter.post;
+ 
+-import android.support.annotation.FloatRange;
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
++import androidx.annotation.FloatRange;
+ 
+ import com.google.gson.GsonBuilder;
+ import com.google.gson.reflect.TypeToken;
+Index: platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonRecurringAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonRecurringAdapter.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonRecurringAdapter.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,8 @@
+ package com.platon.sdk.endpoint.adapter.post;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.google.gson.GsonBuilder;
+ import com.google.gson.reflect.TypeToken;
+Index: platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonSaleAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonSaleAdapter.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonSaleAdapter.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sdk.endpoint.adapter.post;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
+ import android.text.TextUtils;
+ 
+ import com.google.gson.GsonBuilder;
+Index: platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonScheduleAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonScheduleAdapter.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonScheduleAdapter.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,9 +1,9 @@
+ package com.platon.sdk.endpoint.adapter.post;
+ 
+-import android.support.annotation.IntRange;
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.IntRange;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.google.gson.GsonBuilder;
+ import com.google.gson.reflect.TypeToken;
+Index: platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonTransactionAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonTransactionAdapter.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/adapter/post/PlatonTransactionAdapter.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sdk.endpoint.adapter.post;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Size;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.google.gson.GsonBuilder;
+ import com.google.gson.reflect.TypeToken;
+Index: platon/src/main/java/com/platon/sdk/endpoint/adapter/web/PlatonWebOneClickSaleAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/adapter/web/PlatonWebOneClickSaleAdapter.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/adapter/web/PlatonWebOneClickSaleAdapter.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,8 @@
+ package com.platon.sdk.endpoint.adapter.web;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ import android.text.TextUtils;
+ 
+ import com.google.gson.GsonBuilder;
+Index: platon/src/main/java/com/platon/sdk/endpoint/adapter/web/PlatonWebRecurringAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/adapter/web/PlatonWebRecurringAdapter.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/adapter/web/PlatonWebRecurringAdapter.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sdk.endpoint.adapter.web;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
+ import android.text.TextUtils;
+ 
+ import com.google.gson.GsonBuilder;
+Index: platon/src/main/java/com/platon/sdk/endpoint/adapter/web/PlatonWebSaleAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/adapter/web/PlatonWebSaleAdapter.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/adapter/web/PlatonWebSaleAdapter.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,8 @@
+ package com.platon.sdk.endpoint.adapter.web;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ import android.text.TextUtils;
+ 
+ import com.google.gson.GsonBuilder;
+Index: platon/src/main/java/com/platon/sdk/endpoint/adapter/web/PlatonWebScheduleAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/adapter/web/PlatonWebScheduleAdapter.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/adapter/web/PlatonWebScheduleAdapter.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.endpoint.adapter.web;
+ 
+-import android.support.annotation.NonNull;
++import androidx.annotation.NonNull;
+ 
+ import com.google.gson.GsonBuilder;
+ import com.platon.sdk.callback.PlatonWebCallback;
+Index: platon/src/main/java/com/platon/sdk/endpoint/adapter/web/PlatonWebTokenSaleAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/adapter/web/PlatonWebTokenSaleAdapter.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/adapter/web/PlatonWebTokenSaleAdapter.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,8 @@
+ package com.platon.sdk.endpoint.adapter.web;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ import android.text.TextUtils;
+ 
+ import com.google.gson.GsonBuilder;
+Index: platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonCaptureService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonCaptureService.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonCaptureService.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,9 @@
+ package com.platon.sdk.endpoint.service.post;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
++
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.constant.api.action.PlatonAction;
+Index: platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonCreditVoidService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonCreditVoidService.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonCreditVoidService.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,8 @@
+ package com.platon.sdk.endpoint.service.post;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.constant.api.action.PlatonAction;
+Index: platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonRecurringService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonRecurringService.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonRecurringService.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,8 @@
+ package com.platon.sdk.endpoint.service.post;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.constant.api.PlatonOption;
+Index: platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonSaleService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonSaleService.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonSaleService.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,8 @@
+ package com.platon.sdk.endpoint.service.post;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.constant.api.PlatonOption;
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+Index: platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonScheduleService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonScheduleService.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonScheduleService.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,9 +1,9 @@
+ package com.platon.sdk.endpoint.service.post;
+ 
+-import android.support.annotation.IntRange;
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.IntRange;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.constant.api.action.PlatonAction;
+Index: platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonTransactionService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonTransactionService.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/service/post/PlatonTransactionService.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sdk.endpoint.service.post;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Size;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.constant.api.action.PlatonTransactionAction;
+Index: platon/src/main/java/com/platon/sdk/endpoint/service/web/PlatonWebOneClickSaleService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/service/web/PlatonWebOneClickSaleService.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/service/web/PlatonWebOneClickSaleService.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,8 @@
+ package com.platon.sdk.endpoint.service.web;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.endpoint.adapter.web.PlatonWebOneClickSaleAdapter;
+Index: platon/src/main/java/com/platon/sdk/endpoint/service/web/PlatonWebRecurringService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/service/web/PlatonWebRecurringService.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/service/web/PlatonWebRecurringService.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,8 @@
+ package com.platon.sdk.endpoint.service.web;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.endpoint.adapter.web.PlatonWebRecurringAdapter;
+Index: platon/src/main/java/com/platon/sdk/endpoint/service/web/PlatonWebSaleService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/service/web/PlatonWebSaleService.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/service/web/PlatonWebSaleService.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,8 @@
+ package com.platon.sdk.endpoint.service.web;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.endpoint.adapter.web.PlatonWebSaleAdapter;
+Index: platon/src/main/java/com/platon/sdk/endpoint/service/web/PlatonWebScheduleService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/service/web/PlatonWebScheduleService.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/service/web/PlatonWebScheduleService.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,8 @@
+ package com.platon.sdk.endpoint.service.web;
+ 
+-import android.support.annotation.IntRange;
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Size;
++import androidx.annotation.IntRange;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.endpoint.adapter.web.PlatonWebScheduleAdapter;
+Index: platon/src/main/java/com/platon/sdk/endpoint/service/web/PlatonWebTokenSaleService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/endpoint/service/web/PlatonWebTokenSaleService.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/endpoint/service/web/PlatonWebTokenSaleService.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,8 @@
+ package com.platon.sdk.endpoint.service.web;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.endpoint.adapter.web.PlatonWebSaleAdapter;
+Index: platon/src/main/java/com/platon/sdk/model/request/PlatonCard.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/PlatonCard.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/PlatonCard.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,9 +2,9 @@
+ 
+ import android.os.Parcel;
+ import android.os.Parcelable;
+-import android.support.annotation.IntRange;
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Size;
++import androidx.annotation.IntRange;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants;
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+Index: platon/src/main/java/com/platon/sdk/model/request/option/PlatonSaleOptions.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/option/PlatonSaleOptions.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/option/PlatonSaleOptions.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,8 +2,8 @@
+ 
+ import android.os.Parcel;
+ import android.os.Parcelable;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.Nullable;
++import androidx.annotation.Size;
+ import android.text.TextUtils;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+Index: platon/src/main/java/com/platon/sdk/model/request/option/schedule/PlatonScheduleOptions.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/option/schedule/PlatonScheduleOptions.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/option/schedule/PlatonScheduleOptions.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,8 +2,9 @@
+ 
+ import android.os.Parcel;
+ import android.os.Parcelable;
+-import android.support.annotation.IntRange;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
++import androidx.annotation.IntRange;
++
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.constant.api.action.PlatonAction;
+Index: platon/src/main/java/com/platon/sdk/model/request/option/schedule/PlatonScheduleWebOptions.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/option/schedule/PlatonScheduleWebOptions.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/option/schedule/PlatonScheduleWebOptions.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,7 +2,7 @@
+ 
+ import android.os.Parcel;
+ import android.os.Parcelable;
+-import android.support.annotation.IntRange;
++import androidx.annotation.IntRange;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.endpoint.adapter.web.PlatonWebScheduleAdapter;
+Index: platon/src/main/java/com/platon/sdk/model/request/option/web/PlatonWebOptions.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/option/web/PlatonWebOptions.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/option/web/PlatonWebOptions.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,7 +2,7 @@
+ 
+ import android.os.Parcel;
+ import android.os.Parcelable;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.endpoint.adapter.web.PlatonWebRecurringAdapter;
+Index: platon/src/main/java/com/platon/sdk/model/request/option/web/PlatonWebSaleOptions.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/option/web/PlatonWebSaleOptions.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/option/web/PlatonWebSaleOptions.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sdk.model.request.option.web;
+ 
+ import android.os.Parcel;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.endpoint.adapter.web.PlatonWebSaleAdapter;
+Index: platon/src/main/java/com/platon/sdk/model/request/option/web/PlatonWebTokenSaleOptions.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/option/web/PlatonWebTokenSaleOptions.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/option/web/PlatonWebTokenSaleOptions.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sdk.model.request.option.web;
+ 
+ import android.os.Parcel;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.endpoint.adapter.web.PlatonWebSaleAdapter;
+Index: platon/src/main/java/com/platon/sdk/model/request/order/PlatonOrder.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/order/PlatonOrder.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/order/PlatonOrder.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,9 +2,9 @@
+ 
+ import android.os.Parcel;
+ import android.os.Parcelable;
+-import android.support.annotation.FloatRange;
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Size;
++import androidx.annotation.FloatRange;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.endpoint.adapter.post.PlatonScheduleAdapter;
+Index: platon/src/main/java/com/platon/sdk/model/request/order/PlatonOrderRecurring.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/order/PlatonOrderRecurring.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/order/PlatonOrderRecurring.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,8 @@
+ package com.platon.sdk.model.request.order;
+ 
+-import android.support.annotation.FloatRange;
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Size;
++import androidx.annotation.FloatRange;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.endpoint.adapter.post.PlatonRecurringAdapter;
+ 
+Index: platon/src/main/java/com/platon/sdk/model/request/order/PlatonOrderSale.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/order/PlatonOrderSale.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/order/PlatonOrderSale.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,8 @@
+ package com.platon.sdk.model.request.order;
+ 
+-import android.support.annotation.FloatRange;
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Size;
++import androidx.annotation.FloatRange;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.endpoint.adapter.post.PlatonSaleAdapter;
+ 
+Index: platon/src/main/java/com/platon/sdk/model/request/order/product/PlatonProduct.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/order/product/PlatonProduct.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/order/product/PlatonProduct.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,9 +2,10 @@
+ 
+ import android.annotation.SuppressLint;
+ import android.os.Parcel;
+-import android.support.annotation.FloatRange;
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Size;
++
++import androidx.annotation.Size;
++import androidx.annotation.NonNull;
++import androidx.annotation.FloatRange;
+ 
+ import com.platon.sdk.endpoint.adapter.post.PlatonScheduleAdapter;
+ import com.platon.sdk.model.request.order.PlatonOrder;
+Index: platon/src/main/java/com/platon/sdk/model/request/order/product/PlatonProductRecurring.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/order/product/PlatonProductRecurring.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/order/product/PlatonProductRecurring.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,10 +1,10 @@
+ package com.platon.sdk.model.request.order.product;
+ 
+ import android.annotation.SuppressLint;
+-import android.support.annotation.FloatRange;
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++import androidx.annotation.Nullable;
++import androidx.annotation.FloatRange;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.endpoint.adapter.web.PlatonWebRecurringAdapter;
+ 
+Index: platon/src/main/java/com/platon/sdk/model/request/order/product/PlatonProductSale.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/order/product/PlatonProductSale.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/order/product/PlatonProductSale.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,10 +1,11 @@
+ package com.platon.sdk.model.request.order.product;
+ 
+ import android.os.Parcel;
+-import android.support.annotation.FloatRange;
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
+-import android.support.annotation.Size;
++
++import androidx.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
++import androidx.annotation.FloatRange;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.endpoint.adapter.web.PlatonWebSaleAdapter;
+Index: platon/src/main/java/com/platon/sdk/model/request/payer/PlatonPayer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/payer/PlatonPayer.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/payer/PlatonPayer.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,7 +2,7 @@
+ 
+ import android.os.Parcel;
+ import android.os.Parcelable;
+-import android.support.annotation.Size;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.Formats.State;
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+Index: platon/src/main/java/com/platon/sdk/model/request/payer/PlatonPayerSale.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/payer/PlatonPayerSale.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/payer/PlatonPayerSale.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sdk.model.request.payer;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Size;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.endpoint.adapter.post.PlatonSaleAdapter;
+ 
+Index: platon/src/main/java/com/platon/sdk/model/request/payer/PlatonPayerWebSale.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/payer/PlatonPayerWebSale.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/payer/PlatonPayerWebSale.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.model.request.payer;
+ 
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ 
+ import com.platon.sdk.endpoint.adapter.web.PlatonWebSaleAdapter;
+ 
+Index: platon/src/main/java/com/platon/sdk/model/request/recurring/PlatonRecurring.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/recurring/PlatonRecurring.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/recurring/PlatonRecurring.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,8 +2,8 @@
+ 
+ import android.os.Parcel;
+ import android.os.Parcelable;
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Size;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
+ import com.platon.sdk.endpoint.adapter.post.PlatonRecurringAdapter;
+Index: platon/src/main/java/com/platon/sdk/model/request/recurring/PlatonRecurringWeb.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/request/recurring/PlatonRecurringWeb.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/request/recurring/PlatonRecurringWeb.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sdk.model.request.recurring;
+ 
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Size;
++import androidx.annotation.NonNull;
++import androidx.annotation.Size;
+ 
+ import com.platon.sdk.endpoint.adapter.web.PlatonWebRecurringAdapter;
+ import com.platon.sdk.endpoint.adapter.web.PlatonWebScheduleAdapter;
+Index: platon/src/main/java/com/platon/sdk/model/response/base/PlatonBaseResponse.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/response/base/PlatonBaseResponse.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/response/base/PlatonBaseResponse.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.model.response.base;
+ 
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ 
+ import com.platon.sdk.deserializer.PlatonBaseDeserializer;
+ import com.platon.sdk.endpoint.adapter.PlatonBaseAdapter;
+Index: platon/src/main/java/com/platon/sdk/model/response/transaction/PlatonTransaction.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/model/response/transaction/PlatonTransaction.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/model/response/transaction/PlatonTransaction.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,7 +2,7 @@
+ 
+ import android.os.Parcel;
+ import android.os.Parcelable;
+-import android.support.annotation.FloatRange;
++import androidx.annotation.FloatRange;
+ 
+ import com.google.gson.annotations.SerializedName;
+ import com.platon.sdk.constant.api.PlatonTransactionStatus;
+Index: platon/src/main/java/com/platon/sdk/util/Platon3dsSubmitUtil.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/util/Platon3dsSubmitUtil.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/util/Platon3dsSubmitUtil.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.util;
+ 
+-import android.support.annotation.NonNull;
++import androidx.annotation.NonNull;
+ import android.text.TextUtils;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.SerializedNames;
+Index: platon/src/main/java/com/platon/sdk/util/PlatonHashUtil.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/util/PlatonHashUtil.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/util/PlatonHashUtil.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.util;
+ 
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ import android.text.TextUtils;
+ import android.widget.BaseAdapter;
+ 
+Index: platon/src/main/java/com/platon/sdk/util/PlatonSdkUtil.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platon/src/main/java/com/platon/sdk/util/PlatonSdkUtil.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ platon/src/main/java/com/platon/sdk/util/PlatonSdkUtil.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,6 +1,6 @@
+ package com.platon.sdk.util;
+ 
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ 
+ import com.platon.sdk.constant.api.PlatonApiConstants.Formats.Amount;
+ 
+Index: sample/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/build.gradle	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/build.gradle	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,29 +1,51 @@
+ apply plugin: 'com.android.application'
+ apply plugin: 'realm-android'
+ 
++ext {
++
++    //App
++    sample = "com.platon.sample"
++
++    // SDK
++    libraryCode = 1
++    libraryVersion = '1.0.0'
++
++    // Android
++    androidMinSdkVersion = 16
++    androidBuildSdkVersion = 28
++    androidSupportVersion = '28.0.3'
++
++    // Support
++    appcompat_version = "1.1.0"
++    cardview = "1.0.0"
++    material = "1.1.0"
++    customtabs = "1.0.0-alpha1"
++
++}
++
+ android {
+ 
+-    compileSdkVersion 28
+-    buildToolsVersion '28.0.3'
++    compileSdkVersion androidBuildSdkVersion
++    buildToolsVersion androidSupportVersion
+ 
+     defaultConfig {
+-        applicationId "com.platon.sample"
++        applicationId sample
+ 
+-        minSdkVersion 16
+-        targetSdkVersion 28
++        minSdkVersion androidMinSdkVersion
++        targetSdkVersion androidBuildSdkVersion
+ 
+-        versionCode 1
+-        versionName "1.0"
++        versionCode libraryCode
++        versionName libraryVersion
+     }
+ 
+ }
+ 
+ dependencies {
+     // Support
+-    implementation 'com.android.support:appcompat-v7:28.0.0'
+-    implementation 'com.android.support:design:28.0.0'
+-    implementation 'com.android.support:cardview-v7:28.0.0'
+-    implementation 'com.android.support:customtabs:28.0.0'
++    implementation "androidx.appcompat:appcompat:$appcompat_version"
++    implementation "com.google.android.material:material:$material"
++    implementation "androidx.cardview:cardview:$cardview"
++    implementation "androidx.browser:browser:$customtabs"
+ 
+     // Platon SDK
+     implementation project(':platon')
+Index: sample/src/main/java/com/platon/sample/activities/BaseActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/BaseActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/BaseActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,8 +2,8 @@
+ 
+ import android.app.ProgressDialog;
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
+-import android.support.v7.app.AppCompatActivity;
++import androidx.annotation.Nullable;
++import androidx.appcompat.app.AppCompatActivity;
+ 
+ public class BaseActivity extends AppCompatActivity {
+ 
+Index: sample/src/main/java/com/platon/sample/activities/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/MainActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/MainActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,7 +2,7 @@
+ 
+ import android.content.Intent;
+ import android.os.Bundle;
+-import android.support.v7.app.AppCompatActivity;
++import androidx.appcompat.app.AppCompatActivity;
+ import android.view.View;
+ 
+ import com.platon.sample.R;
+Index: sample/src/main/java/com/platon/sample/activities/post/CaptureActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/post/CaptureActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/post/CaptureActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sample.activities.post;
+ 
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.EditText;
+Index: sample/src/main/java/com/platon/sample/activities/post/CreditVoidActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/post/CreditVoidActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/post/CreditVoidActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sample.activities.post;
+ 
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.EditText;
+Index: sample/src/main/java/com/platon/sample/activities/post/DescheduleActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/post/DescheduleActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/post/DescheduleActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sample.activities.post;
+ 
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.EditText;
+Index: sample/src/main/java/com/platon/sample/activities/post/GetTransDetailsActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/post/GetTransDetailsActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/post/GetTransDetailsActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sample.activities.post;
+ 
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.EditText;
+Index: sample/src/main/java/com/platon/sample/activities/post/GetTransStatusActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/post/GetTransStatusActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/post/GetTransStatusActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sample.activities.post;
+ 
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.EditText;
+Index: sample/src/main/java/com/platon/sample/activities/post/PostPaymentActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/post/PostPaymentActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/post/PostPaymentActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,7 +2,7 @@
+ 
+ import android.content.Intent;
+ import android.os.Bundle;
+-import android.support.v7.app.AppCompatActivity;
++import androidx.appcompat.app.AppCompatActivity;
+ import android.view.View;
+ 
+ import com.platon.sample.R;
+Index: sample/src/main/java/com/platon/sample/activities/post/RecurringActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/post/RecurringActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/post/RecurringActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sample.activities.post;
+ 
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.CheckBox;
+Index: sample/src/main/java/com/platon/sample/activities/post/SaleActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/post/SaleActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/post/SaleActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sample.activities.post;
+ 
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.CheckBox;
+Index: sample/src/main/java/com/platon/sample/activities/post/ScheduleActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/post/ScheduleActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/post/ScheduleActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sample.activities.post;
+ 
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.EditText;
+Index: sample/src/main/java/com/platon/sample/activities/post/Submit3dsDataActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/post/Submit3dsDataActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/post/Submit3dsDataActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -3,7 +3,7 @@
+ import android.content.Context;
+ import android.content.Intent;
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
++import androidx.annotation.Nullable;
+ import android.text.TextUtils;
+ import android.webkit.WebView;
+ 
+Index: sample/src/main/java/com/platon/sample/activities/web/WebDecheduleActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/web/WebDecheduleActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/web/WebDecheduleActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,8 +2,8 @@
+ 
+ import android.net.Uri;
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
+-import android.support.customtabs.CustomTabsIntent;
++import androidx.annotation.Nullable;
++import androidx.browser.customtabs.CustomTabsIntent;
+ import android.util.Log;
+ import android.view.View;
+ import android.widget.Button;
+Index: sample/src/main/java/com/platon/sample/activities/web/WebOneClickSaleActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/web/WebOneClickSaleActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/web/WebOneClickSaleActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,8 +2,8 @@
+ 
+ import android.net.Uri;
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
+-import android.support.customtabs.CustomTabsIntent;
++import androidx.annotation.Nullable;
++import androidx.browser.customtabs.CustomTabsIntent;
+ import android.util.Log;
+ import android.view.View;
+ import android.widget.Button;
+Index: sample/src/main/java/com/platon/sample/activities/web/WebPaymentActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/web/WebPaymentActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/web/WebPaymentActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,7 +2,7 @@
+ 
+ import android.content.Intent;
+ import android.os.Bundle;
+-import android.support.v7.app.AppCompatActivity;
++import androidx.appcompat.app.AppCompatActivity;
+ import android.view.View;
+ import android.widget.Toast;
+ 
+Index: sample/src/main/java/com/platon/sample/activities/web/WebRecurringActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/web/WebRecurringActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/web/WebRecurringActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,8 +2,8 @@
+ 
+ import android.net.Uri;
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
+-import android.support.customtabs.CustomTabsIntent;
++import androidx.annotation.Nullable;
++import androidx.browser.customtabs.CustomTabsIntent;
+ import android.util.Log;
+ import android.view.View;
+ import android.widget.Button;
+Index: sample/src/main/java/com/platon/sample/activities/web/WebSaleActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/web/WebSaleActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/web/WebSaleActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -3,9 +3,9 @@
+ import android.annotation.SuppressLint;
+ import android.net.Uri;
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
+-import android.support.customtabs.CustomTabsIntent;
+-import android.support.v4.view.ViewPager;
++import androidx.annotation.Nullable;
++import androidx.browser.customtabs.CustomTabsIntent;
++import androidx.viewpager.widget.ViewPager;
+ import android.util.Log;
+ import android.view.View;
+ import android.widget.Button;
+Index: sample/src/main/java/com/platon/sample/activities/web/WebScheduleActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/web/WebScheduleActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/web/WebScheduleActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -2,8 +2,8 @@
+ 
+ import android.net.Uri;
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
+-import android.support.customtabs.CustomTabsIntent;
++import androidx.annotation.Nullable;
++import androidx.browser.customtabs.CustomTabsIntent;
+ import android.util.Log;
+ import android.view.View;
+ import android.widget.Button;
+Index: sample/src/main/java/com/platon/sample/activities/web/WebTokenSaleActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/activities/web/WebTokenSaleActivity.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/activities/web/WebTokenSaleActivity.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -3,9 +3,9 @@
+ import android.annotation.SuppressLint;
+ import android.net.Uri;
+ import android.os.Bundle;
+-import android.support.annotation.Nullable;
+-import android.support.customtabs.CustomTabsIntent;
+-import android.support.v4.view.ViewPager;
++import androidx.annotation.Nullable;
++import androidx.browser.customtabs.CustomTabsIntent;
++import androidx.viewpager.widget.ViewPager;
+ import android.util.Log;
+ import android.view.View;
+ import android.widget.Button;
+Index: sample/src/main/java/com/platon/sample/adapters/ProductPagerAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/adapters/ProductPagerAdapter.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/adapters/ProductPagerAdapter.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,7 +1,7 @@
+ package com.platon.sample.adapters;
+ 
+ import android.content.Context;
+-import android.support.v4.view.PagerAdapter;
++import androidx.viewpager.widget.PagerAdapter;
+ import android.text.Editable;
+ import android.text.TextWatcher;
+ import android.view.LayoutInflater;
+Index: sample/src/main/java/com/platon/sample/app/PlatonApp.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/app/PlatonApp.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/app/PlatonApp.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -6,8 +6,7 @@
+ import com.stanko.tools.Initializer;
+ import com.stanko.tools.Log;
+ 
+-import static android.support.v4.util.PatternsCompat.WEB_URL;
+-
++import static androidx.core.util.PatternsCompat.WEB_URL;
+ public class PlatonApp extends Application {
+ 
+ 	@Override
+Index: sample/src/main/java/com/platon/sample/db/DBHelper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/db/DBHelper.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/db/DBHelper.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,8 @@
+ package com.platon.sample.db;
+ 
+ import android.content.Context;
+-import android.support.annotation.NonNull;
+-import android.support.annotation.Nullable;
++import androidx.annotation.NonNull;
++import androidx.annotation.Nullable;
+ import android.util.Log;
+ 
+ import org.json.JSONArray;
+Index: sample/src/main/java/com/platon/sample/views/WrapContentHeightViewPager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- sample/src/main/java/com/platon/sample/views/WrapContentHeightViewPager.java	(revision 4d067a3a396bfe5714adb8766dd44f9df94afed2)
++++ sample/src/main/java/com/platon/sample/views/WrapContentHeightViewPager.java	(revision ec95c57c7fdde1945fde660f02b91d9e70796244)
+@@ -1,8 +1,8 @@
+ package com.platon.sample.views;
+ 
+ import android.content.Context;
+-import android.support.v4.view.PagerTitleStrip;
+-import android.support.v4.view.ViewPager;
++import androidx.viewpager.widget.PagerTitleStrip;
++import androidx.viewpager.widget.ViewPager;
+ import android.util.AttributeSet;
+ import android.view.View;
+ 

@@ -34,10 +34,30 @@ Platon Андроид СДК (Platon Android SDK)
 
 Также вы можете импортировать СДК в проект с помощью Gradle:
 
-```groovy
-compile('com.platon.sdk:platon:${latest_version_from_releases_page}@aar') {
-    transitive = true
+1. Укажите зависимость Maven в вашем проекте gradle.build:
+
+allprojects { 
+	repositories { 
+		jcenter() 
+		google() 
+		// Platon Maven dependepcies 
+		mavenCentral() mavenLocal() 
+		flatDir { 
+			'dirs '../libs' 
+			} 
+		maven { url "https://jitpack.io" } 
+		maven { url "https://s3.amazonaws.com/moat-sdk-builds" } 
+		maven { url "https://dl.bintray.com/platonua/maven/" } 
+		} 
 }
+
+
+2. Включите SDK-зависимость в ваш модуль gradle.build:
+
+implementation('com.platonua:platon:1.0.2') { transitive = true }
+
+3. Синхронизировать проект с файлами Gradle (Gradle sync)
+
 ```
 
 Получить помощь
