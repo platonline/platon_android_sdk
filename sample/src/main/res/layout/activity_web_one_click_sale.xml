@@ -95,10 +95,16 @@
             android:hint="Ext 3"/>
 
         <EditText
-            android:id="@+id/etxt_ext_4"
+        android:id="@+id/etxt_ext_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ext 4"/>
+
+        <EditText
+            android:id="@+id/etxt_ext_10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ext 4"/>
+            android:hint="Ext 10"/>
 
         <Button
             android:id="@+id/btn_one_click_sale"

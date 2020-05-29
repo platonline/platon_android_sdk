@@ -508,6 +508,11 @@ public interface PlatonApiConstants {
 		String EXT_4 = "ext4";
 
 		/**
+		 * Client Parameter 10
+		 */
+		String EXT_10 = "ext10";
+
+		/**
 		 * Buyer's street address for web payments
 		 * <p>
 		 * Value: 123 Sample Street

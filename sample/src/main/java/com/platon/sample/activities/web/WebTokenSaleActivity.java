@@ -63,6 +63,7 @@ public class WebTokenSaleActivity extends BaseActivity implements
     private EditText mEtxtExt2;
     private EditText mEtxtExt3;
     private EditText mEtxtExt4;
+    private EditText mEtxtExt10;
     private Button mBtnSale;
 
     private ProductPagerAdapter mProductPagerAdapter;
@@ -99,6 +100,7 @@ public class WebTokenSaleActivity extends BaseActivity implements
         mEtxtExt2 = findViewById(R.id.etxt_ext_2);
         mEtxtExt3 = findViewById(R.id.etxt_ext_3);
         mEtxtExt4 = findViewById(R.id.etxt_ext_4);
+        mEtxtExt10 = findViewById(R.id.etxt_ext_10);
         mBtnSale = findViewById(R.id.btn_sale);
     }
 
@@ -168,6 +170,7 @@ public class WebTokenSaleActivity extends BaseActivity implements
         mEtxtExt2.setText(Faker.with(this).Url.avatar());
         mEtxtExt3.setText(Faker.with(this).Url.avatar());
         mEtxtExt4.setText(Faker.with(this).Url.avatar());
+        mEtxtExt10.setText(Faker.with(this).Url.avatar());
     }
 
     @Override
@@ -217,6 +220,7 @@ public class WebTokenSaleActivity extends BaseActivity implements
                         .ext2(String.valueOf(mEtxtExt2.getText()))
                         .ext3(String.valueOf(mEtxtExt3.getText()))
                         .ext4(String.valueOf(mEtxtExt4.getText()))
+                        .ext10(String.valueOf(mEtxtExt10.getText()))
                         .build();
 
                 showProgress();

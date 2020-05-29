@@ -51,7 +51,8 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 			@Nullable final String ext1,
 			@Nullable final String ext2,
 			@Nullable final String ext3,
-			@Nullable final String ext4
+			@Nullable final String ext4,
+			@Nullable final String ext10
 	) {
 		mLanguage = language;
 		mErrorUrl = errorUrl;
@@ -61,6 +62,7 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 		mExt2 = ext2;
 		mExt3 = ext3;
 		mExt4 = ext4;
+		mExt10 = ext10;
 	}
 
 	private PlatonWebSaleOptions(final Builder builder) {
@@ -72,6 +74,7 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 		mExt2 = builder.mExt2;
 		mExt3 = builder.mExt3;
 		mExt4 = builder.mExt4;
+		mExt10 = builder.mExt10;
 	}
 
 	protected PlatonWebSaleOptions(final Parcel in) {
@@ -151,6 +154,9 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 		@Nullable
 		private String mExt4;
 
+		@Nullable
+		private String mExt10;
+
 		public Builder language(@Nullable final String language) {
 			mLanguage = language;
 			return this;
@@ -191,6 +197,11 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 			return this;
 		}
 
+		public Builder ext10(@Nullable final String ext10) {
+			mExt10 = ext10;
+			return this;
+		}
+
 		public PlatonWebSaleOptions build() {
 			return new PlatonWebSaleOptions(this);
 		}
@@ -207,6 +218,7 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 				", mExt2='" + mExt2 + '\'' +
 				", mExt3='" + mExt3 + '\'' +
 				", mExt4='" + mExt4 + '\'' +
+				", mExt10='" + mExt10 + '\'' +
 				'}';
 	}
 }

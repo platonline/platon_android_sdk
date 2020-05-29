@@ -47,6 +47,14 @@ public class PlatonWebOptions implements Parcelable {
 	@Nullable
 	String mExt4;
 
+	/**
+	 * Client Parameter 10
+	 * <p>
+	 * See {@link MethodProperties#EXT_4}
+	 */
+	@Nullable
+	String mExt10;
+
 	public PlatonWebOptions() {
 	}
 
@@ -54,12 +62,14 @@ public class PlatonWebOptions implements Parcelable {
 			@Nullable final String ext1,
 			@Nullable final String ext2,
 			@Nullable final String ext3,
-			@Nullable final String ext4
+			@Nullable final String ext4,
+			@Nullable final String ext10
 	) {
 		mExt1 = ext1;
 		mExt2 = ext2;
 		mExt3 = ext3;
 		mExt4 = ext4;
+		mExt10 = ext10;
 	}
 
 	private PlatonWebOptions(final Builder builder) {
@@ -67,6 +77,8 @@ public class PlatonWebOptions implements Parcelable {
 		mExt2 = builder.mExt2;
 		mExt3 = builder.mExt3;
 		mExt4 = builder.mExt4;
+		mExt10 = builder.mExt10;
+
 	}
 
 	protected PlatonWebOptions(Parcel in) {
@@ -74,6 +86,7 @@ public class PlatonWebOptions implements Parcelable {
 		mExt2 = in.readString();
 		mExt3 = in.readString();
 		mExt4 = in.readString();
+		mExt10 = in.readString();
 	}
 
 	public static final Creator<PlatonWebOptions> CREATOR = new Creator<PlatonWebOptions>() {
@@ -124,6 +137,17 @@ public class PlatonWebOptions implements Parcelable {
 		mExt4 = ext4;
 	}
 
+	public void setExt10(@Nullable final String ext10) {
+		mExt10 = ext10;
+	}
+
+	@Nullable
+	public String getExt10() {
+		return mExt10;
+	}
+
+
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -135,6 +159,7 @@ public class PlatonWebOptions implements Parcelable {
 		parcel.writeString(mExt2);
 		parcel.writeString(mExt3);
 		parcel.writeString(mExt4);
+		parcel.writeString(mExt10);
 	}
 
 	public static final class Builder {
@@ -150,6 +175,9 @@ public class PlatonWebOptions implements Parcelable {
 
 		@Nullable
 		private String mExt4;
+
+		@Nullable
+		private String mExt10;
 
 		public Builder ext1(@Nullable final String ext1) {
 			mExt1 = ext1;
@@ -171,6 +199,11 @@ public class PlatonWebOptions implements Parcelable {
 			return this;
 		}
 
+		public Builder ext10(@Nullable final String ext10) {
+			mExt10 = ext10;
+			return this;
+		}
+
 		public PlatonWebOptions build() {
 			return new PlatonWebOptions(this);
 		}
@@ -183,6 +216,7 @@ public class PlatonWebOptions implements Parcelable {
 				", mExt2='" + mExt2 + '\'' +
 				", mExt3='" + mExt3 + '\'' +
 				", mExt4='" + mExt4 + '\'' +
+				", mExt10='" + mExt10 + '\'' +
 				'}';
 	}
 }

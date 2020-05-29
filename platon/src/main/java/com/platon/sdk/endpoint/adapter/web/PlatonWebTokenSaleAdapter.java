@@ -181,6 +181,8 @@ public class PlatonWebTokenSaleAdapter extends PlatonBaseAdapter<PlatonWebTokenS
 						? null : webSaleOptions.getExt3(),
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt4())
 						? null : webSaleOptions.getExt4(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt10())
+						? null : webSaleOptions.getExt10(),
 
 				PlatonHashUtil.encryptSaleTokenWeb(payment, data, successUrl, webSaleOptions.getCardToken())
 		);

@@ -41,6 +41,7 @@ public interface PlatonWebRecurringService {
 			@Field(MethodProperties.EXT_2) @Nullable final String ext2,
 			@Field(MethodProperties.EXT_3) @Nullable final String ext3,
 			@Field(MethodProperties.EXT_4) @Nullable final String ext4,
+			@Field(MethodProperties.EXT_10) @Nullable final String ext10,
 
 			@Field(MethodProperties.SIGN) @NonNull final String sign
 
@@ -64,6 +65,7 @@ public interface PlatonWebRecurringService {
 			@Field(MethodProperties.EXT_2) @Nullable final String ext2,
 			@Field(MethodProperties.EXT_3) @Nullable final String ext3,
 			@Field(MethodProperties.EXT_4) @Nullable final String ext4,
+			@Field(MethodProperties.EXT_10) @Nullable final String ext10,
 
 			@Field(MethodProperties.SIGN) @NonNull final String sign
 	);

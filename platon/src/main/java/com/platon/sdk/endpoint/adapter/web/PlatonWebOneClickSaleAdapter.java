@@ -132,6 +132,8 @@ public class PlatonWebOneClickSaleAdapter extends PlatonBaseAdapter<PlatonWebOne
 						? null : webSaleOptions.getExt3(),
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt4())
 						? null : webSaleOptions.getExt4(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt10())
+						? null : webSaleOptions.getExt10(),
 
 				PlatonHashUtil.encryptOneClickSaleWeb(data, recurringWeb, successUrl)
 		);
