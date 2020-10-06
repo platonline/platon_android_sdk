@@ -27,6 +27,7 @@ import java.lang.annotation.RetentionPolicy;
         PlatonAction.CHARGEBACK,
         PlatonAction.SECOND_PRESENTMENT,
         PlatonAction.SECOND_CHARGEBACK,
+        PlatonAction.GOOGLE_PAY,
 })
 public @interface PlatonAction {
 
@@ -84,4 +85,9 @@ public @interface PlatonAction {
      * SECOND_CHARGEBACK transaction was created in Payment Platform
      */
     String SECOND_CHARGEBACK = "SECOND_CHARGEBACK";
+
+    /**
+     * GOOGLEPAY transaction was created in Payment Platform
+     */
+    String GOOGLE_PAY = "GOOGLEPAY";
 }

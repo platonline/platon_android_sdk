@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/etxt_order_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Order ID" />
+
+            <EditText
+                android:id="@+id/etxt_order_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Order Amount" />
+
+            <EditText
+                android:id="@+id/etxt_order_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Order Description" />
+
+            <EditText
+                android:id="@+id/etxt_order_currency_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Order Currency Code" />
+
+            <EditText
+                android:id="@+id/etxt_payer_country_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Payer Country Code" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#232323" />
+
+            <EditText
+                android:id="@+id/etxt_payer_first_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Payer First Name" />
+
+            <EditText
+                android:id="@+id/etxt_payer_last_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Payer Last Name" />
+
+            <EditText
+                android:id="@+id/etxt_payer_middle_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Payer Middle Name" />
+
+            <EditText
+                android:id="@+id/etxt_payer_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Payer Birthday" />
+
+            <EditText
+                android:id="@+id/etxt_payer_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Payer Address" />
+
+            <EditText
+                android:id="@+id/etxt_payer_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Payer State" />
+
+            <EditText
+                android:id="@+id/etxt_payer_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Payer City" />
+
+            <EditText
+                android:id="@+id/etxt_payer_zip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Payer Zip" />
+
+            <EditText
+                android:id="@+id/etxt_payer_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Payer Email"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/etxt_payer_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Payer Phone"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/etxt_payer_ip_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Payer IP Address" />
+
+            <EditText
+                android:id="@+id/etxt_channel_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Channel ID"/>
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cb_async"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Async Sale" />
+
+        <CheckBox
+            android:id="@+id/cb_auth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Auth" />
+
+        <CheckBox
+            android:id="@+id/cb_black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="black" />
+
+        <CheckBox
+            android:id="@+id/cb_with_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="with text" />
+
+        <CheckBox
+            android:id="@+id/cb_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="shadow (only for white button)" />
+
+        <com.platon.sdk.widget.GooglePayButton
+            android:id="@+id/google_pay_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:black="false"
+            app:withText="true"
+            app:shadow="true"/>
+
+        <TextView
+            android:id="@+id/tx_response"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:minHeight="200dp"
+            android:text="Response" />
+
+    </LinearLayout>
+</ScrollView>
