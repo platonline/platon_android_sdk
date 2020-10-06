@@ -46,10 +46,12 @@ public interface PlatonApiConstants {
 			int TEXT_SHORT = 32;
 			int TEXT = 255;
 			int TEXT_LONG = 1024;
+			int TEXT_DATE = 10;
 
 			int LANG = 2;
 			int CHANNEL = 16;
 			int CURRENCY_CODE = 3;
+			int COUNTRY_CODE = 2;
 		}
 
 		/**
@@ -239,6 +241,20 @@ public interface PlatonApiConstants {
 		 * Value: String up to 32 characters
 		 */
 		String PAYER_LAST_NAME = "payer_last_name"; //*
+
+		/**
+		 * Customer’s middle name
+		 * <p>
+		 * Value: String up to 32 characters
+		 */
+		String PAYER_MIDDLE_NAME = "payer_middle_name"; //*
+
+		/**
+		 * Customer’s birthday
+		 * <p>
+		 * Value: String format yyyy-MM-dd
+		 */
+		String PAYER_BIRTHDAY = "payer_birthday"; //*
 
 		/**
 		 * Customer’s address
@@ -605,6 +621,11 @@ public interface PlatonApiConstants {
 		 * Value: Number
 		 */
 		String INITIAL_DELAY = "initial_delay"; //*
+
+		/**
+		 * Token received by a merchant from Google Play
+		 */
+		String PAYMENT_TOKEN = "payment_token"; //*
 
 	}
 

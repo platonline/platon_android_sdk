@@ -38,6 +38,7 @@ ext {
     // API
     okhttp = '3.8.1'
     retrofit = '2.3.0'
+    googleWalletVersion = '18.0.0'
 }
 
 android {
@@ -63,6 +64,8 @@ dependencies {
     api "com.squareup.okhttp3:logging-interceptor:$okhttp"
     api "com.squareup.retrofit2:retrofit:$retrofit"
     api "com.squareup.retrofit2:converter-gson:$retrofit"
+    api("com.google.android.gms:play-services-wallet:$googleWalletVersion")
+
     //For serialising JSONP add converter-scalars
     implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
 

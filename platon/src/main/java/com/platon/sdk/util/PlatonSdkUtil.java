@@ -1,10 +1,15 @@
 package com.platon.sdk.util;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 
 import com.platon.sdk.constant.api.PlatonApiConstants.Formats.Amount;
 
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -13,6 +18,7 @@ import java.util.Locale;
 public class PlatonSdkUtil {
 
     private final static NumberFormat NUMBER_FORMAT = NumberFormat.getNumberInstance(Locale.US);
+    private final static String DATE_FORMAT = "yyyy-MM-dd";
 
     // Configure number formatter with Platon SDK amount format rules
     static {
@@ -40,4 +46,26 @@ public class PlatonSdkUtil {
         }
     }
 
+    public static boolean isValidFormat(String value) {
+        Date date = null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+            date = sdf.parse(value);
+            if (!value.equals(sdf.format(date))) {
+                date = null;
+            }
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+            Log.e("PlatonSDK", "Invalid date format " + ex);
+        }
+        return date != null;
+    }
+
+    public static String getDateFormat(String value){
+        if(isValidFormat(value)){
+            return value;
+        } else {
+            return null;
+        }
+    }
 }

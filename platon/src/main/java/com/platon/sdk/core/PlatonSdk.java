@@ -15,6 +15,7 @@ import com.platon.sdk.constant.PlatonSdkConstants.SharedPrefs;
 import com.platon.sdk.constant.api.action.PlatonAction;
 import com.platon.sdk.endpoint.adapter.post.PlatonCaptureAdapter;
 import com.platon.sdk.endpoint.adapter.post.PlatonCreditVoidAdapter;
+import com.platon.sdk.endpoint.adapter.post.PlatonGooglePayAdapter;
 import com.platon.sdk.endpoint.adapter.post.PlatonRecurringAdapter;
 import com.platon.sdk.endpoint.adapter.post.PlatonSaleAdapter;
 import com.platon.sdk.endpoint.adapter.post.PlatonScheduleAdapter;
@@ -244,6 +245,14 @@ public final class PlatonSdk {
 		public static PlatonTransactionAdapter getTransactionAdapter() {
 			checkIsInited();
 			return PlatonTransactionAdapter.getInstance();
+		}
+
+		/**
+		 * @return adapter for {@link PlatonAction#GOOGLE_PAY}  and {@link PlatonAction#GOOGLE_PAY} requests
+		 */
+		public static PlatonGooglePayAdapter getGooglePayAdapter() {
+			checkIsInited();
+			return PlatonGooglePayAdapter.getInstance();
 		}
 	}
 

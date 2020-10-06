@@ -16,6 +16,7 @@ import java.lang.annotation.RetentionPolicy;
  * RECURRING_SALE 		Creates SALE transaction using previously used cardholder data
  * SCHEDULE 			Creates schedule for recurring transactions
  * DESCHEDULE 			Disables schedule for recurring transactions
+ * GOOGLE_PAY           Creates GOOGLEPAY transaction
  * <p>
  * See also {@link PlatonAction}
  */
@@ -28,7 +29,8 @@ import java.lang.annotation.RetentionPolicy;
         PlatonAction.GET_TRANS_DETAILS,
         PlatonAction.RECURRING_SALE,
         PlatonAction.SCHEDULE,
-        PlatonAction.DESCHEDULE
+        PlatonAction.DESCHEDULE,
+        PlatonAction.GOOGLE_PAY
 })
 public @interface PlatonRequestAction {
 }

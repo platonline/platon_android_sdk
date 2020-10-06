@@ -58,6 +58,18 @@
             android:layout_height="wrap_content"
             android:text="DESCHEDULE"/>
 
+        <Button
+            android:id="@+id/btn_google_pay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GOOGLE_PAY"/>
+
+        <Button
+            android:id="@+id/btn_google_pay_prod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GOOGLE_PAY_PROD"/>
+
     </LinearLayout>
 
 </ScrollView>
