@@ -54,7 +54,7 @@ allprojects {
 
 2. Включите SDK-зависимость в ваш модуль gradle.build:
 
-implementation('com.platonua:platon:1.0.2') { transitive = true }
+implementation('com.platonua:platon:1.0.3') { transitive = true }
 
 3. Синхронизировать проект с файлами Gradle (Gradle sync)
 
