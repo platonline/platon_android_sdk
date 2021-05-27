@@ -72,8 +72,8 @@ dependencies {
 }
 
 ext {
-    bintrayPropertiesFile = "${projectDir.absolutePath}/bintray.properties"
+    artifactoryPropertiesFile = "${projectDir.absolutePath}/artifactory.properties"
     libraryVersion = buildProperties['versionName']
 }
 
-apply from: "${project.rootDir}/bintrayUploader.gradle"
+apply from: "${project.rootDir}/artifactoryUploader.gradle"

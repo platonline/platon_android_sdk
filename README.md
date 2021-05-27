@@ -41,13 +41,7 @@ allprojects {
 		jcenter() 
 		google() 
 		// Platon Maven dependepcies 
-		mavenCentral() mavenLocal() 
-		flatDir { 
-			'dirs '../libs' 
-			} 
-		maven { url "https://jitpack.io" } 
-		maven { url "https://s3.amazonaws.com/moat-sdk-builds" } 
-		maven { url "https://dl.bintray.com/platonua/maven/" } 
+		maven { url "https://platon.jfrog.io/artifactory/platon" }
 		} 
 }
 
