@@ -13,13 +13,13 @@ ext {
     // Android
     androidMinSdkVersion = 16
     androidBuildSdkVersion = 28
-    androidSupportVersion = '28.0.3'
+    androidSupportVersion = '29.0.2'
 
     // Support
     appcompat_version = "1.1.0"
     cardview = "1.0.0"
-    material = "1.1.0"
-    customtabs = "1.0.0-alpha1"
+    material = "1.3.0"
+    customtabs = "1.3.0"
 
 }
 
@@ -49,9 +49,6 @@ dependencies {
 
     // Platon SDK
     implementation project(':platon')
-//    compile('com.platon.sdk:platon:1.0.0@aar') {
-//        transitive = true
-//    }
 
     // Utils
     implementation 'com.github.stankoutils:app:1.67'
