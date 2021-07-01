@@ -82,6 +82,7 @@ public class PlatonProductSale extends PlatonProduct {
 		parcel.writeByte((byte) (mIsRecurring ? 1 : 0));
 	}
 
+	@NonNull
 	@Override
 	public String toString() {
 		return "PlatonProductSale{" +

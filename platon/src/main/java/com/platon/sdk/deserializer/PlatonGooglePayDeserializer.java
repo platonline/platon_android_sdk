@@ -18,7 +18,6 @@ import com.platon.sdk.model.response.google_pay.PlatonGooglePaySuccess;
  */
 public class PlatonGooglePayDeserializer extends PlatonBaseDeserializer<PlatonGooglePay, PlatonGooglePayResponse> {
 
-    @SuppressWarnings("unchecked")
     public PlatonGooglePayDeserializer() {
         super(PlatonGooglePay.class);
     }

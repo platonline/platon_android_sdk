@@ -2,6 +2,8 @@ package com.platon.sdk.model.response.capture;
 
 import android.os.Parcel;
 
+import androidx.annotation.NonNull;
+
 import com.platon.sdk.constant.api.PlatonStatus;
 import com.platon.sdk.endpoint.adapter.post.PlatonCaptureAdapter;
 import com.platon.sdk.model.response.base.PlatonBasePayment;
@@ -32,6 +34,7 @@ public class PlatonCapture extends PlatonBasePayment {
         mStatus = status;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonCapture{" +

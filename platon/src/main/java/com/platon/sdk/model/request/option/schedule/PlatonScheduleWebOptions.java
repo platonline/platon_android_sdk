@@ -3,6 +3,7 @@ package com.platon.sdk.model.request.option.schedule;
 import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
 
 import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
 import com.platon.sdk.endpoint.adapter.web.PlatonWebScheduleAdapter;
@@ -117,6 +118,7 @@ public class PlatonScheduleWebOptions implements Parcelable {
 		parcel.writeInt(mRepeatTimes);
 	}
 
+	@NonNull
 	@Override
 	public String toString() {
 		return "PlatonScheduleWebOptions{" +

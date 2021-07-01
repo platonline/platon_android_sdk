@@ -3,6 +3,8 @@ package com.platon.sdk.model.response.base;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 import com.platon.sdk.constant.api.PlatonResult;
 import com.platon.sdk.constant.api.PlatonStatus;
@@ -143,6 +145,7 @@ public class PlatonBasePayment implements Parcelable {
         parcel.writeString(mTransactionId);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonBasePayment{" +

@@ -173,13 +173,13 @@ public class PlatonScheduleAdapter extends PlatonBaseAdapter<PlatonScheduleServi
 	 * For params description see {@link #deschedule(PlatonRecurring, String, PlatonScheduleCallback)}
 	 */
 	@SuppressWarnings("ConstantConditions")
-	public Call deschedule(
+	public void deschedule(
 			@NonNull final PlatonRecurring platonRecurring,
 			@NonNull @Size(max = EMAIL) final String payerEmail,
 			@NonNull @Size(min = MIN_CARD_NUMBER, max = MAX_CARD_NUMBER) final String cardNumber,
 			@NonNull final PlatonScheduleCallback callback
 	) {
-		return deschedule(
+		deschedule(
 				platonRecurring, PlatonHashUtil.encryptSale(payerEmail, platonRecurring.getFirstTransId(), cardNumber), callback
 		);
 	}
@@ -192,7 +192,7 @@ public class PlatonScheduleAdapter extends PlatonBaseAdapter<PlatonScheduleServi
 	 * Transactions are created by Payment Platform, based on data taken from primary transaction
 	 */
 	@SuppressWarnings("unchecked")
-	public Call deschedule(
+	public void deschedule(
 			@NonNull final PlatonRecurring platonRecurring,
 			@NonNull final String hash,
 			@NonNull final PlatonScheduleCallback callback
@@ -206,6 +206,5 @@ public class PlatonScheduleAdapter extends PlatonBaseAdapter<PlatonScheduleServi
 		);
 		call.enqueue(enqueueWithCallback(callback));
 
-		return call;
 	}
 }

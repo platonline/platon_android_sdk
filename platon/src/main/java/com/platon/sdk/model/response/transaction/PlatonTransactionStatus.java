@@ -2,6 +2,8 @@ package com.platon.sdk.model.response.transaction;
 
 import android.os.Parcel;
 
+import androidx.annotation.NonNull;
+
 import com.platon.sdk.callback.PlatonBaseCallback;
 import com.platon.sdk.constant.api.PlatonStatus;
 import com.platon.sdk.deserializer.PlatonBaseDeserializer;
@@ -36,6 +38,7 @@ public class PlatonTransactionStatus extends PlatonBasePayment {
         mStatus = status;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonTransactionStatus{" +

@@ -104,7 +104,7 @@ public class RecurringActivity extends BaseActivity implements
 
         mEtxtOrderId.setText(String.valueOf(UUID.randomUUID()));
         mEtxtOrderAmount.setText(String.valueOf(Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F)));
-        mEtxtOrderDescription.setText(Faker.with(this).Lorem.sentences());
+        mEtxtOrderDescription.setText(Faker.Lorem.sentences());
 
         mEtxtPayerEmail.setText(mTrans.getPayerEmail());
         mEtxtCardNumber.setText(mTrans.getCardNumber());
@@ -119,58 +119,53 @@ public class RecurringActivity extends BaseActivity implements
 
     @Override
     public void onClick(final View v) {
-        switch (v.getId()) {
-            case R.id.btn_randomize:
-                randomize();
-                break;
-            case R.id.btn_sale:
-            case R.id.btn_auth:
-                mEtxtResponse.setText("");
+        int id = v.getId();
+        if (id == R.id.btn_randomize) {
+            randomize();
+        } else if (id == R.id.btn_sale || id == R.id.btn_auth) {
+            mEtxtResponse.setText("");
 
-                float amount;
-                try {
-                    amount = Float.parseFloat(String.valueOf(mEtxtOrderAmount.getText()));
-                } catch (final Exception e) {
-                    amount = Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F);
-                }
-                final PlatonOrderRecurring order = new PlatonOrderRecurring(
-                        String.valueOf(mEtxtOrderId.getText()),
-                        amount,
-                        String.valueOf(mEtxtOrderDescription.getText())
-                );
+            float amount;
+            try {
+                amount = Float.parseFloat(String.valueOf(mEtxtOrderAmount.getText()));
+            } catch (final Exception e) {
+                amount = Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F);
+            }
+            final PlatonOrderRecurring order = new PlatonOrderRecurring(
+                    String.valueOf(mEtxtOrderId.getText()),
+                    amount,
+                    String.valueOf(mEtxtOrderDescription.getText())
+            );
 
-                final PlatonRecurring platonRecurring = new PlatonRecurring(
-                        String.valueOf(mEtxtFirstTransId.getText()),
-                        String.valueOf(mEtxtRecurringToken.getText())
-                );
+            final PlatonRecurring platonRecurring = new PlatonRecurring(
+                    String.valueOf(mEtxtFirstTransId.getText()),
+                    String.valueOf(mEtxtRecurringToken.getText())
+            );
 
-                final String payerEmail = String.valueOf(mEtxtPayerEmail.getText());
-                final String cardNumber = String.valueOf(mEtxtCardNumber.getText());
-                mTrans = new Trans(payerEmail, cardNumber);
+            final String payerEmail = String.valueOf(mEtxtPayerEmail.getText());
+            final String cardNumber = String.valueOf(mEtxtCardNumber.getText());
+            mTrans = new Trans(payerEmail, cardNumber);
 
-                showProgress();
-                if (v.getId() == R.id.btn_sale) {
-                    if (mCbAsyncRecurring.isChecked())
-                        PlatonSdk.PostPayments.getRecurringAdapter().recurringAsyncSale(
-                                order, platonRecurring, payerEmail, cardNumber, this
-                        );
-                    else
-                        PlatonSdk.PostPayments.getRecurringAdapter().recurringSale(
-                                order, platonRecurring, payerEmail, cardNumber, this
-                        );
-                } else {
-                    if (mCbAsyncRecurring.isChecked())
-                        PlatonSdk.PostPayments.getRecurringAdapter().recurringAsyncAuth(
-                                order, platonRecurring, payerEmail, cardNumber, this
-                        );
-                    else
-                        PlatonSdk.PostPayments.getRecurringAdapter().recurringAuth(
-                                order, platonRecurring, payerEmail, cardNumber, this
-                        );
-                }
-                break;
-            default:
-                break;
+            showProgress();
+            if (v.getId() == R.id.btn_sale) {
+                if (mCbAsyncRecurring.isChecked())
+                    PlatonSdk.PostPayments.getRecurringAdapter().recurringAsyncSale(
+                            order, platonRecurring, payerEmail, cardNumber, this
+                    );
+                else
+                    PlatonSdk.PostPayments.getRecurringAdapter().recurringSale(
+                            order, platonRecurring, payerEmail, cardNumber, this
+                    );
+            } else {
+                if (mCbAsyncRecurring.isChecked())
+                    PlatonSdk.PostPayments.getRecurringAdapter().recurringAsyncAuth(
+                            order, platonRecurring, payerEmail, cardNumber, this
+                    );
+                else
+                    PlatonSdk.PostPayments.getRecurringAdapter().recurringAuth(
+                            order, platonRecurring, payerEmail, cardNumber, this
+                    );
+            }
         }
     }
 

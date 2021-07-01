@@ -15,7 +15,6 @@ import com.platon.sdk.model.response.capture.PlatonCaptureSuccess;
  */
 public class PlatonCaptureDeserializer extends PlatonBaseDeserializer<PlatonCapture, PlatonCaptureResponse> {
 
-    @SuppressWarnings("unchecked")
     public PlatonCaptureDeserializer() {
         super(PlatonCapture.class);
     }

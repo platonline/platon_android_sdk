@@ -35,6 +35,7 @@ public class PlatonOrderRecurring extends PlatonOrder {
         mId = id;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonOrderRecurring{" +

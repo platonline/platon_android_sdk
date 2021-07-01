@@ -22,15 +22,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(final View v) {
-        switch (v.getId()) {
-            case R.id.btn_platon_sdk_web_payment:
-                startActivity(new Intent(MainActivity.this, WebPaymentActivity.class));
-                break;
-            case R.id.btn_platon_sdk_post_payment:
-                startActivity(new Intent(MainActivity.this, PostPaymentActivity.class));
-                break;
-            default:
-                break;
+        int id = v.getId();
+        if (id == R.id.btn_platon_sdk_web_payment) {
+            startActivity(new Intent(MainActivity.this, WebPaymentActivity.class));
+        } else if (id == R.id.btn_platon_sdk_post_payment) {
+            startActivity(new Intent(MainActivity.this, PostPaymentActivity.class));
         }
     }
 }

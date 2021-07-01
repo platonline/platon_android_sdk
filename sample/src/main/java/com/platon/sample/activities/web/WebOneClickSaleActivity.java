@@ -96,10 +96,10 @@ public class WebOneClickSaleActivity extends BaseActivity implements
 
 		mEtxtOrderId.setText(String.valueOf(UUID.randomUUID()));
 		mEtxtOrderAmount.setText(String.valueOf(Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F)));
-		mEtxtOrderDescription.setText(Faker.with(this).Lorem.sentences());
-		mEtxtOrderCurrencyCode.setText("UAH");
+		mEtxtOrderDescription.setText(Faker.Lorem.sentences());
+		mEtxtOrderCurrencyCode.setText(R.string.uah_currency);
 
-		mEtxtSuccessUrl.setText(Faker.with(this).Internet.url());
+		mEtxtSuccessUrl.setText(Faker.Internet.url());
 		final int randomLanguage = random.nextInt(3);
 		final String language;
 		switch (randomLanguage) {
@@ -115,67 +115,62 @@ public class WebOneClickSaleActivity extends BaseActivity implements
 				break;
 		}
 		mEtxtLanguage.setText(language);
-		mEtxtErrorUrl.setText(Faker.with(this).Internet.url());
-//        mEtxtFormId.setText(UUID.randomUUID().toString());
-		mEtxtExt1.setText(Faker.with(this).Url.avatar());
-		mEtxtExt2.setText(Faker.with(this).Url.avatar());
-		mEtxtExt3.setText(Faker.with(this).Url.avatar());
-		mEtxtExt4.setText(Faker.with(this).Url.avatar());
-		mEtxtExt10.setText(Faker.with(this).Url.avatar());
+		mEtxtErrorUrl.setText(Faker.Internet.url());
+		mEtxtExt1.setText(Faker.Url.avatar());
+		mEtxtExt2.setText(Faker.Url.avatar());
+		mEtxtExt3.setText(Faker.Url.avatar());
+		mEtxtExt4.setText(Faker.Url.avatar());
+		mEtxtExt10.setText(Faker.Url.avatar());
 	}
 
 	@Override
 	public void onClick(final View v) {
-		switch (v.getId()) {
-			case R.id.btn_randomize:
-				randomize();
-				break;
-			case R.id.btn_one_click_sale:
-				final String successUrl = String.valueOf(mEtxtSuccessUrl.getText());
-				if (!isValidURL(successUrl)) {
-					Toast.makeText(this, "Invalid success url", Toast.LENGTH_SHORT).show();
-					return;
-				}
+		int id = v.getId();
+		if (id == R.id.btn_randomize) {
+			randomize();
+		} else if (id == R.id.btn_one_click_sale) {
+			final String successUrl = String.valueOf(mEtxtSuccessUrl.getText());
+			if (!isValidURL(successUrl)) {
+				Toast.makeText(this, "Invalid success url", Toast.LENGTH_SHORT).show();
+				return;
+			}
 
-				final PlatonRecurringWeb recurringWeb = new PlatonRecurringWeb(
-						String.valueOf(mEtxtFirstTransId.getText()),
-						String.valueOf(mEtxtRecurringToken.getText())
-				);
+			final PlatonRecurringWeb recurringWeb = new PlatonRecurringWeb(
+					String.valueOf(mEtxtFirstTransId.getText()),
+					String.valueOf(mEtxtRecurringToken.getText())
+			);
 
-				float amount;
-				try {
-					amount = Float.parseFloat(String.valueOf(mEtxtOrderAmount.getText()));
-				} catch (final Exception e) {
-					amount = Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F);
-				}
-				final PlatonProductSale platonProductSale = new PlatonProductSale(
-						amount, String.valueOf(mEtxtOrderDescription.getText())
-				);
-				platonProductSale.setCurrencyCode(String.valueOf(mEtxtOrderCurrencyCode.getText()));
+			float amount;
+			try {
+				amount = Float.parseFloat(String.valueOf(mEtxtOrderAmount.getText()));
+			} catch (final Exception e) {
+				amount = Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F);
+			}
+			final PlatonProductSale platonProductSale = new PlatonProductSale(
+					amount, String.valueOf(mEtxtOrderDescription.getText())
+			);
+			platonProductSale.setCurrencyCode(String.valueOf(mEtxtOrderCurrencyCode.getText()));
 
-				final PlatonWebSaleOptions webSaleOptions = new PlatonWebSaleOptions.Builder()
-						.language(String.valueOf(mEtxtLanguage.getText()))
-						.errorUrl(String.valueOf(mEtxtErrorUrl.getText()))
-						.formId(String.valueOf(mEtxtFormId.getText()))
-						.ext1(String.valueOf(mEtxtExt1.getText()))
-						.ext2(String.valueOf(mEtxtExt2.getText()))
-						.ext3(String.valueOf(mEtxtExt3.getText()))
-						.ext4(String.valueOf(mEtxtExt4.getText()))
-						.ext10(String.valueOf(mEtxtExt10.getText()))
-						.build();
+			final PlatonWebSaleOptions webSaleOptions = new PlatonWebSaleOptions.Builder()
+					.language(String.valueOf(mEtxtLanguage.getText()))
+					.errorUrl(String.valueOf(mEtxtErrorUrl.getText()))
+					.formId(String.valueOf(mEtxtFormId.getText()))
+					.ext1(String.valueOf(mEtxtExt1.getText()))
+					.ext2(String.valueOf(mEtxtExt2.getText()))
+					.ext3(String.valueOf(mEtxtExt3.getText()))
+					.ext4(String.valueOf(mEtxtExt4.getText()))
+					.ext10(String.valueOf(mEtxtExt10.getText()))
+					.build();
 
-				showProgress();
-				PlatonSdk.WebPayments.getOneClickSaleAdapter().oneClickSale(
-						platonProductSale,
-						recurringWeb,
-						successUrl,
-						String.valueOf(mEtxtOrderId.getText()),
-						webSaleOptions,
-						this
-				);
-				break;
-			default:
-				break;
+			showProgress();
+			PlatonSdk.WebPayments.getOneClickSaleAdapter().oneClickSale(
+					platonProductSale,
+					recurringWeb,
+					successUrl,
+					String.valueOf(mEtxtOrderId.getText()),
+					webSaleOptions,
+					this
+			);
 		}
 	}
 

@@ -66,31 +66,29 @@ public class PlatonTransactionAdapter extends PlatonBaseAdapter<PlatonTransactio
 
 	/**
 	 * For params description see {@link #getTransactionStatus(String, String, PlatonTransactionStatusCallback)}
-	 *
-	 * @param payerEmail - Customer’s email
+	 *  @param payerEmail - Customer’s email
 	 *                   See {@link PlatonPayerSale} for the details
 	 * @param cardNumber - Payer card number
 	 *                   See {@link PlatonCard} for the details
 	 */
-	@SuppressWarnings({"unchecked", "ConstantConditions"})
-	public Call getTransactionStatus(
+	@SuppressWarnings({"ConstantConditions"})
+	public void getTransactionStatus(
 			@NonNull @Size(max = TEXT) final String transactionId,
 			@NonNull @Size(max = EMAIL) final String payerEmail,
 			@NonNull @Size(min = MIN_CARD_NUMBER, max = MAX_CARD_NUMBER) final String cardNumber,
 			@NonNull final PlatonTransactionStatusCallback callback
 	) {
-		return getTransactionStatus(transactionId, PlatonHashUtil.encryptSale(payerEmail, transactionId, cardNumber), callback);
+		getTransactionStatus(transactionId, PlatonHashUtil.encryptSale(payerEmail, transactionId, cardNumber), callback);
 	}
 
 	/**
 	 * Gets order status ({@link PlatonStatus}) from Payment Platform
-	 *
-	 * @param transactionId - PlatonTransaction ID in the Payment Platform (Required)
+	 *  @param transactionId - PlatonTransaction ID in the Payment Platform (Required)
 	 * @param hash          - Special signature to validate your request to Payment Platform (Required)
 	 * @param callback      - callback that will return response (Required)
 	 */
 	@SuppressWarnings("unchecked")
-	public Call getTransactionStatus(
+	public void getTransactionStatus(
 			@NonNull @Size(max = TEXT) final String transactionId,
 			@NonNull final String hash,
 			@NonNull final PlatonTransactionStatusCallback callback
@@ -103,33 +101,31 @@ public class PlatonTransactionAdapter extends PlatonBaseAdapter<PlatonTransactio
 		);
 		call.enqueue(enqueueWithCallback(callback));
 
-		return call;
 	}
 
 	/**
 	 * For params description see {@link #getTransactionStatus(String, String, String, PlatonTransactionStatusCallback)}
 	 */
-	@SuppressWarnings({"unchecked", "ConstantConditions"})
-	public Call getTransactionDetails(
+	@SuppressWarnings({"ConstantConditions"})
+	public void getTransactionDetails(
 			@NonNull @Size(max = TEXT) final String transactionId,
 			@NonNull @Size(max = EMAIL) final String payerEmail,
 			@NonNull @Size(min = MIN_CARD_NUMBER, max = MAX_CARD_NUMBER) final String cardNumber,
 			@NonNull final PlatonTransactionDetailsCallback callback
 	) {
-		return getTransactionDetails(
+		getTransactionDetails(
 				transactionId, PlatonHashUtil.encryptSale(payerEmail, transactionId, cardNumber), callback
 		);
 	}
 
 	/**
 	 * Gets all history of transactions by the order.
-	 *
-	 * @param transactionId - PlatonTransaction ID in the Payment Platform (Required)
+	 *  @param transactionId - PlatonTransaction ID in the Payment Platform (Required)
 	 * @param hash          - Special signature to validate your request to Payment Platform (Required)
 	 * @param callback      - callback that will return response (Required)
 	 */
 	@SuppressWarnings("unchecked")
-	public Call getTransactionDetails(
+	public void getTransactionDetails(
 			@NonNull @Size(max = TEXT) final String transactionId,
 			@NonNull final String hash,
 			@NonNull final PlatonTransactionDetailsCallback callback
@@ -142,7 +138,6 @@ public class PlatonTransactionAdapter extends PlatonBaseAdapter<PlatonTransactio
 		);
 		call.enqueue(enqueueWithCallback(callback));
 
-		return call;
 	}
 
 }

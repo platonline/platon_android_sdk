@@ -17,7 +17,6 @@ import com.platon.sample.activities.BaseActivity;
 import com.platon.sample.adapters.ProductPagerAdapter;
 import com.platon.sdk.callback.PlatonWebCallback;
 import com.platon.sdk.core.PlatonSdk;
-import com.platon.sdk.model.request.option.web.PlatonWebSaleOptions;
 import com.platon.sdk.model.request.option.web.PlatonWebTokenSaleOptions;
 import com.platon.sdk.model.request.order.product.PlatonProductSale;
 import com.platon.sdk.model.request.payer.PlatonPayerWebSale;
@@ -124,7 +123,7 @@ public class WebTokenSaleActivity extends BaseActivity implements
         for (int i = 0; i < size; i++) {
             final PlatonProductSale productSale = new PlatonProductSale(
                     Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F),
-                    Faker.with(this).Lorem.sentences()
+                    Faker.Lorem.sentences()
             );
 
             productSale.setCurrencyCode("UAH");
@@ -136,18 +135,18 @@ public class WebTokenSaleActivity extends BaseActivity implements
         productSales.get(random.nextInt(productSales.size())).setSelected(true);
         mProductPagerAdapter.setProductSales(productSales);
 
-        mEtxtSuccessUrl.setText(Faker.with(this).Internet.url());
+        mEtxtSuccessUrl.setText(Faker.Internet.url());
         mEtxtOrderId.setText(String.valueOf(UUID.randomUUID()));
 
-        mEtxtPayerFirstName.setText(Faker.with(this).Name.firstName());
-        mEtxtPayerLastName.setText(Faker.with(this).Name.lastName());
-        mEtxtPayerAddress.setText(Faker.with(this).Address.secondaryAddress());
-        mEtxtPayerCountryCode.setText(Faker.with(this).Address.countryAbbreviation());
-        mEtxtPayerState.setText(Faker.with(this).Address.state());
-        mEtxtPayerCity.setText(Faker.with(this).Address.city());
-        mEtxtPayerZip.setText(Faker.with(this).Address.zipCode());
-        mEtxtPayerEmail.setText(Faker.with(this).Internet.email());
-        mEtxtPayerPhone.setText(Faker.with(this).Phone.phoneWithAreaCode());
+        mEtxtPayerFirstName.setText(Faker.Name.firstName());
+        mEtxtPayerLastName.setText(Faker.Name.lastName());
+        mEtxtPayerAddress.setText(Faker.Address.secondaryAddress());
+        mEtxtPayerCountryCode.setText(Faker.Address.countryAbbreviation());
+        mEtxtPayerState.setText(Faker.Address.state());
+        mEtxtPayerCity.setText(Faker.Address.city());
+        mEtxtPayerZip.setText(Faker.Address.zipCode());
+        mEtxtPayerEmail.setText(Faker.Internet.email());
+        mEtxtPayerPhone.setText(Faker.Phone.phoneWithAreaCode());
 
         final int randomLanguage = random.nextInt(3);
         final String language;
@@ -164,77 +163,70 @@ public class WebTokenSaleActivity extends BaseActivity implements
                 break;
         }
         mEtxtLanguage.setText(language);
-        mEtxtErrorUrl.setText(Faker.with(this).Internet.url());
-//        mEtxtFormId.setText(UUID.randomUUID().toString());
-//        mEtxtExt1.setText(Faker.with(this).Url.avatar());
-        mEtxtExt2.setText(Faker.with(this).Url.avatar());
-        mEtxtExt3.setText(Faker.with(this).Url.avatar());
-        mEtxtExt4.setText(Faker.with(this).Url.avatar());
-        mEtxtExt10.setText(Faker.with(this).Url.avatar());
+        mEtxtErrorUrl.setText(Faker.Internet.url());
+        mEtxtExt2.setText(Faker.Url.avatar());
+        mEtxtExt3.setText(Faker.Url.avatar());
+        mEtxtExt4.setText(Faker.Url.avatar());
+        mEtxtExt10.setText(Faker.Url.avatar());
     }
 
     @Override
     public void onClick(final View v) {
-        switch (v.getId()) {
-            case R.id.btn_randomize:
-                randomize();
-                break;
-            case R.id.btn_add_product:
-                mProductPagerAdapter.addProduct(new PlatonProductSale(0.00F, ""));
-                mVpProducts.setCurrentItem(mProductPagerAdapter.getCount() - 1);
-                break;
-            case R.id.btn_sale:
-                final String successUrl = String.valueOf(mEtxtSuccessUrl.getText());
-                if (!isValidURL(successUrl)) {
-                    Toast.makeText(this, "Invalid success url", Toast.LENGTH_SHORT).show();
+        int id = v.getId();
+        if (id == R.id.btn_randomize) {
+            randomize();
+        } else if (id == R.id.btn_add_product) {
+            mProductPagerAdapter.addProduct(new PlatonProductSale(0.00F, ""));
+            mVpProducts.setCurrentItem(mProductPagerAdapter.getCount() - 1);
+        } else if (id == R.id.btn_sale) {
+            final String successUrl = String.valueOf(mEtxtSuccessUrl.getText());
+            if (!isValidURL(successUrl)) {
+                Toast.makeText(this, "Invalid success url", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            final List<PlatonProductSale> productSales = mProductPagerAdapter.getProductSales();
+            int selectedProducts = 0;
+            for (int i = productSales.size() - 1; i >= 0; i--) {
+                if (selectedProducts > 1) {
+                    Toast.makeText(this, "Only 1 selected product allowed", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if (productSales.get(i).isSelected()) selectedProducts++;
+            }
 
-                final List<PlatonProductSale> productSales = mProductPagerAdapter.getProductSales();
-                int selectedProducts = 0;
-                for (int i = productSales.size() - 1; i >= 0; i--) {
-                    if (selectedProducts > 1) {
-                        Toast.makeText(this, "Only 1 selected product allowed", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    if (productSales.get(i).isSelected()) selectedProducts++;
-                }
+            final PlatonPayerWebSale payer = new PlatonPayerWebSale.Builder()
+                    .firstName(String.valueOf(mEtxtPayerFirstName.getText()))
+                    .lastName(String.valueOf(mEtxtPayerLastName.getText()))
+                    .address(String.valueOf(mEtxtPayerAddress.getText()))
+                    .countryCode(String.valueOf(mEtxtPayerCountryCode.getText()))
+                    .state(String.valueOf(mEtxtPayerState.getText()))
+                    .city(String.valueOf(mEtxtPayerCity.getText()))
+                    .zip(String.valueOf(mEtxtPayerZip.getText()))
+                    .email(String.valueOf(mEtxtPayerEmail.getText()))
+                    .phone(String.valueOf(mEtxtPayerPhone.getText()))
+                    .build();
 
-                final PlatonPayerWebSale payer = new PlatonPayerWebSale.Builder()
-                        .firstName(String.valueOf(mEtxtPayerFirstName.getText()))
-                        .lastName(String.valueOf(mEtxtPayerLastName.getText()))
-                        .address(String.valueOf(mEtxtPayerAddress.getText()))
-                        .countryCode(String.valueOf(mEtxtPayerCountryCode.getText()))
-                        .state(String.valueOf(mEtxtPayerState.getText()))
-                        .city(String.valueOf(mEtxtPayerCity.getText()))
-                        .zip(String.valueOf(mEtxtPayerZip.getText()))
-                        .email(String.valueOf(mEtxtPayerEmail.getText()))
-                        .phone(String.valueOf(mEtxtPayerPhone.getText()))
-                        .build();
+            final PlatonWebTokenSaleOptions webTokenSaleOptions = new PlatonWebTokenSaleOptions.Builder()
+                    .language(String.valueOf(mEtxtLanguage.getText()))
+                    .errorUrl(String.valueOf(mEtxtErrorUrl.getText()))
+                    .formId(String.valueOf(mEtxtFormId.getText()))
+                    .cardToken(String.valueOf(mCardToken.getText()))
+                    .ext2(String.valueOf(mEtxtExt2.getText()))
+                    .ext3(String.valueOf(mEtxtExt3.getText()))
+                    .ext4(String.valueOf(mEtxtExt4.getText()))
+                    .ext10(String.valueOf(mEtxtExt10.getText()))
+                    .build();
 
-                final PlatonWebTokenSaleOptions webTokenSaleOptions = new PlatonWebTokenSaleOptions.Builder()
-                        .language(String.valueOf(mEtxtLanguage.getText()))
-                        .errorUrl(String.valueOf(mEtxtErrorUrl.getText()))
-                        .formId(String.valueOf(mEtxtFormId.getText()))
-                        .cardToken(String.valueOf(mCardToken.getText()))
-                        .ext2(String.valueOf(mEtxtExt2.getText()))
-                        .ext3(String.valueOf(mEtxtExt3.getText()))
-                        .ext4(String.valueOf(mEtxtExt4.getText()))
-                        .ext10(String.valueOf(mEtxtExt10.getText()))
-                        .build();
-
-                showProgress();
-                PlatonSdk.WebPayments.getTokenSaleAdapter().sale(
-                        productSales,
-                        successUrl,
-                        String.valueOf(mEtxtOrderId.getText()),
-                        payer,
-                        webTokenSaleOptions,
-                        this
-                );
-                break;
-            default:
-                break;
+            showProgress();
+            PlatonSdk.WebPayments.getTokenSaleAdapter().sale(
+                    productSales,
+                    successUrl,
+                    String.valueOf(mEtxtOrderId.getText()),
+                    payer,
+                    webTokenSaleOptions,
+                    this
+            );
         }
     }
 

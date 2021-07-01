@@ -80,28 +80,24 @@ public class GetTransDetailsActivity extends BaseActivity implements
 
     @Override
     public void onClick(final View v) {
-        switch (v.getId()) {
-            case R.id.btn_randomize:
-                randomize();
-                break;
-            case R.id.btn_get_trans_details:
-                mEtxtResponse.setText("");
+        int id = v.getId();
+        if (id == R.id.btn_randomize) {
+            randomize();
+        } else if (id == R.id.btn_get_trans_details) {
+            mEtxtResponse.setText("");
 
-                final String transId = String.valueOf(mEtxtTransId.getText());
-                final String payerEmail = String.valueOf(mEtxtPayerEmail.getText());
-                final String cardNumber = String.valueOf(mEtxtCardNumber.getText());
+            final String transId = String.valueOf(mEtxtTransId.getText());
+            final String payerEmail = String.valueOf(mEtxtPayerEmail.getText());
+            final String cardNumber = String.valueOf(mEtxtCardNumber.getText());
 
-                showProgress();
-                if (new Random().nextBoolean())
-                    PlatonSdk.PostPayments.getTransactionAdapter().getTransactionDetails(
-                            transId, payerEmail, cardNumber, this
-                    );
-                else PlatonSdk.PostPayments.getTransactionAdapter().getTransactionDetails(
-                        transId, mTrans.getHash(), this
+            showProgress();
+            if (new Random().nextBoolean())
+                PlatonSdk.PostPayments.getTransactionAdapter().getTransactionDetails(
+                        transId, payerEmail, cardNumber, this
                 );
-                break;
-            default:
-                break;
+            else PlatonSdk.PostPayments.getTransactionAdapter().getTransactionDetails(
+                    transId, mTrans.getHash(), this
+            );
         }
     }
 

@@ -61,12 +61,12 @@ public class Platon3dsSubmitUtil {
 		new OkHttpClient().newCall(request).enqueue(
 				new Callback() {
 					@Override
-					public void onFailure(final Call call, final IOException e) {
+					public void onFailure(@NonNull final Call call, @NonNull final IOException e) {
 						onSubmit3dsDataListener.onFailure(e);
 					}
 
 					@Override
-					public void onResponse(final Call call, final Response response) throws IOException {
+					public void onResponse(@NonNull final Call call, final @NonNull Response response) {
 						try {
 							onSubmit3dsDataListener.on3dsDataSubmitted(response.body().string());
 						} catch (final Exception e) {

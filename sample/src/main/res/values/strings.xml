@@ -1,3 +1,83 @@
 <resources>
-    <string name="app_name">.PlatonSdk</string>
+    <string name="app_name" translatable="false">.PlatonSdk</string>
+    <string name="merchand_id" translatable="false">Merchand Id</string>
+    <string name="clientpassword" translatable="false">ClientPassword</string>
+    <string name="capture" translatable="false">CAPTURE</string>
+    <string name="partial_amount" translatable="false">Partial Amount</string>
+    <string name="credit_void" translatable="false">CREDIT_VOID</string>
+    <string name="get_trans_details" translatable="false">GET_TRANS_DETAILS</string>
+    <string name="trans_id" translatable="false">Trans ID</string>
+    <string name="get_trans_status" translatable="false">GET_TRANS_STATUS</string>
+    <string name="payer_middle_name" translatable="false">Payer Middle Name</string>
+    <string name="payer_birthday" translatable="false">Payer Birthday</string>
+    <string name="auth" translatable="false">Auth</string>
+    <string name="black" translatable="false">black</string>
+    <string name="with_text" translatable="false">with text</string>
+    <string name="shadow_only_for_white_button" translatable="false">shadow (only for white button)</string>
+    <string name="async_recurring" translatable="false">Async Recurring</string>
+    <string name="recurring_auth" translatable="false">RECURRING_AUTH</string>
+    <string name="payer_ip_address" translatable="false">Payer IP Address</string>
+    <string name="success_sale" translatable="false">Success Sale</string>
+    <string name="unsuccess_sale" translatable="false">Unsuccess Sale</string>
+    <string name="success_3dsecure_sale" translatable="false">Success 3DSecure Sale</string>
+    <string name="unsuccess_3dsecure_sale" translatable="false">Unsuccess 3DSecure Sale</string>
+    <string name="async_sale" translatable="false">Async Sale</string>
+    <string name="init_recurring_sale" translatable="false">Init Recurring Sale</string>
+    <string name="channel_id" translatable="false">Channel ID</string>
+    <string name="card_number" translatable="false">Card Number</string>
+    <string name="response" translatable="false">Response</string>
+    <string name="deschedule" translatable="false">DESCHEDULE</string>
+    <string name="order_currency_code" translatable="false">Order Currency Code</string>
+    <string name="one_click_sale" translatable="false">ONE_CLICK_SALE</string>
+    <string name="recurring_sale" translatable="false">RECURRING_SALE</string>
+    <string name="add_product" translatable="false">ADD_PRODUCT</string>
+    <string name="ext_1" translatable="false">Ext 1</string>
+    <string name="ext_2" translatable="false">Ext 2</string>
+    <string name="ext_3" translatable="false">Ext 3</string>
+    <string name="ext_4" translatable="false">Ext 4</string>
+    <string name="ext_10" translatable="false">Ext 10</string>
+    <string name="randomize" translatable="false">RANDOMIZE</string>
+    <string name="order_amount" translatable="false">Order Amount</string>
+    <string name="order_description" translatable="false">Order Description</string>
+    <string name="first_trans_id" translatable="false">First Trans ID</string>
+    <string name="recurring_token" translatable="false">Recurring Token</string>
+    <string name="init_period" translatable="false">Init Period</string>
+    <string name="period" translatable="false">Period</string>
+    <string name="repeat_times" translatable="false">Repeat Times</string>
+    <string name="schedule" translatable="false">SCHEDULE</string>
+    <string name="success_url" translatable="false">Success URL</string>
+    <string name="order_id" translatable="false">Order ID</string>
+    <string name="payer_first_name" translatable="false">Payer First Name</string>
+    <string name="payer_last_name" translatable="false">Payer Last Name</string>
+    <string name="payer_address" translatable="false">Payer Address</string>
+    <string name="payer_country_code" translatable="false">Payer Country Code</string>
+    <string name="payer_state" translatable="false">Payer State</string>
+    <string name="payer_city" translatable="false">Payer City</string>
+    <string name="payer_zip" translatable="false">Payer Zip</string>
+    <string name="payer_email" translatable="false">Payer Email</string>
+    <string name="payer_phone" translatable="false">Payer Phone</string>
+    <string name="language" translatable="false">Language</string>
+    <string name="error_url" translatable="false">Error url</string>
+    <string name="form_id" translatable="false">Form ID</string>
+    <string name="card_token" translatable="false">Card token</string>
+    <string name="card_token_value" translatable="false">51a6deee6c3cd6bf2a0bf87a7a2851cbecb441739aadc237d6ed040d2bc7ce7b</string>
+    <string name="sale" translatable="false">SALE</string>
+    <string name="product_amount" translatable="false">Product Amount</string>
+    <string name="product_description" translatable="false">Product Description</string>
+    <string name="product_currency" translatable="false">Product Currency</string>
+    <string name="selected" translatable="false">Selected</string>
+    <string name="recurring" translatable="false">Recurring</string>
+    <string name="remove" translatable="false">REMOVE</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="web_payment" translatable="false">WEB PAYMENT</string>
+    <string name="post_payment" translatable="false">POST PAYMENT</string>
+    <string name="google_pay" translatable="false">GOOGLE_PAY</string>
+    <string name="google_pay_prod" translatable="false">GOOGLE_PAY_PROD</string>
+    <string name="sale_web" translatable="false">SALE_WEB</string>
+    <string name="sale_token_web" translatable="false">SALE_TOKEN_WEB</string>
+    <string name="one_click_sale_web" translatable="false">ONE_CLICK_SALE_WEB</string>
+    <string name="recurring_sale_web" translatable="false">RECURRING_SALE_WEB</string>
+    <string name="schedule_web" translatable="false">SCHEDULE_WEB</string>
+    <string name="deschedule_web" translatable="false">DESCHEDULE_WEB</string>
+    <string name="uah_currency" translatable="false">UAH</string>
 </resources>

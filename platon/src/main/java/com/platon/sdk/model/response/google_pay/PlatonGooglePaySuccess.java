@@ -2,6 +2,8 @@ package com.platon.sdk.model.response.google_pay;
 
 import android.os.Parcel;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 import com.platon.sdk.constant.api.PlatonApiConstants.SerializedNames;
 import com.platon.sdk.constant.api.PlatonStatus;
@@ -101,6 +103,7 @@ public class PlatonGooglePaySuccess extends PlatonGooglePay {
         parcel.writeString(mCurrency);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonGooglePaySuccess{" +

@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
 
@@ -135,6 +136,7 @@ public class PlatonGooglePayOptions implements Parcelable {
         }
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonGooglePayOptions{" +

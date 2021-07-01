@@ -42,33 +42,22 @@ public class WebPaymentActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(final View v) {
-        switch (v.getId()) {
-            case R.id.btn_web_sale:
-                startActivity(new Intent(WebPaymentActivity.this, WebSaleActivity.class));
-                break;
-            case R.id.btn_token_web_sale:
-                startActivity(new Intent(WebPaymentActivity.this, WebTokenSaleActivity.class));
-                break;
-            case R.id.btn_web_one_click_sale:
-                startActivity(new Intent(WebPaymentActivity.this, WebOneClickSaleActivity.class));
-                break;
-            case R.id.btn_web_recurring_sale:
-                // !!! Will be available in next releases !!!
-                Toast.makeText(this, "Will be available in next releases", Toast.LENGTH_SHORT).show();
+        int id = v.getId();
+        if (id == R.id.btn_web_sale) {
+            startActivity(new Intent(WebPaymentActivity.this, WebSaleActivity.class));
+        } else if (id == R.id.btn_token_web_sale) {
+            startActivity(new Intent(WebPaymentActivity.this, WebTokenSaleActivity.class));
+        } else if (id == R.id.btn_web_one_click_sale) {
+            startActivity(new Intent(WebPaymentActivity.this, WebOneClickSaleActivity.class));
+        } else if (id == R.id.btn_web_recurring_sale) {// !!! Will be available in next releases !!!
+            Toast.makeText(this, "Will be available in next releases", Toast.LENGTH_SHORT).show();
 //                startActivity(new Intent(WebPaymentActivity.this, WebRecurringActivity.class));
-                break;
-            case R.id.btn_web_schedule:
-                // !!! Will be available in next releases !!!
-                Toast.makeText(this, "Will be available in next releases", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.btn_web_schedule) {// !!! Will be available in next releases !!!
+            Toast.makeText(this, "Will be available in next releases", Toast.LENGTH_SHORT).show();
 //                startActivity(new Intent(WebPaymentActivity.this, WebScheduleActivity.class));
-                break;
-            case R.id.btn_web_deschedule:
-                // !!! Will be available in next releases !!!
-                Toast.makeText(this, "Will be available in next releases", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.btn_web_deschedule) {// !!! Will be available in next releases !!!
+            Toast.makeText(this, "Will be available in next releases", Toast.LENGTH_SHORT).show();
 //                startActivity(new Intent(WebPaymentActivity.this, WebDecheduleActivity.class));
-                break;
-            default:
-                break;
         }
     }
 }

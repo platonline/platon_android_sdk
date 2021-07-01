@@ -2,6 +2,8 @@ package com.platon.sdk.model.response.sale;
 
 import android.os.Parcel;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 import com.platon.sdk.callback.PlatonCaptureCallback;
 import com.platon.sdk.constant.api.PlatonStatus;
@@ -62,6 +64,7 @@ public class PlatonSaleSuccess extends PlatonSale {
         parcel.writeString(mDescriptor);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonSaleSuccess{" +

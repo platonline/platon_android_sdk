@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -14,103 +13,129 @@
             android:id="@+id/btn_randomize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RANDOMIZE"/>
+            android:text="@string/randomize" />
 
         <EditText
             android:id="@+id/etxt_order_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Order ID"/>
+            android:hint="@string/order_id"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_order_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Order Amount"/>
+            android:hint="@string/order_amount"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_order_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Order Description"/>
+            android:hint="@string/order_description"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_order_currency_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Order Currency Code"/>
+            android:hint="@string/order_currency_code"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#232323"/>
+            android:background="#232323" />
 
         <EditText
             android:id="@+id/etxt_payer_first_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer First Name"/>
+            android:hint="@string/payer_first_name"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_payer_last_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer Last Name"/>
+            android:hint="@string/payer_last_name"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_payer_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer Address"/>
+            android:hint="@string/payer_address"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_payer_country_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer Country Code"/>
+            android:hint="@string/payer_country_code"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_payer_state"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer State"/>
+            android:hint="@string/payer_state"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_payer_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer City"/>
+            android:hint="@string/payer_city"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_payer_zip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer Zip"/>
+            android:hint="@string/payer_zip"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_payer_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer Email"
-            android:inputType="textEmailAddress"/>
+            android:hint="@string/payer_email"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/etxt_payer_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer Phone"
-            android:inputType="phone"/>
+            android:hint="@string/payer_phone"
+            android:importantForAutofill="no"
+            android:inputType="phone" />
 
         <EditText
             android:id="@+id/etxt_payer_ip_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer IP Address"/>
+            android:hint="@string/payer_ip_address"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#232323"/>
+            android:background="#232323" />
 
         <RadioGroup
             android:id="@+id/rg_card"
@@ -122,50 +147,52 @@
                 android:id="@+id/rb_card_success"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Success Sale"/>
+                android:text="@string/success_sale" />
 
             <RadioButton
                 android:id="@+id/rb_card_unsuccess"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Unsuccess Sale"/>
+                android:text="@string/unsuccess_sale" />
 
             <RadioButton
                 android:id="@+id/rb_card_3ds_success"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Success 3DSecure Sale"/>
+                android:text="@string/success_3dsecure_sale" />
 
             <RadioButton
                 android:id="@+id/rb_card_3ds_unsuccess"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Unsuccess 3DSecure Sale"/>
+                android:text="@string/unsuccess_3dsecure_sale" />
 
         </RadioGroup>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#232323"/>
+            android:background="#232323" />
 
         <CheckBox
             android:id="@+id/cb_async"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Async Sale"/>
+            android:text="@string/async_sale" />
 
         <CheckBox
             android:id="@+id/cb_recurring_init"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Init Recurring Sale"/>
+            android:text="@string/init_recurring_sale" />
 
         <EditText
             android:id="@+id/etxt_channel_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Channel ID"/>
+            android:hint="@string/channel_id"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -177,22 +204,24 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="AUTH"/>
+                android:text="@string/auth" />
 
             <Button
                 android:id="@+id/btn_sale"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="SALE"/>
+                android:text="@string/sale" />
         </LinearLayout>
 
         <EditText
             android:id="@+id/etxt_response"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Response"
-            android:minHeight="200dp"/>
+            android:hint="@string/response"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:minHeight="200dp" />
 
     </LinearLayout>
 

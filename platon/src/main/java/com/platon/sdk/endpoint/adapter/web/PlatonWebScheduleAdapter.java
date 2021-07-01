@@ -55,10 +55,9 @@ public class PlatonWebScheduleAdapter extends PlatonBaseAdapter<PlatonWebSchedul
 	 * @param scheduleOptions - schedule options which controls delay, period and repeat times
 	 *                        See {@link PlatonScheduleWebOptions} for params
 	 * @param callback        - callback which will hold url for web request
-	 * @return original call of {@link PlatonWebScheduleService schedule(...)} request
-	 */
+     */
 	@SuppressWarnings("unchecked")
-	public Call schedule(
+	public void schedule(
 			@NonNull final PlatonProduct platonProduct,
 			@NonNull final PlatonRecurringWeb recurring,
 			@NonNull final PlatonScheduleWebOptions scheduleOptions,
@@ -81,8 +80,7 @@ public class PlatonWebScheduleAdapter extends PlatonBaseAdapter<PlatonWebSchedul
 		);
 		call.enqueue(callback);
 
-		return call;
-	}
+    }
 
 	/**
 	 * To remove existing recurring schedule,
@@ -91,10 +89,9 @@ public class PlatonWebScheduleAdapter extends PlatonBaseAdapter<PlatonWebSchedul
 	 * @param recurring - info holder of rc_id and rc_token
 	 *                  See {@link PlatonRecurringWeb}
 	 * @param callback  - callback which will hold url for web request
-	 * @return original call of {@link PlatonWebScheduleService deschedule(...)} request
 	 */
 	@SuppressWarnings("unchecked")
-	public Call deschedule(
+	public void deschedule(
 			@NonNull final PlatonRecurringWeb recurring,
 			@NonNull final PlatonWebCallback callback
 	) {
@@ -108,7 +105,6 @@ public class PlatonWebScheduleAdapter extends PlatonBaseAdapter<PlatonWebSchedul
 		);
 		call.enqueue(callback);
 
-		return call;
 	}
 
 }

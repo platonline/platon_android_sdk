@@ -9,19 +9,23 @@
         android:id="@+id/merchand_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Merchand Id" />
+        android:hint="@string/merchand_id"
+        android:importantForAutofill="no"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/client_passsword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ClientPassword" />
+        android:hint="@string/clientpassword"
+        android:importantForAutofill="no"
+        android:inputType="text" />
 
     <Button
         android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Next" />
+        android:text="@string/next" />
 
 </LinearLayout>

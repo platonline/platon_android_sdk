@@ -145,6 +145,7 @@ public class PlatonOrder implements Parcelable {
         parcel.writeString(mDescription);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonOrder{" +

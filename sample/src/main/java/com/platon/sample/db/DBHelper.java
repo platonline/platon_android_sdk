@@ -18,7 +18,6 @@ import io.realm.RealmObject;
 import io.realm.RealmResults;
 import io.realm.log.RealmLog;
 
-@SuppressWarnings("DefaultFileTemplate")
 public class DBHelper {
 
     private final static String REALM_NAME = "platon_sdk_sample.realm";
@@ -99,12 +98,7 @@ public class DBHelper {
             @Nullable final Realm.Transaction.OnSuccess successCallback) {
 
         final Realm realm = Realm.getDefaultInstance();
-        final Realm.Transaction transaction = new Realm.Transaction() {
-            @Override
-            public void execute(final Realm bgRealm) {
-                bgRealm.copyToRealmOrUpdate(objects);
-            }
-        };
+        final Realm.Transaction transaction = bgRealm -> bgRealm.copyToRealmOrUpdate(objects);
         if (successCallback != null) realm.executeTransactionAsync(transaction, successCallback);
         else realm.executeTransactionAsync(transaction);
     }
@@ -114,21 +108,14 @@ public class DBHelper {
             @Nullable final Realm.Transaction.OnSuccess successCallback) {
 
         final Realm realm = Realm.getDefaultInstance();
-        final Realm.Transaction transaction = new Realm.Transaction() {
-            @Override
-            public void execute(final Realm bgRealm) {
-                bgRealm.copyToRealmOrUpdate(object);
-            }
-        };
+        final Realm.Transaction transaction = bgRealm -> bgRealm.copyToRealmOrUpdate(object);
         if (successCallback != null) realm.executeTransactionAsync(transaction, successCallback);
         else realm.executeTransactionAsync(transaction);
     }
 
-    public static <E extends RealmModel> E copyToRealmOrUpdate(@NonNull final E object) {
+    public static <E extends RealmModel> void copyToRealmOrUpdate(@NonNull final E object) {
         final Realm realm = Realm.getDefaultInstance();
-        E realmObject = copyToRealmOrUpdate(realm, object);
         DBHelper.closeRealmInstance(realm);
-        return realmObject;
     }
 
     private static <E extends RealmModel> E copyToRealmOrUpdate(
@@ -155,14 +142,6 @@ public class DBHelper {
         realm.beginTransaction();
         for (E object : objects) realm.copyToRealmOrUpdate(object);
         realm.commitTransaction();
-    }
-
-    public static void createAllFromJson(@Nullable final Class clazz, @Nullable final String json) {
-        final Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-        realm.createAllFromJson(clazz, json);
-        realm.commitTransaction();
-        DBHelper.closeRealmInstance(realm);
     }
 
     public static void createObjectFromJson(
@@ -203,12 +182,6 @@ public class DBHelper {
         realm.createOrUpdateObjectFromJson(clazz, json);
         realm.commitTransaction();
         DBHelper.closeRealmInstance(realm);
-    }
-
-    public static RealmResults findAllOfWhere(
-            final Realm realm, final Class clazz, final String fieldName, final String value
-    ) {
-        return realm.where(clazz).equalTo(fieldName, value, Case.INSENSITIVE).findAll();
     }
 
     public static <E extends RealmModel> RealmResults<E> findAllOfWhere(

@@ -1,6 +1,9 @@
 package com.platon.sample.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+
+import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -8,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.platon.sample.R;
@@ -23,7 +25,6 @@ import static com.platon.sdk.constant.api.PlatonApiConstants.Formats.Amount.MIN_
 
 public class ProductPagerAdapter extends PagerAdapter {
 
-    private final Context mContext;
     private final LayoutInflater mLayoutInflater;
 
     private final List<PlatonProductSale> mProductSales = new ArrayList<>();
@@ -31,7 +32,6 @@ public class ProductPagerAdapter extends PagerAdapter {
     private OnItemCountChangeListener mOnItemCountChangeListener;
 
     public ProductPagerAdapter(final Context context) {
-        mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
     }
 
@@ -60,9 +60,10 @@ public class ProductPagerAdapter extends PagerAdapter {
         if (mOnItemCountChangeListener != null) mOnItemCountChangeListener.onItemCountChanged();
     }
 
+    @NonNull
     @Override
     public Object instantiateItem(final ViewGroup container, final int position) {
-        final View view = mLayoutInflater.inflate(R.layout.item_product, null);
+        @SuppressLint("InflateParams") final View view = mLayoutInflater.inflate(R.layout.item_product, null);
         final PlatonProductSale productSale = mProductSales.get(position);
 
         final EditText etxtAmount = view.findViewById(R.id.etxt_item_product_amount);
@@ -128,29 +129,16 @@ public class ProductPagerAdapter extends PagerAdapter {
 
         final CheckBox cbSelected = view.findViewById(R.id.cb_item_product_selected);
         cbSelected.setChecked(productSale.isSelected());
-        cbSelected.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
-                productSale.setSelected(b);
-            }
-        });
+        cbSelected.setOnCheckedChangeListener((compoundButton, b) -> productSale.setSelected(b));
 
         final CheckBox cbRecurring = view.findViewById(R.id.cb_item_product_recurring);
         cbRecurring.setChecked(productSale.isRecurring());
-        cbRecurring.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(final CompoundButton compoundButton, final boolean b) {
-                productSale.setRecurring(b);
-            }
-        });
+        cbRecurring.setOnCheckedChangeListener((compoundButton, b) -> productSale.setRecurring(b));
 
         view.findViewById(R.id.btn_item_product_remove).setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(final View view) {
-                        mProductSales.remove(position);
-                        notifyDataSetChanged();
-                    }
+                view1 -> {
+                    mProductSales.remove(position);
+                    notifyDataSetChanged();
                 }
         );
 
@@ -158,8 +146,9 @@ public class ProductPagerAdapter extends PagerAdapter {
         return view;
     }
 
+
     @Override
-    public int getItemPosition(final Object object) {
+    public int getItemPosition(@NonNull final Object object) {
         return POSITION_NONE;
     }
 
@@ -169,12 +158,12 @@ public class ProductPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject(final View view, final Object object) {
+    public boolean isViewFromObject(@NonNull final View view,@NonNull final Object object) {
         return view == object;
     }
 
     @Override
-    public void destroyItem(final ViewGroup container, final int position, final Object object) {
+    public void destroyItem(final ViewGroup container, final int position,@NonNull final Object object) {
         container.removeView((View) object);
     }
 

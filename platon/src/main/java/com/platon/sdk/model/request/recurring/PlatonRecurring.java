@@ -90,6 +90,7 @@ public class PlatonRecurring implements Parcelable {
         parcel.writeString(mToken);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonRecurring{" +

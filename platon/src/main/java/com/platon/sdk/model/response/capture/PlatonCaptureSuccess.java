@@ -2,6 +2,8 @@ package com.platon.sdk.model.response.capture;
 
 import android.os.Parcel;
 
+import androidx.annotation.NonNull;
+
 import com.platon.sdk.callback.PlatonCaptureCallback;
 import com.platon.sdk.deserializer.PlatonCaptureDeserializer;
 import com.platon.sdk.endpoint.adapter.post.PlatonCaptureAdapter;
@@ -10,7 +12,6 @@ import com.platon.sdk.endpoint.adapter.post.PlatonCaptureAdapter;
  * Model which used in {@link PlatonCaptureAdapter} in {@link PlatonCaptureResponse} from {@link PlatonCaptureCallback}
  * which deserialize from {@link PlatonCaptureDeserializer}
  */
-@SuppressWarnings("DanglingJavadoc")
 public class PlatonCaptureSuccess extends PlatonCapture {
 
     /**
@@ -25,6 +26,7 @@ public class PlatonCaptureSuccess extends PlatonCapture {
         super(in);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonCaptureSuccess{" +

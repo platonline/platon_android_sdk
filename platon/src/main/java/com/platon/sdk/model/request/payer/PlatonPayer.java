@@ -2,6 +2,8 @@ package com.platon.sdk.model.request.payer;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Size;
 
 import com.platon.sdk.constant.api.PlatonApiConstants.Formats.State;
@@ -263,6 +265,7 @@ class PlatonPayer implements Parcelable {
         parcel.writeString(mIpAddress);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonPayer{" +

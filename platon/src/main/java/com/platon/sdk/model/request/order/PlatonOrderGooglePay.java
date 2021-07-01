@@ -69,6 +69,7 @@ public class PlatonOrderGooglePay extends PlatonOrder {
         this.mCountryCode = countryCode;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonOrderGooglePay{" +

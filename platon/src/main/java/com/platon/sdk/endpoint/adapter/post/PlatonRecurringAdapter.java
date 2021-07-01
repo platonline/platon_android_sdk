@@ -70,27 +70,27 @@ public class PlatonRecurringAdapter extends PlatonBaseAdapter<PlatonRecurringSer
      *String, PlatonOrderRecurring, PlatonRecurring, String, String, PlatonSaleCallback)}
      */
     @SuppressWarnings("ConstantConditions")
-    public Call recurringAsyncSale(
+    public void recurringAsyncSale(
             @NonNull final PlatonOrderRecurring order,
             @NonNull final PlatonRecurring platonRecurring,
             @NonNull @Size(max = EMAIL) final String payerEmail,
             @NonNull @Size(min = MIN_CARD_NUMBER, max = MAX_CARD_NUMBER) final String cardNumber,
             @NonNull final PlatonSaleCallback callback
     ) {
-        return recurringAsyncSale(order, platonRecurring, PlatonHashUtil.encryptSale(payerEmail, cardNumber), callback);
+        recurringAsyncSale(order, platonRecurring, PlatonHashUtil.encryptSale(payerEmail, cardNumber), callback);
     }
 
     /**
      * For params description see {@link #performRecurring(
      *String, PlatonOrderRecurring, PlatonRecurring, String, String, PlatonSaleCallback)}
      */
-    public Call recurringAsyncSale(
+    public void recurringAsyncSale(
             @NonNull final PlatonOrderRecurring order,
             @NonNull final PlatonRecurring platonRecurring,
             @NonNull final String hash,
             @NonNull final PlatonSaleCallback callback
     ) {
-        return performRecurring(PlatonOption.YES, order, platonRecurring, hash, PlatonOption.NO, callback);
+        performRecurring(PlatonOption.YES, order, platonRecurring, hash, PlatonOption.NO, callback);
     }
 
     /**
@@ -98,14 +98,14 @@ public class PlatonRecurringAdapter extends PlatonBaseAdapter<PlatonRecurringSer
      *String, PlatonOrderRecurring, PlatonRecurring, String, String, PlatonSaleCallback)}
      */
     @SuppressWarnings("ConstantConditions")
-    public Call recurringSale(
+    public void recurringSale(
             @NonNull final PlatonOrderRecurring order,
             @NonNull final PlatonRecurring platonRecurring,
             @NonNull @Size(max = EMAIL) final String payerEmail,
             @NonNull @Size(min = MIN_CARD_NUMBER, max = MAX_CARD_NUMBER) final String cardNumber,
             @NonNull final PlatonSaleCallback callback
     ) {
-        return recurringSale(order, platonRecurring, PlatonHashUtil.encryptSale(payerEmail, cardNumber), callback);
+        recurringSale(order, platonRecurring, PlatonHashUtil.encryptSale(payerEmail, cardNumber), callback);
     }
 
     /**
@@ -116,13 +116,13 @@ public class PlatonRecurringAdapter extends PlatonBaseAdapter<PlatonRecurringSer
      *String, PlatonOrderRecurring, PlatonRecurring, String, String, PlatonSaleCallback)}
      * for immediate payments (@{@link PlatonAction#SALE}) during recurring payment (transaction)
      */
-    public Call recurringSale(
+    public void recurringSale(
             @NonNull final PlatonOrderRecurring order,
             @NonNull final PlatonRecurring platonRecurring,
             @NonNull final String hash,
             @NonNull final PlatonSaleCallback callback
     ) {
-        return performRecurring(null, order, platonRecurring, hash, PlatonOption.NO, callback);
+        performRecurring(null, order, platonRecurring, hash, PlatonOption.NO, callback);
     }
 
     /**
@@ -130,27 +130,27 @@ public class PlatonRecurringAdapter extends PlatonBaseAdapter<PlatonRecurringSer
      *String, PlatonOrderRecurring, PlatonRecurring, String, String, PlatonSaleCallback)}
      */
     @SuppressWarnings("ConstantConditions")
-    public Call recurringAsyncAuth(
+    public void recurringAsyncAuth(
             @NonNull final PlatonOrderRecurring order,
             @NonNull final PlatonRecurring platonRecurring,
             @NonNull @Size(max = EMAIL) final String payerEmail,
             @NonNull @Size(min = MIN_CARD_NUMBER, max = MAX_CARD_NUMBER) final String cardNumber,
             @NonNull final PlatonSaleCallback callback
     ) {
-        return recurringAsyncAuth(order, platonRecurring, PlatonHashUtil.encryptSale(payerEmail, cardNumber), callback);
+        recurringAsyncAuth(order, platonRecurring, PlatonHashUtil.encryptSale(payerEmail, cardNumber), callback);
     }
 
     /**
      * For params description see {@link #performRecurring(
      *String, PlatonOrderRecurring, PlatonRecurring, String, String, PlatonSaleCallback)}
      */
-    public Call recurringAsyncAuth(
+    public void recurringAsyncAuth(
             @NonNull final PlatonOrderRecurring order,
             @NonNull final PlatonRecurring platonRecurring,
             @NonNull final String hash,
             @NonNull final PlatonSaleCallback callback
     ) {
-        return performRecurring(PlatonOption.YES, order, platonRecurring, hash, PlatonOption.YES, callback);
+        performRecurring(PlatonOption.YES, order, platonRecurring, hash, PlatonOption.YES, callback);
     }
 
     /**
@@ -158,14 +158,14 @@ public class PlatonRecurringAdapter extends PlatonBaseAdapter<PlatonRecurringSer
      *String, PlatonOrderRecurring, PlatonRecurring, String, String, PlatonSaleCallback)}
      */
     @SuppressWarnings("ConstantConditions")
-    public Call recurringAuth(
+    public void recurringAuth(
             @NonNull final PlatonOrderRecurring order,
             @NonNull final PlatonRecurring platonRecurring,
             @NonNull @Size(max = EMAIL) final String payerEmail,
             @NonNull @Size(min = MIN_CARD_NUMBER, max = MAX_CARD_NUMBER) final String cardNumber,
             @NonNull final PlatonSaleCallback callback
     ) {
-        return recurringAuth(order, platonRecurring, PlatonHashUtil.encryptSale(payerEmail, cardNumber), callback);
+        recurringAuth(order, platonRecurring, PlatonHashUtil.encryptSale(payerEmail, cardNumber), callback);
     }
 
     /**
@@ -183,13 +183,13 @@ public class PlatonRecurringAdapter extends PlatonBaseAdapter<PlatonRecurringSer
      * Funds are deducted and held from the customer’s credit card
      * Note that the money is not transferred to the merchant account yet
      */
-    public Call recurringAuth(
+    public void recurringAuth(
             @NonNull final PlatonOrderRecurring order,
             @NonNull final PlatonRecurring platonRecurring,
             @NonNull final String hash,
             @NonNull final PlatonSaleCallback callback
     ) {
-        return performRecurring(null, order, platonRecurring, hash, PlatonOption.YES, callback);
+        performRecurring(null, order, platonRecurring, hash, PlatonOption.YES, callback);
     }
 
     /**
@@ -201,19 +201,18 @@ public class PlatonRecurringAdapter extends PlatonBaseAdapter<PlatonRecurringSer
      * a secondary transaction with previously used cardholder data from primary transaction
      * <p>
      * Response from Payment Platform is the same as by {@link PlatonSaleAdapter} methods
-     *
-     * @param order     - order info holder for id, amount and description (Required)
+     *  @param order     - order info holder for id, amount and description (Required)
      *                  See {@link PlatonOrderRecurring} for variables description
      * @param platonRecurring - platonRecurring info holder for first transaction ID and token (Required)
      *                  See {@link PlatonRecurring} for variables description
      * @param hash      - special signature to validate your request to Payment Platform (Required)
      * @param auth      - indicates that transaction must be only authenticated, but not captured
-     *                  See {@link PlatonOption}) for possible values
-     *                  Default {@link PlatonOption#NO}
+*                  See {@link PlatonOption}) for possible values
+*                  Default {@link PlatonOption#NO}
      * @param callback  - callback that will return response (Required)
      */
     @SuppressWarnings("unchecked")
-    private Call performRecurring(
+    private void performRecurring(
             @Nullable @PlatonOption final String async,
             @NonNull final PlatonOrderRecurring order,
             @NonNull final PlatonRecurring platonRecurring,
@@ -235,7 +234,6 @@ public class PlatonRecurringAdapter extends PlatonBaseAdapter<PlatonRecurringSer
         );
         call.enqueue(enqueueWithCallback(callback, this));
 
-        return call;
     }
 
     @Override

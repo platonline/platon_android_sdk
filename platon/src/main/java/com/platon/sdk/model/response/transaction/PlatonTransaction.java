@@ -3,6 +3,7 @@ package com.platon.sdk.model.response.transaction;
 import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.FloatRange;
+import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 import com.platon.sdk.constant.api.PlatonTransactionStatus;
@@ -18,7 +19,7 @@ import static com.platon.sdk.constant.api.PlatonApiConstants.SerializedNames.STA
 import static com.platon.sdk.constant.api.PlatonApiConstants.SerializedNames.TYPE;
 
 /**
- * PlatonTransaction model which included in {@link PlatonTransactionDetails#mPlatonTransactions} list
+ * PlatonTransaction model which included in {@link PlatonTransactionDetails#//mPlatonTransactions} list
  */
 @SuppressWarnings("DanglingJavadoc")
 public class PlatonTransaction implements Parcelable {
@@ -132,6 +133,7 @@ public class PlatonTransaction implements Parcelable {
         parcel.writeFloat(mAmount);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonTransaction{" +

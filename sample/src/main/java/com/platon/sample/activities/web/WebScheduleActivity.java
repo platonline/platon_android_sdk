@@ -78,7 +78,7 @@ public class WebScheduleActivity extends BaseActivity implements
 
     private void randomize() {
         mEtxtOrderAmount.setText(String.valueOf(Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F)));
-        mEtxtOrderDescription.setText(Faker.with(this).Lorem.sentences());
+        mEtxtOrderDescription.setText(Faker.Lorem.sentences());
 
         mEtxtFirstTransId.setText(String.valueOf(UUID.randomUUID()));
         mEtxtRecurringToken.setText(String.valueOf(UUID.randomUUID()));
@@ -90,61 +90,56 @@ public class WebScheduleActivity extends BaseActivity implements
 
     @Override
     public void onClick(final View v) {
-        switch (v.getId()) {
-            case R.id.btn_randomize:
-                randomize();
-                break;
-            case R.id.btn_schedule:
+        int id = v.getId();
+        if (id == R.id.btn_randomize) {
+            randomize();
+        } else if (id == R.id.btn_schedule) {
+            float amount;
+            try {
+                amount = Float.parseFloat(String.valueOf(mEtxtOrderAmount.getText()));
+            } catch (final Exception e) {
+                amount = Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F);
+            }
 
-                float amount;
-                try {
-                    amount = Float.parseFloat(String.valueOf(mEtxtOrderAmount.getText()));
-                } catch (final Exception e) {
-                    amount = Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F);
-                }
+            final PlatonProduct platonProduct = new PlatonProduct(
+                    amount, String.valueOf(mEtxtOrderDescription.getText())
+            );
 
-                final PlatonProduct platonProduct = new PlatonProduct(
-                        amount, String.valueOf(mEtxtOrderDescription.getText())
-                );
+            final PlatonRecurringWeb recurring = new PlatonRecurringWeb(
+                    String.valueOf(mEtxtFirstTransId.getText()),
+                    String.valueOf(mEtxtRecurringToken.getText())
+            );
 
-                final PlatonRecurringWeb recurring = new PlatonRecurringWeb(
-                        String.valueOf(mEtxtFirstTransId.getText()),
-                        String.valueOf(mEtxtRecurringToken.getText())
-                );
+            int initialDelay;
+            int period;
+            int repeatTimes;
+            try {
+                initialDelay = Integer.parseInt(String.valueOf(mEtxtInitialDelay.getText()));
+            } catch (final Exception e) {
+                initialDelay = Randoms.Integer(ASAP, MAX_DELAY * 2);
+            }
+            try {
+                period = Integer.parseInt(String.valueOf(mEtxtPeriod.getText()));
+            } catch (final Exception e) {
+                period = Randoms.Integer(MIN_PERIOD, MAX_PERIOD * 2);
+            }
+            try {
+                repeatTimes = Integer.parseInt(String.valueOf(mEtxtRepeatTimes.getText()));
+            } catch (final Exception e) {
+                repeatTimes = Randoms.Integer(UNLIMITED_REPEAT, MAX_REPEAT * 2);
+            }
 
-                int initialDelay;
-                int period;
-                int repeatTimes;
-                try {
-                    initialDelay = Integer.parseInt(String.valueOf(mEtxtInitialDelay.getText()));
-                } catch (final Exception e) {
-                    initialDelay = Randoms.Integer(ASAP, MAX_DELAY * 2);
-                }
-                try {
-                    period = Integer.parseInt(String.valueOf(mEtxtPeriod.getText()));
-                } catch (final Exception e) {
-                    period = Randoms.Integer(MIN_PERIOD, MAX_PERIOD * 2);
-                }
-                try {
-                    repeatTimes = Integer.parseInt(String.valueOf(mEtxtRepeatTimes.getText()));
-                } catch (final Exception e) {
-                    repeatTimes = Randoms.Integer(UNLIMITED_REPEAT, MAX_REPEAT * 2);
-                }
-
-                final PlatonScheduleWebOptions scheduleOptions = new PlatonScheduleWebOptions(
+            final PlatonScheduleWebOptions scheduleOptions = new PlatonScheduleWebOptions(
                     initialDelay, period, repeatTimes
-                );
+            );
 
-                showProgress();
-				PlatonSdk.WebPayments.getScheduleAdapter().schedule(
-                        platonProduct,
-                        recurring,
-                        scheduleOptions,
-                        this
-                );
-                break;
-            default:
-                break;
+            showProgress();
+            PlatonSdk.WebPayments.getScheduleAdapter().schedule(
+                    platonProduct,
+                    recurring,
+                    scheduleOptions,
+                    this
+            );
         }
     }
 

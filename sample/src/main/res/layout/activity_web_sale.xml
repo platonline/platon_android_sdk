@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -14,141 +13,177 @@
             android:id="@+id/btn_randomize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RANDOMIZE"/>
+            android:text="@string/randomize" />
 
         <com.platon.sample.views.WrapContentHeightViewPager
             android:id="@+id/vp_products"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btn_add_product"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ADD_PRODUCT"/>
+            android:text="@string/add_product" />
 
         <EditText
             android:id="@+id/etxt_success_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Success URL"/>
+            android:hint="@string/success_url"
+            android:importantForAutofill="no"
+            android:inputType="textUri" />
 
         <EditText
             android:id="@+id/etxt_order_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Order ID"/>
+            android:hint="@string/order_id"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_payer_first_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer First Name"/>
+            android:hint="@string/payer_first_name"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_payer_last_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer Last Name"/>
+            android:hint="@string/payer_last_name"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_payer_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer Address"/>
+            android:hint="@string/payer_address"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_payer_country_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer Country Code"/>
+            android:hint="@string/payer_country_code"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_payer_state"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer State"/>
+            android:hint="@string/payer_state"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_payer_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer City"/>
+            android:hint="@string/payer_city"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_payer_zip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer Zip"/>
+            android:hint="@string/payer_zip"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_payer_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer Email"
-            android:inputType="textEmailAddress"/>
+            android:hint="@string/payer_email"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/etxt_payer_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payer Phone"
-            android:inputType="phone"/>
+            android:hint="@string/payer_phone"
+            android:importantForAutofill="no"
+            android:inputType="phone" />
 
         <EditText
             android:id="@+id/etxt_language"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Language"/>
+            android:hint="@string/language"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_error_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Error url"/>
+            android:hint="@string/error_url"
+            android:importantForAutofill="no"
+            android:inputType="textUri" />
 
         <EditText
             android:id="@+id/etxt_form_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Form ID"/>
+            android:hint="@string/form_id"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_ext_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ext 1"/>
+            android:hint="@string/ext_1"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_ext_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ext 2"/>
+            android:hint="@string/ext_2"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_ext_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ext 3"/>
+            android:hint="@string/ext_3"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_ext_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ext 4"/>
+            android:hint="@string/ext_4"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_ext_10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ext 10"/>
+            android:hint="@string/ext_10"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <Button
             android:id="@+id/btn_sale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SALE"/>
+            android:text="@string/sale" />
 
     </LinearLayout>
 

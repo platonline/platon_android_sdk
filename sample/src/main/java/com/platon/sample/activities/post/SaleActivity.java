@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.platon.sample.R;
@@ -59,10 +58,10 @@ public class SaleActivity extends BaseActivity implements
 	private EditText mEtxtPayerPhone;
 	private EditText mEtxtPayerIpAddress;
 	private RadioGroup mRgCard;
-	private RadioButton mRbCardSuccess;
-	private RadioButton mRbCardUnsuccess;
-	private RadioButton mRbCard3dsSuccess;
-	private RadioButton mRbCard3dsUnsuccess;
+//	private RadioButton mRbCardSuccess;
+//	private RadioButton mRbCardUnsuccess;
+//	private RadioButton mRbCard3dsSuccess;
+//	private RadioButton mRbCard3dsUnsuccess;
 	private CheckBox mCbAsync;
 	private CheckBox mCbRecurringInit;
 	private EditText mEtxtChannelId;
@@ -98,10 +97,10 @@ public class SaleActivity extends BaseActivity implements
 		mEtxtPayerPhone = findViewById(R.id.etxt_payer_phone);
 		mEtxtPayerIpAddress = findViewById(R.id.etxt_payer_ip_address);
 		mRgCard = findViewById(R.id.rg_card);
-		mRbCardSuccess = findViewById(R.id.rb_card_success);
-		mRbCardUnsuccess = findViewById(R.id.rb_card_unsuccess);
-		mRbCard3dsSuccess = findViewById(R.id.rb_card_3ds_success);
-		mRbCard3dsUnsuccess = findViewById(R.id.rb_card_3ds_unsuccess);
+//		mRbCardSuccess = findViewById(R.id.rb_card_success);
+//		mRbCardUnsuccess = findViewById(R.id.rb_card_unsuccess);
+//		mRbCard3dsSuccess = findViewById(R.id.rb_card_3ds_success);
+//		mRbCard3dsUnsuccess = findViewById(R.id.rb_card_3ds_unsuccess);
 		mCbAsync = findViewById(R.id.cb_async);
 		mCbRecurringInit = findViewById(R.id.cb_recurring_init);
 		mEtxtChannelId = findViewById(R.id.etxt_channel_id);
@@ -134,21 +133,20 @@ public class SaleActivity extends BaseActivity implements
 
 		mEtxtOrderId.setText(String.valueOf(UUID.randomUUID()));
 		mEtxtOrderAmount.setText(String.valueOf(Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F)));
-		mEtxtOrderDescription.setText(Faker.with(this).Lorem.sentences());
-		mEtxtOrderCurrencyCode.setText("UAH");
+		mEtxtOrderDescription.setText(Faker.Lorem.sentences());
+		mEtxtOrderCurrencyCode.setText(R.string.uah_currency);
 
-		mEtxtPayerFirstName.setText(Faker.with(this).Name.firstName());
-		mEtxtPayerLastName.setText(Faker.with(this).Name.lastName());
-		mEtxtPayerAddress.setText(Faker.with(this).Address.secondaryAddress());
-		mEtxtPayerCountryCode.setText(Faker.with(this).Address.countryAbbreviation());
-		mEtxtPayerState.setText(Faker.with(this).Address.state());
-		mEtxtPayerCity.setText(Faker.with(this).Address.city());
-		mEtxtPayerZip.setText(Faker.with(this).Address.zipCode());
-		mEtxtPayerEmail.setText(Faker.with(this).Internet.email());
-		mEtxtPayerPhone.setText(Faker.with(this).Phone.phoneWithAreaCode());
-		mEtxtPayerIpAddress.setText(
-				random.nextInt(256) + "." + random.nextInt(256) + "." + random.nextInt(256) + "." + random.nextInt(256)
-		);
+		mEtxtPayerFirstName.setText(Faker.Name.firstName());
+		mEtxtPayerLastName.setText(Faker.Name.lastName());
+		mEtxtPayerAddress.setText(Faker.Address.secondaryAddress());
+		mEtxtPayerCountryCode.setText(Faker.Address.countryAbbreviation());
+		mEtxtPayerState.setText(Faker.Address.state());
+		mEtxtPayerCity.setText(Faker.Address.city());
+		mEtxtPayerZip.setText(Faker.Address.zipCode());
+		mEtxtPayerEmail.setText(Faker.Internet.email());
+		mEtxtPayerPhone.setText(Faker.Phone.phoneWithAreaCode());
+		String address = random.nextInt(256) + "." + random.nextInt(256) + "." + random.nextInt(256) + "." + random.nextInt(256);
+		mEtxtPayerIpAddress.setText(address);
 
 		mRgCard.check(mRgCard.getChildAt(random.nextInt(mRgCard.getChildCount())).getId());
 
@@ -161,75 +159,65 @@ public class SaleActivity extends BaseActivity implements
 
 	@Override
 	public void onClick(final View v) {
-		switch (v.getId()) {
-			case R.id.btn_randomize:
-				randomize();
-				break;
-			case R.id.btn_sale:
-			case R.id.btn_auth:
-				mEtxtResponse.setText("");
+		int id = v.getId();
+		if (id == R.id.btn_randomize) {
+			randomize();
+		} else if (id == R.id.btn_sale || id == R.id.btn_auth) {
+			mEtxtResponse.setText("");
 
-				float amount;
-				try {
-					amount = Float.parseFloat(String.valueOf(mEtxtOrderAmount.getText()));
-				} catch (final Exception e) {
-					amount = Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F);
-				}
-				final PlatonOrderSale order = new PlatonOrderSale(
-						String.valueOf(mEtxtOrderId.getText()),
-						amount,
-						String.valueOf(mEtxtOrderCurrencyCode.getText()),
-						String.valueOf(mEtxtOrderDescription.getText())
-				);
+			float amount;
+			try {
+				amount = Float.parseFloat(String.valueOf(mEtxtOrderAmount.getText()));
+			} catch (final Exception e) {
+				amount = Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F);
+			}
+			final PlatonOrderSale order = new PlatonOrderSale(
+					String.valueOf(mEtxtOrderId.getText()),
+					amount,
+					String.valueOf(mEtxtOrderCurrencyCode.getText()),
+					String.valueOf(mEtxtOrderDescription.getText())
+			);
 
-				final PlatonPayerSale payer = new PlatonPayerSale(
-						String.valueOf(mEtxtPayerFirstName.getText()),
-						String.valueOf(mEtxtPayerLastName.getText()),
-						String.valueOf(mEtxtPayerAddress.getText()),
-						String.valueOf(mEtxtPayerCountryCode.getText()),
-						String.valueOf(mEtxtPayerState.getText()),
-						String.valueOf(mEtxtPayerCity.getText()),
-						String.valueOf(mEtxtPayerZip.getText()),
-						String.valueOf(mEtxtPayerEmail.getText()),
-						String.valueOf(mEtxtPayerPhone.getText()),
-						String.valueOf(mEtxtPayerIpAddress.getText())
-				);
+			final PlatonPayerSale payer = new PlatonPayerSale(
+					String.valueOf(mEtxtPayerFirstName.getText()),
+					String.valueOf(mEtxtPayerLastName.getText()),
+					String.valueOf(mEtxtPayerAddress.getText()),
+					String.valueOf(mEtxtPayerCountryCode.getText()),
+					String.valueOf(mEtxtPayerState.getText()),
+					String.valueOf(mEtxtPayerCity.getText()),
+					String.valueOf(mEtxtPayerZip.getText()),
+					String.valueOf(mEtxtPayerEmail.getText()),
+					String.valueOf(mEtxtPayerPhone.getText()),
+					String.valueOf(mEtxtPayerIpAddress.getText())
+			);
 
-				final PlatonCard platonCard;
-				switch (mRgCard.getCheckedRadioButtonId()) {
-					case R.id.rb_card_unsuccess:
-						platonCard = PlatonCard.Test.UNSUCCESS;
-						break;
-					case R.id.rb_card_3ds_success:
-						platonCard = PlatonCard.Test.SUCCESS_3D;
-						break;
-					case R.id.rb_card_3ds_unsuccess:
-						platonCard = PlatonCard.Test.UNSUCCESS_3D;
-						break;
-					case R.id.rb_card_success:
-					default:
-						platonCard = PlatonCard.Test.SUCCESS;
-						break;
-				}
+			final PlatonCard platonCard;
+			int checkedRadioButtonId = mRgCard.getCheckedRadioButtonId();
+			if (checkedRadioButtonId == R.id.rb_card_unsuccess) {
+				platonCard = PlatonCard.Test.UNSUCCESS;
+			} else if (checkedRadioButtonId == R.id.rb_card_3ds_success) {
+				platonCard = PlatonCard.Test.SUCCESS_3D;
+			} else if (checkedRadioButtonId == R.id.rb_card_3ds_unsuccess) {
+				platonCard = PlatonCard.Test.UNSUCCESS_3D;
+			} else {
+				platonCard = PlatonCard.Test.SUCCESS;
+			}
 
-				final PlatonSaleOptions platonSaleOptions = new PlatonSaleOptions.Builder()
-						.async(mCbAsync.isChecked() ? PlatonOption.YES : PlatonOption.NO)
-						.recurringInit(mCbRecurringInit.isChecked() ? PlatonOption.YES : PlatonOption.NO)
-						.channelId(String.valueOf(mEtxtChannelId.getText()))
-						.build();
+			final PlatonSaleOptions platonSaleOptions = new PlatonSaleOptions.Builder()
+					.async(mCbAsync.isChecked() ? PlatonOption.YES : PlatonOption.NO)
+					.recurringInit(mCbRecurringInit.isChecked() ? PlatonOption.YES : PlatonOption.NO)
+					.channelId(String.valueOf(mEtxtChannelId.getText()))
+					.build();
 
-				mTrans = new Trans(payer.getEmail(), platonCard.getNumber());
+			mTrans = new Trans(payer.getEmail(), platonCard.getNumber());
 
-				showProgress();
-				if (v.getId() == R.id.btn_sale) PlatonSdk.PostPayments.getSaleAdapter().sale(
-						order, platonCard, payer, platonSaleOptions, this
-				);
-				else PlatonSdk.PostPayments.getSaleAdapter().auth(
-						order, platonCard, payer, platonSaleOptions, this
-				);
-				break;
-			default:
-				break;
+			showProgress();
+			if (v.getId() == R.id.btn_sale) PlatonSdk.PostPayments.getSaleAdapter().sale(
+					order, platonCard, payer, platonSaleOptions, this
+			);
+			else PlatonSdk.PostPayments.getSaleAdapter().auth(
+					order, platonCard, payer, platonSaleOptions, this
+			);
 		}
 	}
 

@@ -2,6 +2,8 @@ package com.platon.sdk.model.response.capture;
 
 import android.os.Parcel;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 import com.platon.sdk.callback.PlatonCaptureCallback;
 import com.platon.sdk.deserializer.PlatonCaptureDeserializer;
@@ -52,6 +54,7 @@ public class PlatonCaptureDecline extends PlatonCapture {
         parcel.writeString(mDeclineReason);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonCaptureDecline{" +

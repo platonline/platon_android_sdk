@@ -2,6 +2,8 @@ package com.platon.sdk.model.response.sale;
 
 import android.os.Parcel;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 import com.platon.sdk.callback.PlatonCaptureCallback;
 import com.platon.sdk.callback.PlatonSaleCallback;
@@ -113,6 +115,7 @@ public class PlatonSale3DSecure extends PlatonSale {
 		parcel.writeString(mRedirectMethod);
 	}
 
+	@NonNull
 	@Override
 	public String toString() {
 		return "PlatonSale3DSecure{" +

@@ -70,7 +70,6 @@ import com.platon.sdk.model.request.PlatonCard;
  * <p>
  * To test/simulate your requests to Platon Payment System use {@link PlatonCard.Test} environment
  */
-@SuppressWarnings("DanglingJavadoc")
 public final class PlatonSdk {
 
 	/**
@@ -108,7 +107,9 @@ public final class PlatonSdk {
 				if (!TextUtils.isEmpty(clientKey) &&
 						!TextUtils.isEmpty(clientPass) &&
 						!TextUtils.isEmpty(paymentUrl)) {
-					PlatonCredentials.init(clientKey, clientPass, paymentUrl, termUrl3Ds);
+					if (clientKey != null && clientPass != null && paymentUrl != null) {
+								PlatonCredentials.init(clientKey, clientPass, paymentUrl, termUrl3Ds);
+					}
 					isInited = true;
 				}
 			}
@@ -126,11 +127,11 @@ public final class PlatonSdk {
 	 *
 	 * @param context    - app context
 	 * @param clientKey  - client key
-	 *                   See {@link PlatonCredentials#sClientKey}
+//	 *                   See {@link PlatonCredentials#//sClientKey}
 	 * @param clientPass - client password
-	 *                   See {@link PlatonCredentials#sClientPass}
+	 *                   See {@link PlatonCredentials#//sClientPass}
 	 * @param paymentUrl - payment url
-	 *                   See {@link PlatonCredentials#sPaymentUrl}
+	 *                   See {@link PlatonCredentials#//sPaymentUrl}
 	 */
 	public static void init(
 			@NonNull final Context context,
@@ -146,13 +147,13 @@ public final class PlatonSdk {
 	 *
 	 * @param context    - app context
 	 * @param clientKey  - client key
-	 *                   See {@link PlatonCredentials#sClientKey}
+	 *                   See {@link PlatonCredentials#//sClientKey}
 	 * @param clientPass - client password
-	 *                   See {@link PlatonCredentials#sClientPass}
+	 *                   See {@link PlatonCredentials#//sClientPass}
 	 * @param paymentUrl - payment url
-	 *                   See {@link PlatonCredentials#sPaymentUrl}
+	 *                   See {@link PlatonCredentials#//sPaymentUrl}
 	 * @param termUrl3Ds - url for 3DSecure supported account
-	 *                   See {@link PlatonCredentials#sTermUrl3Ds}
+	 *                   See {@link PlatonCredentials#//sTermUrl3Ds}
 	 */
 	public static void init(
 			@NonNull final Context context,

@@ -13,21 +13,12 @@ public class PlatonApp extends Application {
 	public void onCreate() {
 		super.onCreate();
 
-//        // Platon SDK
-//        PlatonSdk.init(this);
-
 		// StanKoUtils
 		Initializer.init(this);
 		Log.init(this);
 
 		// DB
 		DBHelper.init(this);
-
-//        // Logs
-//        Log.d(String.valueOf(PlatonSdk.isInited()));
-//        Log.d(PlatonCredentials.getClientKey());
-//        Log.d(PlatonCredentials.getClientPass());
-//        Log.d(PlatonCredentials.getPaymentUrl());
 
 	}
 

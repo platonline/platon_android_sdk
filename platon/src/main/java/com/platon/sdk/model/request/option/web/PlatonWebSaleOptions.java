@@ -1,6 +1,8 @@
 package com.platon.sdk.model.request.option.web;
 
 import android.os.Parcel;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
@@ -207,6 +209,7 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 		}
 	}
 
+	@NonNull
 	@Override
 	public String toString() {
 		return "PlatonWebSaleOptions{" +

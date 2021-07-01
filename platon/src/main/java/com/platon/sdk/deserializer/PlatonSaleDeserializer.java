@@ -19,7 +19,6 @@ import com.platon.sdk.model.response.sale.PlatonSaleResponse;
  */
 public class PlatonSaleDeserializer extends PlatonBaseDeserializer<PlatonSale, PlatonSaleResponse> {
 
-    @SuppressWarnings("unchecked")
     public PlatonSaleDeserializer() {
         super(PlatonSale.class);
     }

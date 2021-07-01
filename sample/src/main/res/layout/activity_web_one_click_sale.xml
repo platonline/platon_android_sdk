@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -14,104 +13,134 @@
             android:id="@+id/etxt_first_trans_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="First Trans ID"/>
+            android:hint="@string/first_trans_id"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_recurring_token"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Recurring Token"/>
+            android:hint="@string/recurring_token"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <Button
             android:id="@+id/btn_randomize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RANDOMIZE"/>
+            android:text="@string/randomize" />
 
         <EditText
             android:id="@+id/etxt_order_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Order Amount"/>
+            android:hint="@string/order_amount"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_order_currency_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Order Currency Code"/>
+            android:hint="@string/order_currency_code"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_order_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Order Description"/>
+            android:hint="@string/order_description"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_success_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Success URL"/>
+            android:hint="@string/success_url"
+            android:importantForAutofill="no"
+            android:inputType="textUri" />
 
         <EditText
             android:id="@+id/etxt_order_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Order ID"/>
+            android:hint="@string/order_id"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_language"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Language"/>
+            android:hint="@string/language"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_error_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Error url"/>
+            android:hint="@string/error_url"
+            android:importantForAutofill="no"
+            android:inputType="textUri" />
 
         <EditText
             android:id="@+id/etxt_form_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Form ID"/>
+            android:hint="@string/form_id"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_ext_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ext 1"/>
+            android:hint="@string/ext_1"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_ext_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ext 2"/>
+            android:hint="@string/ext_2"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_ext_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ext 3"/>
+            android:hint="@string/ext_3"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
-        android:id="@+id/etxt_ext_4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Ext 4"/>
+            android:id="@+id/etxt_ext_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_4"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etxt_ext_10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ext 10"/>
+            android:hint="@string/ext_10"
+            android:importantForAutofill="no"
+            android:inputType="text" />
 
         <Button
             android:id="@+id/btn_one_click_sale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="ONE_CLICK_SALE"/>
+            android:text="@string/one_click_sale" />
 
     </LinearLayout>
 

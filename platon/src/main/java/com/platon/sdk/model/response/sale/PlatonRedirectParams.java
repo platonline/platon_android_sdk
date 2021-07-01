@@ -3,6 +3,8 @@ package com.platon.sdk.model.response.sale;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 import static com.platon.sdk.constant.api.PlatonApiConstants.SerializedNames.MD;
@@ -85,6 +87,7 @@ public class PlatonRedirectParams implements Parcelable {
         parcel.writeString(mTermUrl);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonRedirectParams{" +

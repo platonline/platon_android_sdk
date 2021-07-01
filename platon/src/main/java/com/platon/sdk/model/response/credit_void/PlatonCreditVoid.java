@@ -2,6 +2,8 @@ package com.platon.sdk.model.response.credit_void;
 
 import android.os.Parcel;
 
+import androidx.annotation.NonNull;
+
 import com.platon.sdk.callback.PlatonCaptureCallback;
 import com.platon.sdk.deserializer.PlatonBaseDeserializer;
 import com.platon.sdk.endpoint.adapter.post.PlatonCreditVoidAdapter;
@@ -25,6 +27,7 @@ public class PlatonCreditVoid extends PlatonBasePayment {
         super(in);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonCreditVoid{" +

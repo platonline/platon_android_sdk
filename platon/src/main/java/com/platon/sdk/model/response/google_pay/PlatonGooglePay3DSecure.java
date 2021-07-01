@@ -2,6 +2,8 @@ package com.platon.sdk.model.response.google_pay;
 
 import android.os.Parcel;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 import com.platon.sdk.constant.api.PlatonRedirectMethod;
 import com.platon.sdk.constant.api.PlatonStatus;
@@ -98,6 +100,7 @@ public class PlatonGooglePay3DSecure extends PlatonGooglePay {
         parcel.writeString(mRedirectMethod);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonGooglePay3DSecure{" +

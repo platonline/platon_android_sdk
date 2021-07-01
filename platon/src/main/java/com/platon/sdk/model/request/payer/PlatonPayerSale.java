@@ -148,6 +148,7 @@ public class PlatonPayerSale extends PlatonPayer {
         mIpAddress = ipAddress;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonPayer{" +

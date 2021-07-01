@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="4dp">
@@ -19,37 +18,43 @@
                 android:id="@+id/etxt_item_product_amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Product Amount"/>
+                android:hint="@string/product_amount"
+                android:inputType="text"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/etxt_item_product_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Product Description"/>
+                android:hint="@string/product_description"
+                android:inputType="text"
+                android:importantForAutofill="no" />
 
             <EditText
                 android:id="@+id/etxt_item_product_currency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Product Currency"/>
+                android:hint="@string/product_currency"
+                android:inputType="text"
+                android:importantForAutofill="no" />
 
             <CheckBox
                 android:id="@+id/cb_item_product_selected"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Selected"/>
+                android:text="@string/selected" />
 
             <CheckBox
                 android:id="@+id/cb_item_product_recurring"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Recurring"/>
+                android:text="@string/recurring" />
 
             <Button
                 android:id="@+id/btn_item_product_remove"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="REMOVE"/>
+                android:text="@string/remove" />
 
         </LinearLayout>
 

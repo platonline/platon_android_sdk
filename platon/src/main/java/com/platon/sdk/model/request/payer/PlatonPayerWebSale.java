@@ -1,5 +1,6 @@
 package com.platon.sdk.model.request.payer;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.platon.sdk.endpoint.adapter.web.PlatonWebSaleAdapter;
@@ -102,6 +103,7 @@ public class PlatonPayerWebSale extends PlatonPayer {
 		}
 	}
 
+	@NonNull
 	@Override
 	public String toString() {
 		return "PlatonPayerWebSale{" +

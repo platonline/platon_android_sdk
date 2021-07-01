@@ -68,7 +68,6 @@ public class PlatonCard implements Parcelable {
      * <p>
      * See {@link PlatonApiConstants.MethodProperties#CARD_CVV2}
      */
-    @NonNull
     @Size(min = MIN_CVV, max = MAX_CVV)
     private String mCvv2;
 
@@ -81,7 +80,6 @@ public class PlatonCard implements Parcelable {
      * <p>
      * See {@link PlatonApiConstants.MethodProperties#CARD_NUMBER}
      */
-    @NonNull
     @Size(min = MIN_CARD_NUMBER, max = MAX_CARD_NUMBER)
     private String mNumber;
 
@@ -219,6 +217,7 @@ public class PlatonCard implements Parcelable {
         }
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonCard{" +

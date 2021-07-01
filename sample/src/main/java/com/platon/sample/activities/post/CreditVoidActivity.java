@@ -87,36 +87,32 @@ public class CreditVoidActivity extends BaseActivity implements
 
 	@Override
 	public void onClick(final View v) {
-		switch (v.getId()) {
-			case R.id.btn_randomize:
-				randomize();
-				break;
-			case R.id.btn_credit_void:
-				mEtxtResponse.setText("");
+		int id = v.getId();
+		if (id == R.id.btn_randomize) {
+			randomize();
+		} else if (id == R.id.btn_credit_void) {
+			mEtxtResponse.setText("");
 
-				final String transId = String.valueOf(mEtxtTransId.getText());
-				final String payerEmail = String.valueOf(mEtxtPayerEmail.getText());
-				final String cardNumber = String.valueOf(mEtxtCardNumber.getText());
-				float partialAmount;
-				try {
-					partialAmount = Float.parseFloat(String.valueOf(mEtxtPartialAmount.getText()));
-				} catch (final Exception e) {
-					partialAmount = Float.parseFloat(
-							String.valueOf(Randoms.Float(MIN_AMOUNT, MAX_AMOUNT))
-					);
-				}
-
-				showProgress();
-				if (new Random().nextBoolean())
-					PlatonSdk.PostPayments.getCreditVoidAdapter().creditVoid(
-							transId, partialAmount, payerEmail, cardNumber, this
-					);
-				else PlatonSdk.PostPayments.getCreditVoidAdapter().creditVoid(
-						transId, partialAmount, mTrans.getHash(), this
+			final String transId = String.valueOf(mEtxtTransId.getText());
+			final String payerEmail = String.valueOf(mEtxtPayerEmail.getText());
+			final String cardNumber = String.valueOf(mEtxtCardNumber.getText());
+			float partialAmount;
+			try {
+				partialAmount = Float.parseFloat(String.valueOf(mEtxtPartialAmount.getText()));
+			} catch (final Exception e) {
+				partialAmount = Float.parseFloat(
+						String.valueOf(Randoms.Float(MIN_AMOUNT, MAX_AMOUNT))
 				);
-				break;
-			default:
-				break;
+			}
+
+			showProgress();
+			if (new Random().nextBoolean())
+				PlatonSdk.PostPayments.getCreditVoidAdapter().creditVoid(
+						transId, partialAmount, payerEmail, cardNumber, this
+				);
+			else PlatonSdk.PostPayments.getCreditVoidAdapter().creditVoid(
+					transId, partialAmount, mTrans.getHash(), this
+			);
 		}
 	}
 

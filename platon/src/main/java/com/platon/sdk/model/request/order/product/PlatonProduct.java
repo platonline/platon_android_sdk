@@ -46,6 +46,7 @@ public class PlatonProduct extends PlatonOrder {
 		super.setDescription(description);
 	}
 
+	@NonNull
 	@Override
 	public String toString() {
 		return "PlatonProduct{" +

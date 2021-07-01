@@ -10,7 +10,7 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * Helper {@link StringDef} for response
- * Used with {@link SerializedNames#REDIRECT_METHOD} and {@link PlatonSale3DSecure#mRedirectMethod}
+ * Used with {@link SerializedNames#REDIRECT_METHOD} and {@link PlatonSale3DSecure#//mRedirectMethod}
  */
 @Retention(RetentionPolicy.SOURCE)
 @StringDef({

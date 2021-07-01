@@ -46,39 +46,27 @@ public class PostPaymentActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(final View v) {
-        switch (v.getId()) {
-            case R.id.btn_sale:
-                startActivity(new Intent(PostPaymentActivity.this, SaleActivity.class));
-                break;
-            case R.id.btn_get_trans_status:
-                startActivity(new Intent(PostPaymentActivity.this, GetTransStatusActivity.class));
-                break;
-            case R.id.btn_get_trans_details:
-                startActivity(new Intent(PostPaymentActivity.this, GetTransDetailsActivity.class));
-                break;
-            case R.id.btn_capture:
-                startActivity(new Intent(PostPaymentActivity.this, CaptureActivity.class));
-                break;
-            case R.id.btn_credit_void:
-                startActivity(new Intent(PostPaymentActivity.this, CreditVoidActivity.class));
-                break;
-            case R.id.btn_recurring_sale:
-                startActivity(new Intent(PostPaymentActivity.this, RecurringActivity.class));
-                break;
-            case R.id.btn_schedule:
-                startActivity(new Intent(PostPaymentActivity.this, ScheduleActivity.class));
-                break;
-            case R.id.btn_deschedule:
-                startActivity(new Intent(PostPaymentActivity.this, DescheduleActivity.class));
-                break;
-            case R.id.btn_google_pay:
-                startActivity(new Intent(PostPaymentActivity.this, GooglePayActivity.class));
-                break;
-            case R.id.btn_google_pay_prod:
-                startActivity(new Intent(PostPaymentActivity.this, AddDataPayActivity.class));
-                break;
-            default:
-                break;
+        int id = v.getId();
+        if (id == R.id.btn_sale) {
+            startActivity(new Intent(PostPaymentActivity.this, SaleActivity.class));
+        } else if (id == R.id.btn_get_trans_status) {
+            startActivity(new Intent(PostPaymentActivity.this, GetTransStatusActivity.class));
+        } else if (id == R.id.btn_get_trans_details) {
+            startActivity(new Intent(PostPaymentActivity.this, GetTransDetailsActivity.class));
+        } else if (id == R.id.btn_capture) {
+            startActivity(new Intent(PostPaymentActivity.this, CaptureActivity.class));
+        } else if (id == R.id.btn_credit_void) {
+            startActivity(new Intent(PostPaymentActivity.this, CreditVoidActivity.class));
+        } else if (id == R.id.btn_recurring_sale) {
+            startActivity(new Intent(PostPaymentActivity.this, RecurringActivity.class));
+        } else if (id == R.id.btn_schedule) {
+            startActivity(new Intent(PostPaymentActivity.this, ScheduleActivity.class));
+        } else if (id == R.id.btn_deschedule) {
+            startActivity(new Intent(PostPaymentActivity.this, DescheduleActivity.class));
+        } else if (id == R.id.btn_google_pay) {
+            startActivity(new Intent(PostPaymentActivity.this, GooglePayActivity.class));
+        } else if (id == R.id.btn_google_pay_prod) {
+            startActivity(new Intent(PostPaymentActivity.this, AddDataPayActivity.class));
         }
     }
 }

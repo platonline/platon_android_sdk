@@ -1,5 +1,7 @@
 package com.platon.sdk.model.response.base;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 import com.platon.sdk.constant.api.PlatonResult;
 import com.platon.sdk.deserializer.PlatonBaseDeserializer;
@@ -52,6 +54,7 @@ public class PlatonApiError {
         mMessage = message;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonApiError{" +

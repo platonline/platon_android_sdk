@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +25,6 @@ import com.platon.sdk.model.response.google_pay.PlatonGooglePayDecline;
 import com.platon.sdk.model.response.google_pay.PlatonGooglePaySuccess;
 import com.platon.sdk.util.GooglePayHelper;
 import com.platon.sdk.widget.GooglePayButton;
-import com.platon.sdk.widget.GooglePayReadyToPayListener;
 
 import retrofit2.Call;
 
@@ -93,47 +91,28 @@ public class GooglePayActivity extends BaseActivity implements PlatonGooglePayCa
 
         setupGooglePay();
         changeButton();
-        cbBlack.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                cbShadow.setEnabled(!isChecked);
-                googlePayButton.setBlack(isChecked);
-            }
+        cbBlack.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            cbShadow.setEnabled(!isChecked);
+            googlePayButton.setBlack(isChecked);
         });
 
-        cbShadow.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                googlePayButton.setShadow(isChecked);
-            }
-        });
-        cbWithText.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                googlePayButton.setWithText(isChecked);
-            }
-        });
+        cbShadow.setOnCheckedChangeListener((buttonView, isChecked) -> googlePayButton.setShadow(isChecked));
+        cbWithText.setOnCheckedChangeListener((buttonView, isChecked) -> googlePayButton.setWithText(isChecked));
     }
 
     private void setupGooglePay() {
-        googlePayButton = (GooglePayButton) findViewById(R.id.google_pay_button);
+        googlePayButton = findViewById(R.id.google_pay_button);
 
         googlePayHelper = new GooglePayHelper();
-        googlePayHelper.initGooglePay(this, enviroment, new GooglePayReadyToPayListener() {
-            @Override
-            public void showGooglePayButton(boolean isShow) {
-                if (isShow) {
-                    googlePayButton.setVisibility(View.VISIBLE);
-                    googlePayButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            googlePayButton.setEnabled(false);
-                            startGooglePay();
-                        }
-                    });
-                } else {
-                    googlePayButton.setVisibility(View.GONE);
-                }
+        googlePayHelper.initGooglePay(this, enviroment, isShow -> {
+            if (isShow) {
+                googlePayButton.setVisibility(View.VISIBLE);
+                googlePayButton.setOnClickListener(v -> {
+                    googlePayButton.setEnabled(false);
+                    startGooglePay();
+                });
+            } else {
+                googlePayButton.setVisibility(View.GONE);
             }
         });
     }

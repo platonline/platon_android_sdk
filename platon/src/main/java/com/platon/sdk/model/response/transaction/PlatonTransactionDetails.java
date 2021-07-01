@@ -2,6 +2,8 @@ package com.platon.sdk.model.response.transaction;
 
 import android.os.Parcel;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 import com.platon.sdk.callback.PlatonBaseCallback;
 import com.platon.sdk.constant.api.PlatonApiConstants.SerializedNames;
@@ -183,6 +185,7 @@ public class PlatonTransactionDetails extends PlatonTransactionStatus {
         parcel.writeTypedList(mPlatonTransactions);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonTransactionDetails{" +

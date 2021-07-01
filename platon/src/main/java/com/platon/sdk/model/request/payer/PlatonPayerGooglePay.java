@@ -195,6 +195,7 @@ public class PlatonPayerGooglePay extends PlatonPayer {
         mIpAddress = ipAddress;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonPayerGooglePay{" +

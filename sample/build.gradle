@@ -16,10 +16,11 @@ ext {
     androidSupportVersion = '29.0.2'
 
     // Support
-    appcompat_version = "1.1.0"
+    appcompat_version = "1.3.0"
     cardview = "1.0.0"
     material = "1.3.0"
     customtabs = "1.3.0"
+    multidex_version = "2.0.1"
 
 }
 
@@ -36,6 +37,12 @@ android {
 
         versionCode libraryCode
         versionName libraryVersion
+        multiDexEnabled true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 }
@@ -54,4 +61,5 @@ dependencies {
     implementation 'com.github.stankoutils:app:1.67'
     implementation 'com.github.slmyldz:AndroidRandom:1.0'
     implementation 'com.github.thiagokimo:faker:1.4.3'
+    implementation "androidx.multidex:multidex:$multidex_version"
 }

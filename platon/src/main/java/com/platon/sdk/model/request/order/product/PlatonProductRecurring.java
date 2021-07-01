@@ -35,6 +35,7 @@ public class PlatonProductRecurring extends PlatonProduct {
 		mId = id;
 	}
 
+	@NonNull
 	@Override
 	public String toString() {
 		return "PlatonProductRecurring{" +

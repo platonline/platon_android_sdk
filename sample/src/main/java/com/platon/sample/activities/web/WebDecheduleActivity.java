@@ -60,22 +60,17 @@ public class WebDecheduleActivity extends BaseActivity implements
 
     @Override
     public void onClick(final View v) {
-        switch (v.getId()) {
-            case R.id.btn_randomize:
-                randomize();
-                break;
-            case R.id.btn_deschedule:
+        int id = v.getId();
+        if (id == R.id.btn_randomize) {
+            randomize();
+        } else if (id == R.id.btn_deschedule) {
+            final PlatonRecurringWeb recurring = new PlatonRecurringWeb(
+                    String.valueOf(mEtxtFirstTransId.getText()),
+                    String.valueOf(mEtxtRecurringToken.getText())
+            );
 
-                final PlatonRecurringWeb recurring = new PlatonRecurringWeb(
-                        String.valueOf(mEtxtFirstTransId.getText()),
-                        String.valueOf(mEtxtRecurringToken.getText())
-                );
-
-                showProgress();
-                PlatonSdk.WebPayments.getScheduleAdapter().deschedule(recurring, this);
-                break;
-            default:
-                break;
+            showProgress();
+            PlatonSdk.WebPayments.getScheduleAdapter().deschedule(recurring, this);
         }
     }
 

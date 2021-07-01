@@ -2,6 +2,8 @@ package com.platon.sdk.model.request.option.schedule;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.IntRange;
 
@@ -149,6 +151,7 @@ public class PlatonScheduleOptions implements Parcelable {
         }
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonScheduleOptions{" +

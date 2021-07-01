@@ -19,31 +19,41 @@
                 android:id="@+id/etxt_order_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Order ID" />
+                android:hint="@string/order_id"
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/etxt_order_amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Order Amount" />
+                android:hint="@string/order_amount"
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/etxt_order_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Order Description" />
+                android:hint="@string/order_description"
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/etxt_order_currency_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Order Currency Code" />
+                android:hint="@string/order_currency_code"
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/etxt_payer_country_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Payer Country Code" />
+                android:hint="@string/payer_country_code"
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <View
                 android:layout_width="match_parent"
@@ -54,106 +64,129 @@
                 android:id="@+id/etxt_payer_first_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Payer First Name" />
+                android:hint="@string/payer_first_name"
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/etxt_payer_last_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Payer Last Name" />
+                android:hint="@string/payer_last_name"
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/etxt_payer_middle_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Payer Middle Name" />
+                android:hint="@string/payer_middle_name"
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/etxt_payer_birthday"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Payer Birthday" />
+                android:hint="@string/payer_birthday"
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/etxt_payer_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Payer Address" />
+                android:hint="@string/payer_address"
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/etxt_payer_state"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Payer State" />
+                android:hint="@string/payer_state"
+                android:importantForAutofill="no"
+                android:inputType="text" />
+
 
             <EditText
                 android:id="@+id/etxt_payer_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Payer City" />
+                android:hint="@string/payer_city"
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/etxt_payer_zip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Payer Zip" />
+                android:hint="@string/payer_zip"
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/etxt_payer_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Payer Email"
+                android:hint="@string/payer_email"
+                android:importantForAutofill="no"
                 android:inputType="textEmailAddress" />
 
             <EditText
                 android:id="@+id/etxt_payer_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Payer Phone"
+                android:hint="@string/payer_phone"
+                android:importantForAutofill="no"
                 android:inputType="phone" />
 
             <EditText
                 android:id="@+id/etxt_payer_ip_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Payer IP Address" />
+                android:hint="@string/payer_ip_address"
+                android:importantForAutofill="no"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/etxt_channel_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Channel ID"/>
+                android:hint="@string/channel_id"
+                android:importantForAutofill="no"
+                android:inputType="text" />
         </LinearLayout>
 
         <CheckBox
             android:id="@+id/cb_async"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Async Sale" />
+            android:text="@string/async_sale" />
 
         <CheckBox
             android:id="@+id/cb_auth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Auth" />
+            android:text="@string/auth" />
 
         <CheckBox
             android:id="@+id/cb_black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="black" />
+            android:text="@string/black" />
 
         <CheckBox
             android:id="@+id/cb_with_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="with text" />
+            android:text="@string/with_text" />
 
         <CheckBox
             android:id="@+id/cb_shadow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="shadow (only for white button)" />
+            android:text="@string/shadow_only_for_white_button" />
 
         <com.platon.sdk.widget.GooglePayButton
             android:id="@+id/google_pay_button"
@@ -165,8 +198,8 @@
             android:clickable="true"
             android:focusable="true"
             app:black="false"
-            app:withText="true"
-            app:shadow="true"/>
+            app:shadow="true"
+            app:withText="true" />
 
         <TextView
             android:id="@+id/tx_response"
@@ -174,7 +207,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:minHeight="200dp"
-            android:text="Response" />
+            android:text="@string/response" />
 
     </LinearLayout>
 </ScrollView>

@@ -2,6 +2,8 @@ package com.platon.sdk.model.request.option;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.Size;
 import android.text.TextUtils;
@@ -173,6 +175,7 @@ public class PlatonSaleOptions implements Parcelable {
         }
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonSaleOptions{" +

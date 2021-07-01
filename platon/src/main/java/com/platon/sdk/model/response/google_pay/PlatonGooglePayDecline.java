@@ -2,6 +2,8 @@ package com.platon.sdk.model.response.google_pay;
 
 import android.os.Parcel;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 import com.platon.sdk.constant.api.PlatonStatus;
 import com.platon.sdk.deserializer.PlatonGooglePayDeserializer;
@@ -62,6 +64,7 @@ public class PlatonGooglePayDecline extends PlatonGooglePay {
         parcel.writeString(mDeclineReason);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonGooglePayDecline{" +

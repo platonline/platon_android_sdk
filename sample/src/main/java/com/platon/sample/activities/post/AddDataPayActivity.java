@@ -2,7 +2,6 @@ package com.platon.sample.activities.post;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,18 +24,15 @@ public class AddDataPayActivity extends AppCompatActivity {
         final EditText clientPassword = findViewById(R.id.client_passsword);
         Button btnNext = findViewById(R.id.next);
 
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (merchandId.getText().length() != 0 && clientPassword.getText().length() != 0){
-                    Intent intent = new Intent(AddDataPayActivity.this, GooglePayActivity.class);
-                    intent.putExtra("enviroment", GooglePayHelper.ENVIRONMENT_PRODUCTION);
-                    intent.putExtra("merchandId", merchandId.getText().toString());
-                    intent.putExtra("clientPassword", clientPassword.getText().toString());
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Enter data!", Toast.LENGTH_LONG).show();
-                }
+        btnNext.setOnClickListener(v -> {
+            if (merchandId.getText().length() != 0 && clientPassword.getText().length() != 0){
+                Intent intent = new Intent(AddDataPayActivity.this, GooglePayActivity.class);
+                intent.putExtra("enviroment", GooglePayHelper.ENVIRONMENT_PRODUCTION);
+                intent.putExtra("merchandId", merchandId.getText().toString());
+                intent.putExtra("clientPassword", clientPassword.getText().toString());
+                startActivity(intent);
+            } else {
+                Toast.makeText(getApplicationContext(), "Enter data!", Toast.LENGTH_LONG).show();
             }
         });
     }

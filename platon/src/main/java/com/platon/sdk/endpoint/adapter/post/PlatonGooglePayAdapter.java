@@ -55,7 +55,7 @@ public class PlatonGooglePayAdapter extends PlatonBaseAdapter<PlatonGooglePaySer
     }
 
     /**
-     * For params description see {@link #sale(PlatonOrderGooglePay, String, PlatonPayerGooglePay, PlatonGooglePayCallback)}}
+     * For params description see {#sale(PlatonOrderGooglePay, String, PlatonPayerGooglePay, PlatonGooglePayCallback)}}
      * PlatonGooglePay request without optional fields.
      */
     public Call sale(

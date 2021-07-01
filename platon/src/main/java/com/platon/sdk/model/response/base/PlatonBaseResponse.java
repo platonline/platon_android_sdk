@@ -1,5 +1,6 @@
 package com.platon.sdk.model.response.base;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.platon.sdk.deserializer.PlatonBaseDeserializer;
@@ -48,6 +49,7 @@ public class PlatonBaseResponse<PlatonPayment extends PlatonBasePayment> {
         mPlatonApiError = platonApiError;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonBaseResponse{" +

@@ -48,6 +48,7 @@ public class PlatonOrderSale extends PlatonOrder {
         mCurrencyCode = currencyCode;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonOrderSale{" +

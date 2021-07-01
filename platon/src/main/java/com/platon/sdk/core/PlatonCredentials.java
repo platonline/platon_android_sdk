@@ -72,7 +72,9 @@ public class PlatonCredentials {
 		if (sClientKey == null) {
 			final String clientKey = CredentialsStorage.getCredential(Credentials.CLIENT_KEY);
 			if (TextUtils.isEmpty(clientKey)) PlatonSdkNotInitializedException.invoke();
-			else setClientKey(clientKey);
+			else if (clientKey != null) {
+				setClientKey(clientKey);
+			}
 		}
 
 		return sClientKey;
@@ -90,7 +92,9 @@ public class PlatonCredentials {
 		if (sClientPass == null) {
 			final String clientPass = CredentialsStorage.getCredential(CLIENT_PASS);
 			if (TextUtils.isEmpty(clientPass)) PlatonSdkNotInitializedException.invoke();
-			else setClientPass(clientPass);
+			else if (clientPass != null) {
+				setClientPass(clientPass);
+			}
 		}
 
 		return sClientPass;
@@ -108,7 +112,9 @@ public class PlatonCredentials {
 		if (sPaymentUrl == null) {
 			final String paymentUrl = CredentialsStorage.getCredential(PAYMENT_URL);
 			if (TextUtils.isEmpty(paymentUrl)) PlatonSdkNotInitializedException.invoke();
-			else setPaymentUrl(paymentUrl);
+			else if (paymentUrl != null) {
+				setPaymentUrl(paymentUrl);
+			}
 		}
 
 		return sPaymentUrl;

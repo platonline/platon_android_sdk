@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -14,37 +13,37 @@
             android:id="@+id/btn_web_sale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SALE_WEB"/>
+            android:text="@string/sale_web" />
 
         <Button
             android:id="@+id/btn_token_web_sale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SALE_TOKEN_WEB"/>
+            android:text="@string/sale_token_web" />
 
         <Button
             android:id="@+id/btn_web_one_click_sale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ONE_CLICK_SALE_WEB"/>
+            android:text="@string/one_click_sale_web" />
 
         <Button
             android:id="@+id/btn_web_recurring_sale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RECURRING_SALE_WEB"/>
+            android:text="@string/recurring_sale_web" />
 
         <Button
             android:id="@+id/btn_web_schedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SCHEDULE_WEB"/>
+            android:text="@string/schedule_web" />
 
         <Button
             android:id="@+id/btn_web_deschedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="DESCHEDULE_WEB"/>
+            android:text="@string/deschedule_web" />
 
     </LinearLayout>
 

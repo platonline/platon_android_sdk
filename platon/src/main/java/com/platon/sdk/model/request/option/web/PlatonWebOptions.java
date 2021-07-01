@@ -2,6 +2,8 @@ package com.platon.sdk.model.request.option.web;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
@@ -209,6 +211,7 @@ public class PlatonWebOptions implements Parcelable {
 		}
 	}
 
+	@NonNull
 	@Override
 	public String toString() {
 		return "PlatonWebOptions{" +

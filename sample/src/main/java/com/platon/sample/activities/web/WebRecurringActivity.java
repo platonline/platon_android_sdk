@@ -79,61 +79,56 @@ public class WebRecurringActivity extends BaseActivity implements
     private void randomize() {
         mEtxtOrderId.setText(String.valueOf(UUID.randomUUID()));
         mEtxtOrderAmount.setText(String.valueOf(Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F)));
-        mEtxtOrderDescription.setText(Faker.with(this).Lorem.sentences());
+        mEtxtOrderDescription.setText(Faker.Lorem.sentences());
 
         mEtxtFirstTransId.setText(String.valueOf(UUID.randomUUID()));
         mEtxtRecurringToken.setText(String.valueOf(UUID.randomUUID()));
 
-        mEtxtExt1.setText(Faker.with(this).Url.avatar());
-        mEtxtExt2.setText(Faker.with(this).Url.avatar());
-        mEtxtExt3.setText(Faker.with(this).Url.avatar());
-        mEtxtExt4.setText(Faker.with(this).Url.avatar());
-        mEtxtExt10.setText(Faker.with(this).Url.avatar());
+        mEtxtExt1.setText(Faker.Url.avatar());
+        mEtxtExt2.setText(Faker.Url.avatar());
+        mEtxtExt3.setText(Faker.Url.avatar());
+        mEtxtExt4.setText(Faker.Url.avatar());
+        mEtxtExt10.setText(Faker.Url.avatar());
     }
 
     @Override
     public void onClick(final View v) {
-        switch (v.getId()) {
-            case R.id.btn_randomize:
-                randomize();
-                break;
-            case R.id.btn_sale:
+        int id = v.getId();
+        if (id == R.id.btn_randomize) {
+            randomize();
+        } else if (id == R.id.btn_sale) {
+            float amount;
+            try {
+                amount = Float.parseFloat(String.valueOf(mEtxtOrderAmount.getText()));
+            } catch (final Exception e) {
+                amount = Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F);
+            }
 
-                float amount;
-                try {
-                    amount = Float.parseFloat(String.valueOf(mEtxtOrderAmount.getText()));
-                } catch (final Exception e) {
-                    amount = Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F);
-                }
+            final PlatonProductRecurring productRecurring = new PlatonProductRecurring(
+                    amount, String.valueOf(mEtxtOrderDescription.getText())
+            );
+            productRecurring.setId(String.valueOf(mEtxtOrderId.getText()));
 
-                final PlatonProductRecurring productRecurring = new PlatonProductRecurring(
-                        amount, String.valueOf(mEtxtOrderDescription.getText())
-                );
-                productRecurring.setId(String.valueOf(mEtxtOrderId.getText()));
+            final PlatonRecurringWeb recurring = new PlatonRecurringWeb(
+                    String.valueOf(mEtxtFirstTransId.getText()),
+                    String.valueOf(mEtxtRecurringToken.getText())
+            );
 
-                final PlatonRecurringWeb recurring = new PlatonRecurringWeb(
-                        String.valueOf(mEtxtFirstTransId.getText()),
-                        String.valueOf(mEtxtRecurringToken.getText())
-                );
+            final PlatonWebOptions platonWebOptions = new PlatonWebOptions.Builder()
+                    .ext1(String.valueOf(mEtxtExt1.getText()))
+                    .ext2(String.valueOf(mEtxtExt2.getText()))
+                    .ext3(String.valueOf(mEtxtExt3.getText()))
+                    .ext4(String.valueOf(mEtxtExt4.getText()))
+                    .ext10(String.valueOf(mEtxtExt10.getText()))
+                    .build();
 
-                final PlatonWebOptions platonWebOptions = new PlatonWebOptions.Builder()
-                        .ext1(String.valueOf(mEtxtExt1.getText()))
-                        .ext2(String.valueOf(mEtxtExt2.getText()))
-                        .ext3(String.valueOf(mEtxtExt3.getText()))
-                        .ext4(String.valueOf(mEtxtExt4.getText()))
-                        .ext10(String.valueOf(mEtxtExt10.getText()))
-                        .build();
-
-                showProgress();
-                PlatonSdk.WebPayments.getRecurringAdapter().recurringSale(
-                        productRecurring,
-                        recurring,
-                        platonWebOptions,
-                        this
-                );
-                break;
-            default:
-                break;
+            showProgress();
+            PlatonSdk.WebPayments.getRecurringAdapter().recurringSale(
+                    productRecurring,
+                    recurring,
+                    platonWebOptions,
+                    this
+            );
         }
     }
 

@@ -32,6 +32,7 @@ public class PlatonRecurringWeb extends PlatonRecurring {
         mToken = token;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonRecurringWeb{" +

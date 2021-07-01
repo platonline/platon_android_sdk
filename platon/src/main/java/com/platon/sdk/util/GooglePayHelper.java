@@ -79,18 +79,13 @@ public class GooglePayHelper {
                 @Override
                 public void onComplete(@NonNull Task<Boolean> task) {
                     if (task.isSuccessful()) {
-                        if (task.getResult() != null && task.getResult()) {
-                            googlePayReadyToPayListener.showGooglePayButton(true);
-                        } else {
-                            googlePayReadyToPayListener.showGooglePayButton(false);
-                        }
+                        googlePayReadyToPayListener.showGooglePayButton(task.getResult() != null && task.getResult());
                     } else {
                         Log.w("isReadyToPay failed", task.getException());
                         googlePayReadyToPayListener.showGooglePayButton(false);
                     }
                 }
             });
-            ;
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -147,7 +142,9 @@ public class GooglePayHelper {
                     break;
                 case AutoResolveHelper.RESULT_ERROR:
                     Status status = AutoResolveHelper.getStatusFromIntent(data);
-                    handleError(status.getStatusCode());
+                    if (status != null) {
+                        handleError(status.getStatusCode());
+                    }
                     break;
                 default:
             }
@@ -158,7 +155,7 @@ public class GooglePayHelper {
      * Create a Google Pay API base request object with properties used in all requests.
      *
      * @return Google Pay API base request object.
-     * @throws JSONException
+     *
      */
     private JSONObject getBaseRequest() throws JSONException {
         return new JSONObject()
@@ -173,7 +170,7 @@ public class GooglePayHelper {
      * by a supported gateway after payer authorization.
      *
      * @return Payment data tokenization for the CARD payment method.
-     * @throws JSONException
+     *
      */
     private JSONObject getGatewayTokenizationSpecification() throws JSONException {
         return new JSONObject() {
@@ -218,7 +215,7 @@ public class GooglePayHelper {
      * PaymentDataRequest.
      *
      * @return A CARD PaymentMethod object describing accepted cards.
-     * @throws JSONException
+     *
      */
     private JSONObject getBaseCardPaymentMethod() throws JSONException {
         return new JSONObject()
@@ -235,7 +232,7 @@ public class GooglePayHelper {
      * Describe the expected returned payment data for the CARD payment method
      *
      * @return A CARD PaymentMethod describing accepted cards and optional fields.
-     * @throws JSONException
+     *
      */
     private JSONObject getCardPaymentMethod() throws JSONException {
         return getBaseCardPaymentMethod()
@@ -249,7 +246,7 @@ public class GooglePayHelper {
      * @param currencyCode - Currency 3-letter code (ISO 4217)
      * @param countryCode  - Country 2-letter code (ISO 3166-1 alpha-2)
      * @return information about the requested payment.
-     * @throws JSONException
+     *
      */
     private JSONObject getTransactionInfo(String price, String currencyCode, String countryCode) throws JSONException {
         return new JSONObject()
@@ -266,7 +263,7 @@ public class GooglePayHelper {
      * @param currencyCode - Currency 3-letter code (ISO 4217)
      * @param countryCode  - Country 2-letter code (ISO 3166-1 alpha-2)
      * @return Payment data expected by your app.
-     * @throws JSONException
+     *
      */
     private JSONObject createPaymentDataRequest(String price, String currencyCode, String countryCode) throws JSONException {
         return getBaseRequest()
@@ -281,8 +278,11 @@ public class GooglePayHelper {
      *
      * @param paymentData A response object returned by Google after a payer approves payment.
      */
-    private void handlePaymentSuccess(PaymentData paymentData) {
-        String paymentInformation = paymentData.toJson();
+    private void handlePaymentSuccess(@Nullable PaymentData paymentData) {
+        String paymentInformation = null;
+        if (paymentData != null) {
+            paymentInformation = paymentData.toJson();
+        }
 
         if (paymentInformation == null) {
             return;

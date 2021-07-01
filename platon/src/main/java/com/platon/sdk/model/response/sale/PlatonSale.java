@@ -2,6 +2,8 @@ package com.platon.sdk.model.response.sale;
 
 import android.os.Parcel;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 import com.platon.sdk.endpoint.adapter.post.PlatonRecurringAdapter;
 import com.platon.sdk.model.response.base.PlatonBasePayment;
@@ -52,6 +54,7 @@ public class PlatonSale extends PlatonBasePayment {
         parcel.writeSerializable(mTransactionDate);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "PlatonSale{" +

@@ -1,13 +1,17 @@
 package com.platon.sdk.util;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.Base64;
+
+import androidx.annotation.RequiresApi;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.platon.sdk.model.request.order.product.PlatonProductSale;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -123,11 +127,12 @@ public class PlatonBase64Util {
 		return jsonObject;
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.KITKAT)
 	private static String base64(final String message) {
 		byte[] data = new byte[0];
 
 		try {
-			data = message.getBytes("UTF-8");
+			data = message.getBytes(StandardCharsets.UTF_8);
 		} catch (final Exception e) {
 			e.printStackTrace();
 		}

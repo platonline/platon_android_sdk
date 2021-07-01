@@ -85,28 +85,24 @@ public class DescheduleActivity extends BaseActivity implements
 
 	@Override
 	public void onClick(final View v) {
-		switch (v.getId()) {
-			case R.id.btn_randomize:
-				randomize();
-				break;
-			case R.id.btn_deschedule:
-				mEtxtResponse.setText("");
+		int id = v.getId();
+		if (id == R.id.btn_randomize) {
+			randomize();
+		} else if (id == R.id.btn_deschedule) {
+			mEtxtResponse.setText("");
 
-				final PlatonRecurring platonRecurring = new PlatonRecurring(
-						String.valueOf(mEtxtFirstTransId.getText()),
-						String.valueOf(mEtxtRecurringToken.getText())
-				);
+			final PlatonRecurring platonRecurring = new PlatonRecurring(
+					String.valueOf(mEtxtFirstTransId.getText()),
+					String.valueOf(mEtxtRecurringToken.getText())
+			);
 
-				final String payerEmail = String.valueOf(mEtxtPayerEmail.getText());
-				final String cardNumber = String.valueOf(mEtxtCardNumber.getText());
+			final String payerEmail = String.valueOf(mEtxtPayerEmail.getText());
+			final String cardNumber = String.valueOf(mEtxtCardNumber.getText());
 
-				showProgress();
-				PlatonSdk.PostPayments.getScheduleAdapter().deschedule(
-						platonRecurring, payerEmail, cardNumber, this
-				);
-				break;
-			default:
-				break;
+			showProgress();
+			PlatonSdk.PostPayments.getScheduleAdapter().deschedule(
+					platonRecurring, payerEmail, cardNumber, this
+			);
 		}
 	}
 

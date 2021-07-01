@@ -11,7 +11,6 @@ import com.platon.sdk.constant.api.PlatonApiConstants.Formats.Payment;
 import com.platon.sdk.core.PlatonCredentials;
 import com.platon.sdk.endpoint.adapter.PlatonBaseAdapter;
 import com.platon.sdk.endpoint.adapter.post.PlatonSaleAdapter;
-import com.platon.sdk.endpoint.service.web.PlatonWebSaleService;
 import com.platon.sdk.endpoint.service.web.PlatonWebTokenSaleService;
 import com.platon.sdk.model.request.option.web.PlatonWebTokenSaleOptions;
 import com.platon.sdk.model.request.order.product.PlatonProductSale;

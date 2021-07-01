@@ -92,7 +92,7 @@ public interface PlatonApiConstants {
 		}
 
 		/**
-		 * See {@link com.platon.sdk.model.request.payer.PlatonPayer} for more details
+		 * See {@link //PlatonPayer} for more details
 		 */
 		interface State {
 			int STATE = 2;
@@ -114,7 +114,7 @@ public interface PlatonApiConstants {
 		}
 
 		/**
-		 * See {@link com.platon.sdk.model.request.payer.PlatonPayer} for more details
+		 * See {@link //PlatonPayer} for more details
 		 */
 		interface Payer {
 			int COUNTRY_CODE = 2;
@@ -431,7 +431,7 @@ public interface PlatonApiConstants {
 		 * <p>
 		 * Value: Base64-encoded data
 		 * <p>
-		 * See {@link PlatonBase64Util#base64(String)} for its generation
+		 * See {@link PlatonBase64Util#//base64(String)} for its generation
 		 * See {@link PlatonWebSaleAdapter} for its usage
 		 */
 		String DATA = "data"; //*
