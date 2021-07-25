@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/partial_amount"
             android:importantForAutofill="no"
-            android:inputType="text" />
+            android:inputType="numberDecimal" />
 
         <Button
             android:id="@+id/btn_capture"

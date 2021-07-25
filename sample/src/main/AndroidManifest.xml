@@ -63,6 +63,12 @@
             android:name=".activities.post.SaleActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activities.web.WebC2AActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.web.WebC2AOneClickActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.post.GetTransStatusActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -101,6 +107,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.web.WebOneClickSaleActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activities.web.WebZeroVerificationActivity"
             android:screenOrientation="portrait" />
 
         <activity

@@ -57,11 +57,16 @@ public class WebTokenSaleActivity extends BaseActivity implements
     private EditText mEtxtLanguage;
     private EditText mEtxtErrorUrl;
     private EditText mEtxtFormId;
-    //private EditText mEtxtExt1;
+    private EditText mEtxtExt1;
     private EditText mCardToken;
     private EditText mEtxtExt2;
     private EditText mEtxtExt3;
     private EditText mEtxtExt4;
+    private EditText mEtxtExt5;
+    private EditText mEtxtExt6;
+    private EditText mEtxtExt7;
+    private EditText mEtxtExt8;
+    private EditText mEtxtExt9;
     private EditText mEtxtExt10;
     private Button mBtnSale;
 
@@ -95,10 +100,15 @@ public class WebTokenSaleActivity extends BaseActivity implements
         mEtxtErrorUrl = findViewById(R.id.etxt_error_url);
         mEtxtFormId = findViewById(R.id.etxt_form_id);
         mCardToken = findViewById(R.id.card_token);
-        //mEtxtExt1 = findViewById(R.id.etxt_ext_1);
+        mEtxtExt1 = findViewById(R.id.etxt_ext_1);
         mEtxtExt2 = findViewById(R.id.etxt_ext_2);
         mEtxtExt3 = findViewById(R.id.etxt_ext_3);
         mEtxtExt4 = findViewById(R.id.etxt_ext_4);
+        mEtxtExt5 = findViewById(R.id.etxt_ext_5);
+        mEtxtExt6 = findViewById(R.id.etxt_ext_6);
+        mEtxtExt7 = findViewById(R.id.etxt_ext_7);
+        mEtxtExt8 = findViewById(R.id.etxt_ext_8);
+        mEtxtExt9 = findViewById(R.id.etxt_ext_9);
         mEtxtExt10 = findViewById(R.id.etxt_ext_10);
         mBtnSale = findViewById(R.id.btn_sale);
     }
@@ -123,7 +133,7 @@ public class WebTokenSaleActivity extends BaseActivity implements
         for (int i = 0; i < size; i++) {
             final PlatonProductSale productSale = new PlatonProductSale(
                     Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F),
-                    Faker.Lorem.sentences()
+                    Faker.with(this).Lorem.sentences()
             );
 
             productSale.setCurrencyCode("UAH");
@@ -164,9 +174,15 @@ public class WebTokenSaleActivity extends BaseActivity implements
         }
         mEtxtLanguage.setText(language);
         mEtxtErrorUrl.setText(Faker.Internet.url());
+        mEtxtExt1.setText(Faker.Url.avatar());
         mEtxtExt2.setText(Faker.Url.avatar());
         mEtxtExt3.setText(Faker.Url.avatar());
         mEtxtExt4.setText(Faker.Url.avatar());
+        mEtxtExt5.setText(Faker.Url.avatar());
+        mEtxtExt6.setText(Faker.Url.avatar());
+        mEtxtExt7.setText(Faker.Url.avatar());
+        mEtxtExt8.setText(Faker.Url.avatar());
+        mEtxtExt9.setText(Faker.Url.avatar());
         mEtxtExt10.setText(Faker.Url.avatar());
     }
 
@@ -212,9 +228,15 @@ public class WebTokenSaleActivity extends BaseActivity implements
                     .errorUrl(String.valueOf(mEtxtErrorUrl.getText()))
                     .formId(String.valueOf(mEtxtFormId.getText()))
                     .cardToken(String.valueOf(mCardToken.getText()))
+                    .ext1(String.valueOf(mEtxtExt1.getText()))
                     .ext2(String.valueOf(mEtxtExt2.getText()))
                     .ext3(String.valueOf(mEtxtExt3.getText()))
                     .ext4(String.valueOf(mEtxtExt4.getText()))
+                    .ext5(String.valueOf(mEtxtExt5.getText()))
+                    .ext6(String.valueOf(mEtxtExt6.getText()))
+                    .ext7(String.valueOf(mEtxtExt7.getText()))
+                    .ext8(String.valueOf(mEtxtExt8.getText()))
+                    .ext9(String.valueOf(mEtxtExt9.getText()))
                     .ext10(String.valueOf(mEtxtExt10.getText()))
                     .build();
 

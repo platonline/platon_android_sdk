@@ -4,6 +4,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.browser.customtabs.CustomTabsIntent;
+
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,13 +14,16 @@ import android.widget.Toast;
 
 import com.platon.sample.R;
 import com.platon.sample.activities.BaseActivity;
+import com.platon.sample.utils.DecimalDigitsInputFilter;
 import com.platon.sdk.callback.PlatonWebCallback;
 import com.platon.sdk.core.PlatonSdk;
 import com.platon.sdk.model.request.option.web.PlatonWebSaleOptions;
 import com.platon.sdk.model.request.order.product.PlatonProductSale;
+import com.platon.sdk.model.request.payer.PlatonPayerWebSale;
 import com.platon.sdk.model.request.recurring.PlatonRecurringWeb;
 import com.slmyldz.random.Randoms;
 
+import java.util.Locale;
 import java.util.Random;
 import java.util.UUID;
 
@@ -42,6 +47,15 @@ public class WebOneClickSaleActivity extends BaseActivity implements
 	private EditText mEtxtOrderCurrencyCode;
 	private EditText mEtxtSuccessUrl;
 	private EditText mEtxtOrderId;
+	private EditText mEtxtPayerFirstName;
+	private EditText mEtxtPayerLastName;
+	private EditText mEtxtPayerAddress;
+	private EditText mEtxtPayerCountryCode;
+	private EditText mEtxtPayerState;
+	private EditText mEtxtPayerCity;
+	private EditText mEtxtPayerZip;
+	private EditText mEtxtPayerEmail;
+	private EditText mEtxtPayerPhone;
 	private EditText mEtxtLanguage;
 	private EditText mEtxtErrorUrl;
 	private EditText mEtxtFormId;
@@ -49,6 +63,11 @@ public class WebOneClickSaleActivity extends BaseActivity implements
 	private EditText mEtxtExt2;
 	private EditText mEtxtExt3;
 	private EditText mEtxtExt4;
+	private EditText mEtxtExt5;
+	private EditText mEtxtExt6;
+	private EditText mEtxtExt7;
+	private EditText mEtxtExt8;
+	private EditText mEtxtExt9;
 	private EditText mEtxtExt10;
 	private Button mBtnOneClickSale;
 
@@ -70,6 +89,15 @@ public class WebOneClickSaleActivity extends BaseActivity implements
 		mEtxtOrderCurrencyCode = findViewById(R.id.etxt_order_currency_code);
 		mEtxtSuccessUrl = findViewById(R.id.etxt_success_url);
 		mEtxtOrderId = findViewById(R.id.etxt_order_id);
+		mEtxtPayerFirstName = findViewById(R.id.etxt_payer_first_name);
+		mEtxtPayerLastName = findViewById(R.id.etxt_payer_last_name);
+		mEtxtPayerAddress = findViewById(R.id.etxt_payer_address);
+		mEtxtPayerCountryCode = findViewById(R.id.etxt_payer_country_code);
+		mEtxtPayerState = findViewById(R.id.etxt_payer_state);
+		mEtxtPayerCity = findViewById(R.id.etxt_payer_city);
+		mEtxtPayerZip = findViewById(R.id.etxt_payer_zip);
+		mEtxtPayerEmail = findViewById(R.id.etxt_payer_email);
+		mEtxtPayerPhone = findViewById(R.id.etxt_payer_phone);
 		mEtxtLanguage = findViewById(R.id.etxt_language);
 		mEtxtErrorUrl = findViewById(R.id.etxt_error_url);
 		mEtxtFormId = findViewById(R.id.etxt_form_id);
@@ -77,6 +105,11 @@ public class WebOneClickSaleActivity extends BaseActivity implements
 		mEtxtExt2 = findViewById(R.id.etxt_ext_2);
 		mEtxtExt3 = findViewById(R.id.etxt_ext_3);
 		mEtxtExt4 = findViewById(R.id.etxt_ext_4);
+		mEtxtExt5 = findViewById(R.id.etxt_ext_5);
+		mEtxtExt6 = findViewById(R.id.etxt_ext_6);
+		mEtxtExt7 = findViewById(R.id.etxt_ext_7);
+		mEtxtExt8 = findViewById(R.id.etxt_ext_8);
+		mEtxtExt9 = findViewById(R.id.etxt_ext_9);
 		mEtxtExt10 = findViewById(R.id.etxt_ext_10);
 		mBtnOneClickSale = findViewById(R.id.btn_one_click_sale);
 	}
@@ -95,11 +128,21 @@ public class WebOneClickSaleActivity extends BaseActivity implements
 		mEtxtRecurringToken.setText(String.valueOf(UUID.randomUUID()));
 
 		mEtxtOrderId.setText(String.valueOf(UUID.randomUUID()));
-		mEtxtOrderAmount.setText(String.valueOf(Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F)));
-		mEtxtOrderDescription.setText(Faker.Lorem.sentences());
+		mEtxtOrderAmount.setText(String.format(Locale.US, "%.2f", (Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F))));
+		mEtxtOrderDescription.setText(Faker.with(this).Lorem.sentences());
 		mEtxtOrderCurrencyCode.setText(R.string.uah_currency);
 
 		mEtxtSuccessUrl.setText(Faker.Internet.url());
+		mEtxtPayerFirstName.setText(Faker.Name.firstName());
+		mEtxtPayerLastName.setText(Faker.Name.lastName());
+		mEtxtPayerAddress.setText(Faker.Address.secondaryAddress());
+		mEtxtPayerCountryCode.setText(Faker.Address.countryAbbreviation());
+		mEtxtPayerState.setText(Faker.Address.state());
+		mEtxtPayerCity.setText(Faker.Address.city());
+		mEtxtPayerZip.setText(Faker.Address.zipCode());
+		mEtxtPayerEmail.setText(Faker.Internet.email());
+		mEtxtPayerPhone.setText(Faker.Phone.phoneWithAreaCode());
+
 		final int randomLanguage = random.nextInt(3);
 		final String language;
 		switch (randomLanguage) {
@@ -120,7 +163,14 @@ public class WebOneClickSaleActivity extends BaseActivity implements
 		mEtxtExt2.setText(Faker.Url.avatar());
 		mEtxtExt3.setText(Faker.Url.avatar());
 		mEtxtExt4.setText(Faker.Url.avatar());
+		mEtxtExt5.setText(Faker.Url.avatar());
+		mEtxtExt6.setText(Faker.Url.avatar());
+		mEtxtExt7.setText(Faker.Url.avatar());
+		mEtxtExt8.setText(Faker.Url.avatar());
+		mEtxtExt9.setText(Faker.Url.avatar());
 		mEtxtExt10.setText(Faker.Url.avatar());
+
+		mEtxtOrderAmount.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(2)});
 	}
 
 	@Override
@@ -159,8 +209,26 @@ public class WebOneClickSaleActivity extends BaseActivity implements
 					.ext2(String.valueOf(mEtxtExt2.getText()))
 					.ext3(String.valueOf(mEtxtExt3.getText()))
 					.ext4(String.valueOf(mEtxtExt4.getText()))
+					.ext5(String.valueOf(mEtxtExt5.getText()))
+					.ext6(String.valueOf(mEtxtExt6.getText()))
+					.ext7(String.valueOf(mEtxtExt7.getText()))
+					.ext8(String.valueOf(mEtxtExt8.getText()))
+					.ext9(String.valueOf(mEtxtExt9.getText()))
 					.ext10(String.valueOf(mEtxtExt10.getText()))
 					.build();
+
+			final PlatonPayerWebSale platonPayerWebSale = new PlatonPayerWebSale.Builder()
+					.firstName(String.valueOf(mEtxtPayerFirstName.getText()))
+					.lastName(String.valueOf(mEtxtPayerLastName.getText()))
+					.address(String.valueOf(mEtxtPayerAddress.getText()))
+					.countryCode(String.valueOf(mEtxtPayerCountryCode.getText()))
+					.state(String.valueOf(mEtxtPayerState.getText()))
+					.city(String.valueOf(mEtxtPayerCity.getText()))
+					.zip(String.valueOf(mEtxtPayerZip.getText()))
+					.email(String.valueOf(mEtxtPayerEmail.getText()))
+					.phone(String.valueOf(mEtxtPayerPhone.getText()))
+					.build();
+
 
 			showProgress();
 			PlatonSdk.WebPayments.getOneClickSaleAdapter().oneClickSale(
@@ -168,6 +236,7 @@ public class WebOneClickSaleActivity extends BaseActivity implements
 					recurringWeb,
 					successUrl,
 					String.valueOf(mEtxtOrderId.getText()),
+					platonPayerWebSale,
 					webSaleOptions,
 					this
 			);

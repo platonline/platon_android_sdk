@@ -39,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/order_id"
+            android:maxLength="30"
             android:importantForAutofill="no"
             android:inputType="text" />
 
@@ -148,6 +149,15 @@
             android:text="@string/card_token_value" />
 
         <EditText
+            android:id="@+id/etxt_ext_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_1"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+
+        <EditText
             android:id="@+id/etxt_ext_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -165,6 +175,46 @@
 
         <EditText
             android:id="@+id/etxt_ext_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_4"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etxt_ext_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_4"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etxt_ext_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_4"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etxt_ext_7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_4"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etxt_ext_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_4"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etxt_ext_9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/ext_4"

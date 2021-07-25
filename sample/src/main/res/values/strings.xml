@@ -35,6 +35,11 @@
     <string name="ext_2" translatable="false">Ext 2</string>
     <string name="ext_3" translatable="false">Ext 3</string>
     <string name="ext_4" translatable="false">Ext 4</string>
+    <string name="ext_5" translatable="false">Ext 5</string>
+    <string name="ext_6" translatable="false">Ext 6</string>
+    <string name="ext_7" translatable="false">Ext 7</string>
+    <string name="ext_8" translatable="false">Ext 8</string>
+    <string name="ext_9" translatable="false">Ext 9</string>
     <string name="ext_10" translatable="false">Ext 10</string>
     <string name="randomize" translatable="false">RANDOMIZE</string>
     <string name="order_amount" translatable="false">Order Amount</string>
@@ -47,6 +52,10 @@
     <string name="schedule" translatable="false">SCHEDULE</string>
     <string name="success_url" translatable="false">Success URL</string>
     <string name="order_id" translatable="false">Order ID</string>
+    <string name="customer_wallet" translatable="false">Customer Wallet</string>
+    <string name="bank_id" translatable="false">Bank ID</string>
+    <string name="payer_id" translatable="false">Payer ID</string>
+    <string name="req_token" translatable="false">Req Token</string>
     <string name="payer_first_name" translatable="false">Payer First Name</string>
     <string name="payer_last_name" translatable="false">Payer Last Name</string>
     <string name="payer_address" translatable="false">Payer Address</string>
@@ -74,9 +83,12 @@
     <string name="google_pay" translatable="false">GOOGLE_PAY</string>
     <string name="google_pay_prod" translatable="false">GOOGLE_PAY_PROD</string>
     <string name="sale_web" translatable="false">SALE_WEB</string>
+    <string name="c2a_web" translatable="false">C2A_WEB</string>
+    <string name="c2a_one_click_web" translatable="false">C2A_ONE_CLICK_WEB</string>
     <string name="sale_token_web" translatable="false">SALE_TOKEN_WEB</string>
     <string name="one_click_sale_web" translatable="false">ONE_CLICK_SALE_WEB</string>
     <string name="recurring_sale_web" translatable="false">RECURRING_SALE_WEB</string>
+    <string name="zero_verification_web" translatable="false">ZERO_VERIFICATION_WEB</string>
     <string name="schedule_web" translatable="false">SCHEDULE_WEB</string>
     <string name="deschedule_web" translatable="false">DESCHEDULE_WEB</string>
     <string name="uah_currency" translatable="false">UAH</string>

@@ -2,7 +2,9 @@ package com.platon.sample.activities.web;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.View;
 import android.widget.Toast;
 
@@ -38,6 +40,9 @@ public class WebPaymentActivity extends AppCompatActivity implements View.OnClic
         findViewById(R.id.btn_web_recurring_sale).setOnClickListener(this);
         findViewById(R.id.btn_web_schedule).setOnClickListener(this);
         findViewById(R.id.btn_web_deschedule).setOnClickListener(this);
+        findViewById(R.id.btn_web_c2a).setOnClickListener(this);
+        findViewById(R.id.btn_web_c2a_one_click).setOnClickListener(this);
+        findViewById(R.id.btn_web_zero_verification).setOnClickListener(this);
     }
 
     @Override
@@ -49,6 +54,12 @@ public class WebPaymentActivity extends AppCompatActivity implements View.OnClic
             startActivity(new Intent(WebPaymentActivity.this, WebTokenSaleActivity.class));
         } else if (id == R.id.btn_web_one_click_sale) {
             startActivity(new Intent(WebPaymentActivity.this, WebOneClickSaleActivity.class));
+        } else if (id == R.id.btn_web_c2a) {
+            startActivity(new Intent(WebPaymentActivity.this, WebC2AActivity.class));
+        } else if (id == R.id.btn_web_c2a_one_click) {
+            startActivity(new Intent(WebPaymentActivity.this, WebC2AOneClickActivity.class));
+        } else if (id == R.id.btn_web_zero_verification) {
+            startActivity(new Intent(WebPaymentActivity.this, WebZeroVerificationActivity.class));
         } else if (id == R.id.btn_web_recurring_sale) {// !!! Will be available in next releases !!!
             Toast.makeText(this, "Will be available in next releases", Toast.LENGTH_SHORT).show();
 //                startActivity(new Intent(WebPaymentActivity.this, WebRecurringActivity.class));

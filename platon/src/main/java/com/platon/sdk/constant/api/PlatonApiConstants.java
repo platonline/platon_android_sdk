@@ -7,6 +7,7 @@ import com.platon.sdk.constant.api.action.PlatonRequestAction;
 import com.platon.sdk.core.PlatonCredentials;
 import com.platon.sdk.core.PlatonSdk;
 import com.platon.sdk.endpoint.adapter.post.PlatonScheduleAdapter;
+import com.platon.sdk.endpoint.adapter.web.PlatonWebC2AAdapter;
 import com.platon.sdk.endpoint.adapter.web.PlatonWebRecurringAdapter;
 import com.platon.sdk.endpoint.adapter.web.PlatonWebSaleAdapter;
 import com.platon.sdk.model.request.PlatonCard;
@@ -130,12 +131,14 @@ public interface PlatonApiConstants {
 		 * CC – for payment cards
 		 * RF – for one-click payment
 		 * <p>
-		 * See {@link PlatonWebSaleAdapter} for usages
+		 * See {@link PlatonWebSaleAdapter} or {@link PlatonWebC2AAdapter} for usages
 		 */
 		interface Payment {
 			String CC = "CC";
 			String RF = "RF";
 			String CCT = "CCT";
+			String C2A_CC = "C2A,CC";
+			String C2AT_CCT = "C2AT,CCT";
 		}
 	}
 
@@ -524,6 +527,31 @@ public interface PlatonApiConstants {
 		String EXT_4 = "ext4";
 
 		/**
+		 * Client Parameter 5
+		 */
+		String EXT_5 = "ext5";
+
+		/**
+		 * Client Parameter 6
+		 */
+		String EXT_6 = "ext6";
+
+		/**
+		 * Client Parameter 7
+		 */
+		String EXT_7 = "ext7";
+
+		/**
+		 * Client Parameter 8
+		 */
+		String EXT_8 = "ext8";
+
+		/**
+		 * Client Parameter 9
+		 */
+		String EXT_9 = "ext9";
+
+		/**
 		 * Client Parameter 10
 		 */
 		String EXT_10 = "ext10";
@@ -595,6 +623,27 @@ public interface PlatonApiConstants {
 		 * See {@link PlatonProductSale} for usage
 		 */
 		String RECURRING = "recurring";
+
+		/**
+		 * <p>
+		 * Value: 'customer_wallet'
+		 * <p>
+		 */
+		String CUSTOMER_WALLET = "customer_wallet";
+
+		/**
+		 * <p>
+		 * Value: 'bank_id'
+		 * <p>
+		 */
+		String BANK_ID = "bank_id";
+
+		/**
+		 * <p>
+		 * Value: 'payer_id'
+		 * <p>
+		 */
+		String PAYER_ID = "payer_id";
 
 		/**
 		 * Used for iterating and indexing products for web SALE request

@@ -2,6 +2,8 @@ package com.platon.sample.activities.post;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +12,7 @@ import com.platon.sample.R;
 import com.platon.sample.activities.BaseActivity;
 import com.platon.sample.db.DBHelper;
 import com.platon.sample.db.models.Trans;
+import com.platon.sample.utils.DecimalDigitsInputFilter;
 import com.platon.sdk.callback.PlatonScheduleCallback;
 import com.platon.sdk.core.PlatonSdk;
 import com.platon.sdk.model.request.option.schedule.PlatonScheduleOptions;
@@ -20,6 +23,7 @@ import com.platon.sdk.model.response.base.PlatonApiError;
 import com.slmyldz.random.Randoms;
 import com.stanko.tools.Log;
 
+import java.util.Locale;
 import java.util.Random;
 
 import io.kimo.lib.faker.Faker;
@@ -76,6 +80,7 @@ public class ScheduleActivity extends BaseActivity implements
 		mEtxtRepeatTimes = findViewById(R.id.etxt_repeat_times);
 		mEtxtResponse = findViewById(R.id.etxt_response);
 		mBtnSchedule = findViewById(R.id.btn_schedule);
+		mEtxtOrderAmount.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(2)});
 	}
 
 	private void configureViews() {
@@ -96,7 +101,7 @@ public class ScheduleActivity extends BaseActivity implements
 		if (transes.isEmpty()) return;
 
 		final Trans randomTrans = transes.get(new Random().nextInt(transes.size()));
-		mEtxtOrderAmount.setText(String.valueOf(Randoms.Float(MIN_AMOUNT, MAX_AMOUNT)));
+		mEtxtOrderAmount.setText(String.format(Locale.US, "%.2f", (Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F))));
 		mEtxtOrderDescription.setText(Faker.Lorem.sentences());
 
 		mEtxtPayerEmail.setText(randomTrans.getPayerEmail());

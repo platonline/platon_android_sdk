@@ -104,6 +104,11 @@ public class PlatonWebRecurringAdapter extends PlatonBaseAdapter<PlatonWebRecurr
 				isWebOptionsNull || TextUtils.isEmpty(platonWebOptions.getExt2()) ? null : platonWebOptions.getExt2(),
 				isWebOptionsNull || TextUtils.isEmpty(platonWebOptions.getExt3()) ? null : platonWebOptions.getExt3(),
 				isWebOptionsNull || TextUtils.isEmpty(platonWebOptions.getExt4()) ? null : platonWebOptions.getExt4(),
+				isWebOptionsNull || TextUtils.isEmpty(platonWebOptions.getExt5()) ? null : platonWebOptions.getExt5(),
+				isWebOptionsNull || TextUtils.isEmpty(platonWebOptions.getExt6()) ? null : platonWebOptions.getExt6(),
+				isWebOptionsNull || TextUtils.isEmpty(platonWebOptions.getExt7()) ? null : platonWebOptions.getExt7(),
+				isWebOptionsNull || TextUtils.isEmpty(platonWebOptions.getExt8()) ? null : platonWebOptions.getExt8(),
+				isWebOptionsNull || TextUtils.isEmpty(platonWebOptions.getExt9()) ? null : platonWebOptions.getExt9(),
 				isWebOptionsNull || TextUtils.isEmpty(platonWebOptions.getExt10()) ? null : platonWebOptions.getExt10(),
 
 				PlatonHashUtil.encryptRecurringWeb(productRecurring, recurring)

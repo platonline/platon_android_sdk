@@ -180,6 +180,16 @@ public class PlatonWebSaleAdapter extends PlatonBaseAdapter<PlatonWebSaleService
 						? null : webSaleOptions.getExt3(),
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt4())
 						? null : webSaleOptions.getExt4(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt5())
+						? null : webSaleOptions.getExt5(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt6())
+						? null : webSaleOptions.getExt6(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt7())
+						? null : webSaleOptions.getExt7(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt8())
+						? null : webSaleOptions.getExt8(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt9())
+						? null : webSaleOptions.getExt9(),
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt10())
 						? null : webSaleOptions.getExt10(),
 

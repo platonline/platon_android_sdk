@@ -32,6 +32,47 @@ import java.security.NoSuchAlgorithmException;
 public class PlatonHashUtil {
 
     /**
+     * md5(strtoupper(strrev(CLIENT_KEY).strrev(payment).strrev($amount).strrev($currency).strrev($description).strrev(successUrl).strrev(CLIENT_PASS)))
+     *
+     * @param payment    - payment code
+     * @param amount     - payment amount
+     * @param currency   - payment currency
+     * @param description- payment description
+     * @param successUrl - successful url after sale transaction
+     * @return md5 hash for requests
+     */
+    public static String encryptC2A(final String payment, final String amount, final String currency, final String description, final String successUrl) {
+        if (TextUtils.isEmpty(payment) || TextUtils.isEmpty(amount) || TextUtils.isEmpty(currency) || TextUtils.isEmpty(description) || TextUtils.isEmpty(successUrl))
+            return null;
+
+        final String reverseClientKey =
+                new StringBuilder(PlatonCredentials.getClientKey()).reverse().toString();
+        final String reversePayment =
+                new StringBuilder(payment).reverse().toString();
+        final String reverseAmount =
+                new StringBuilder(amount).reverse().toString();
+        final String reverseCurrency =
+                new StringBuilder(currency).reverse().toString();
+        final String reverseDescription =
+                new StringBuilder(description).reverse().toString();
+        final String reverseSuccessUrl =
+                new StringBuilder(successUrl).reverse().toString();
+        final String reverseClientPass =
+                new StringBuilder(PlatonCredentials.getClientPass()).reverse().toString();
+
+        return md5(
+                reverseClientKey
+                        .concat(reversePayment)
+                        .concat(reverseAmount)
+                        .concat(reverseCurrency)
+                        .concat(reverseDescription)
+                        .concat(reverseSuccessUrl)
+                        .concat(reverseClientPass)
+                        .toUpperCase()
+        );
+    }
+
+    /**
      * md5(strtoupper(strrev(CLIENT_KEY).strrev(payment).strrev(data).strrev(successUrl).strrev(CLIENT_PASS)))
      *
      * @param payment    - payment code

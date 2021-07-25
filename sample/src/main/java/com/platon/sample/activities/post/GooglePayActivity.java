@@ -2,6 +2,7 @@ package com.platon.sample.activities.post;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.platon.sample.R;
 import com.platon.sample.activities.BaseActivity;
+import com.platon.sample.utils.DecimalDigitsInputFilter;
 import com.platon.sdk.callback.PlatonGooglePayCallback;
 import com.platon.sdk.constant.api.PlatonOption;
 import com.platon.sdk.core.PlatonSdk;
@@ -98,6 +100,7 @@ public class GooglePayActivity extends BaseActivity implements PlatonGooglePayCa
 
         cbShadow.setOnCheckedChangeListener((buttonView, isChecked) -> googlePayButton.setShadow(isChecked));
         cbWithText.setOnCheckedChangeListener((buttonView, isChecked) -> googlePayButton.setWithText(isChecked));
+        etxtOrderAmount.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(2)});
     }
 
     private void setupGooglePay() {

@@ -16,6 +16,7 @@ import com.platon.sdk.endpoint.service.web.PlatonWebSaleService;
 import com.platon.sdk.model.request.option.web.PlatonWebSaleOptions;
 import com.platon.sdk.model.request.order.product.PlatonProductRecurring;
 import com.platon.sdk.model.request.order.product.PlatonProductSale;
+import com.platon.sdk.model.request.payer.PlatonPayerWebSale;
 import com.platon.sdk.model.request.recurring.PlatonRecurringWeb;
 import com.platon.sdk.util.PlatonBase64Util;
 import com.platon.sdk.util.PlatonHashUtil;
@@ -56,7 +57,7 @@ public class PlatonWebOneClickSaleAdapter extends PlatonBaseAdapter<PlatonWebOne
 
 	/**
 	 * For params description see {@link #oneClickSale(
-	 *PlatonProductSale, PlatonRecurringWeb, String, String, PlatonWebSaleOptions, PlatonWebCallback)}
+	 *PlatonProductSale, PlatonRecurringWeb, String, String, PlatonPayerWebSale, PlatonWebSaleOptions, PlatonWebCallback)}
 	 * <p>
 	 * One-Click request with required fields and without optional fields
 	 */
@@ -66,7 +67,7 @@ public class PlatonWebOneClickSaleAdapter extends PlatonBaseAdapter<PlatonWebOne
 			@NonNull final String successUrl,
 			@NonNull final PlatonWebCallback callback
 	) {
-		return oneClickSale(productSale, recurringWeb, successUrl, null, null, callback);
+		return oneClickSale(productSale, recurringWeb, successUrl, null, null, null, callback);
 	}
 
 	/**
@@ -97,6 +98,7 @@ public class PlatonWebOneClickSaleAdapter extends PlatonBaseAdapter<PlatonWebOne
 			@NonNull final PlatonRecurringWeb recurringWeb,
 			@NonNull final String successUrl,
 			@Nullable @Size(max = TEXT_MIN) final String orderId,
+			@Nullable final PlatonPayerWebSale platonPayerWebSale,
 			@Nullable final PlatonWebSaleOptions webSaleOptions,
 			@NonNull final PlatonWebCallback callback
 	) {
@@ -107,6 +109,7 @@ public class PlatonWebOneClickSaleAdapter extends PlatonBaseAdapter<PlatonWebOne
 		final String data = PlatonBase64Util.encodeProduct(productSale);
 
 		final boolean isSaleFormOptionsNull = webSaleOptions == null;
+		final boolean isSalePayerNull = platonPayerWebSale == null;
 
 		final Call call = mService.oneClickSale(
 				PlatonCredentials.getClientKey(),
@@ -118,6 +121,24 @@ public class PlatonWebOneClickSaleAdapter extends PlatonBaseAdapter<PlatonWebOne
 				recurringWeb.getToken(),
 
 				orderId,
+				isSalePayerNull || TextUtils.isEmpty(platonPayerWebSale.getFirstName()) ?
+						null : platonPayerWebSale.getFirstName(),
+				isSalePayerNull || TextUtils.isEmpty(platonPayerWebSale.getLastName()) ?
+						null : platonPayerWebSale.getLastName(),
+				isSalePayerNull || TextUtils.isEmpty(platonPayerWebSale.getEmail()) ?
+						null : platonPayerWebSale.getEmail(),
+				isSalePayerNull || TextUtils.isEmpty(platonPayerWebSale.getAddress()) ?
+						null : platonPayerWebSale.getAddress(),
+				isSalePayerNull || TextUtils.isEmpty(platonPayerWebSale.getZip()) ?
+						null : platonPayerWebSale.getZip(),
+				isSalePayerNull || TextUtils.isEmpty(platonPayerWebSale.getCity()) ?
+						null : platonPayerWebSale.getCity(),
+				isSalePayerNull || TextUtils.isEmpty(platonPayerWebSale.getCountryCode()) ?
+						null : platonPayerWebSale.getCountryCode(),
+				isSalePayerNull || TextUtils.isEmpty(platonPayerWebSale.getState()) ?
+						null : platonPayerWebSale.getState(),
+				isSalePayerNull || TextUtils.isEmpty(platonPayerWebSale.getPhone()) ?
+						null : platonPayerWebSale.getPhone(),
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getLanguage()) ?
 						null : webSaleOptions.getLanguage(),
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getErrorUrl()) ?
@@ -132,6 +153,16 @@ public class PlatonWebOneClickSaleAdapter extends PlatonBaseAdapter<PlatonWebOne
 						? null : webSaleOptions.getExt3(),
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt4())
 						? null : webSaleOptions.getExt4(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt5())
+						? null : webSaleOptions.getExt5(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt6())
+						? null : webSaleOptions.getExt6(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt7())
+						? null : webSaleOptions.getExt7(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt8())
+						? null : webSaleOptions.getExt8(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt9())
+						? null : webSaleOptions.getExt9(),
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt10())
 						? null : webSaleOptions.getExt10(),
 

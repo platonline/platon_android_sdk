@@ -9,7 +9,9 @@ import androidx.annotation.RequiresApi;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.platon.sdk.constant.api.PlatonOption;
 import com.platon.sdk.model.request.order.product.PlatonProductSale;
+import com.platon.sdk.model.request.order.product.PlatonProductZeroVerification;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
@@ -74,70 +76,87 @@ import static com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties.SE
  */
 public class PlatonBase64Util {
 
-	public static String encodeProduct(final PlatonProductSale productSale) {
-		return encodeProducts(Collections.singletonList(productSale));
-	}
+    public static String encodeProduct(final PlatonProductSale productSale) {
+        return encodeProducts(Collections.singletonList(productSale));
+    }
 
-	@SuppressLint("LongLogTag")
-	public static String encodeProducts(final List<PlatonProductSale> productSales) {
-		if (productSales.isEmpty()) return null;
-		else if (productSales.size() == 1) {
-			final JsonObject jsonObject = createJsonObjectFromProduct(productSales.get(0));
-			return base64(jsonObject.toString());
-		} else {
-			final JsonObject jsonObject = new JsonObject();
-			for (int i = 0; i < productSales.size(); i++) {
-				jsonObject.add(
-						String.format(Locale.US, PRODUCT_INDEX_FORMAT, i + 1),
-						createJsonObjectFromProduct(productSales.get(i))
-				);
-			}
+    @SuppressLint("LongLogTag")
+    public static String encodeProducts(final List<PlatonProductSale> productSales) {
+        if (productSales.isEmpty()) return null;
+        else if (productSales.size() == 1) {
+            final JsonObject jsonObject = createJsonObjectFromProduct(productSales.get(0));
+            return base64(jsonObject.toString());
+        } else {
+            final JsonObject jsonObject = new JsonObject();
+            for (int i = 0; i < productSales.size(); i++) {
+                jsonObject.add(
+                        String.format(Locale.US, PRODUCT_INDEX_FORMAT, i + 1),
+                        createJsonObjectFromProduct(productSales.get(i))
+                );
+            }
 
-			return base64(jsonObject.toString());
-		}
-	}
+            return base64(jsonObject.toString());
+        }
+    }
 
-	@SuppressLint("LongLogTag")
-	public static String encodeProductsToken(final List<PlatonProductSale> productSales) {
-		if (productSales.isEmpty()) return null;
-		else if (productSales.size() == 1) {
-			final JsonObject jsonObject = createJsonObjectFromProduct(productSales.get(0));
-			return base64(jsonObject.toString());
-		} else {
-			final JsonArray jsonObject = new JsonArray();
-			StringBuilder params = new StringBuilder("");
-			for (int i = 0; i < productSales.size(); i++) {
-				jsonObject.add(createJsonObjectFromProduct(productSales.get(i)));
-			}
-			return base64(jsonObject.toString());
-		}
-	}
+    @SuppressLint("LongLogTag")
+    public static String encodeZeroVerification(final PlatonProductZeroVerification productZero) {
+        final JsonObject jsonObject = createJsonObjectFromProduct(productZero);
+        return base64(jsonObject.toString());
+    }
 
-	private static JsonObject createJsonObjectFromProduct(final PlatonProductSale productSale) {
-		final JsonObject jsonObject = new JsonObject();
+    private static JsonObject createJsonObjectFromProduct(final PlatonProductZeroVerification productZero) {
+        final JsonObject jsonObject = new JsonObject();
 
-		jsonObject.addProperty(AMOUNT, PlatonSdkUtil.getAmountFormat(productSale.getAmount()));
-		jsonObject.addProperty(DESCRIPTION, productSale.getDescription());
+        jsonObject.addProperty(AMOUNT, PlatonSdkUtil.getAmountFormat(productZero.getAmount()));
+        jsonObject.addProperty(DESCRIPTION, productZero.getDescription());
+        jsonObject.addProperty(CURRENCY, productZero.getCurrencyCode());
+        jsonObject.addProperty(RECURRING, PlatonOption.YES);
 
-		if (!TextUtils.isEmpty(productSale.getCurrencyCode()))
-			jsonObject.addProperty(CURRENCY, productSale.getCurrencyCode());
-		if (productSale.isSelected()) jsonObject.addProperty(SELECTED, SELECTED);
-		if (productSale.isRecurring()) jsonObject.addProperty(RECURRING, RECURRING);
+        return jsonObject;
+    }
 
-		return jsonObject;
-	}
+    @SuppressLint("LongLogTag")
+    public static String encodeProductsToken(final List<PlatonProductSale> productSales) {
+        if (productSales.isEmpty()) return null;
+        else if (productSales.size() == 1) {
+            final JsonObject jsonObject = createJsonObjectFromProduct(productSales.get(0));
+            return base64(jsonObject.toString());
+        } else {
+            final JsonArray jsonObject = new JsonArray();
+            StringBuilder params = new StringBuilder("");
+            for (int i = 0; i < productSales.size(); i++) {
+                jsonObject.add(createJsonObjectFromProduct(productSales.get(i)));
+            }
+            return base64(jsonObject.toString());
+        }
+    }
 
-	@RequiresApi(api = Build.VERSION_CODES.KITKAT)
-	private static String base64(final String message) {
-		byte[] data = new byte[0];
+    private static JsonObject createJsonObjectFromProduct(final PlatonProductSale productSale) {
+        final JsonObject jsonObject = new JsonObject();
 
-		try {
-			data = message.getBytes(StandardCharsets.UTF_8);
-		} catch (final Exception e) {
-			e.printStackTrace();
-		}
+        jsonObject.addProperty(AMOUNT, PlatonSdkUtil.getAmountFormat(productSale.getAmount()));
+        jsonObject.addProperty(DESCRIPTION, productSale.getDescription());
 
-		return Base64.encodeToString(data, Base64.NO_WRAP);
-	}
+        if (!TextUtils.isEmpty(productSale.getCurrencyCode()))
+            jsonObject.addProperty(CURRENCY, productSale.getCurrencyCode());
+        if (productSale.isSelected()) jsonObject.addProperty(SELECTED, SELECTED);
+        if (productSale.isRecurring()) jsonObject.addProperty(RECURRING, RECURRING);
+
+        return jsonObject;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private static String base64(final String message) {
+        byte[] data = new byte[0];
+
+        try {
+            data = message.getBytes(StandardCharsets.UTF_8);
+        } catch (final Exception e) {
+            e.printStackTrace();
+        }
+
+        return Base64.encodeToString(data, Base64.NO_WRAP);
+    }
 
 }

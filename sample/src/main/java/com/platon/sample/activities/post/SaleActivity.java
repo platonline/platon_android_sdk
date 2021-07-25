@@ -2,6 +2,8 @@ package com.platon.sample.activities.post;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -12,6 +14,7 @@ import com.platon.sample.R;
 import com.platon.sample.activities.BaseActivity;
 import com.platon.sample.db.DBHelper;
 import com.platon.sample.db.models.Trans;
+import com.platon.sample.utils.DecimalDigitsInputFilter;
 import com.platon.sdk.callback.PlatonSaleCallback;
 import com.platon.sdk.constant.api.PlatonOption;
 import com.platon.sdk.core.PlatonSdk;
@@ -29,6 +32,7 @@ import com.platon.sdk.util.Platon3dsSubmitUtil;
 import com.slmyldz.random.Randoms;
 import com.stanko.tools.Log;
 
+import java.util.Locale;
 import java.util.Random;
 import java.util.UUID;
 
@@ -132,7 +136,7 @@ public class SaleActivity extends BaseActivity implements
 		final Random random = new Random();
 
 		mEtxtOrderId.setText(String.valueOf(UUID.randomUUID()));
-		mEtxtOrderAmount.setText(String.valueOf(Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F)));
+		mEtxtOrderAmount.setText(String.format(Locale.US, "%.2f", (Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F))));
 		mEtxtOrderDescription.setText(Faker.Lorem.sentences());
 		mEtxtOrderCurrencyCode.setText(R.string.uah_currency);
 
@@ -155,6 +159,7 @@ public class SaleActivity extends BaseActivity implements
 		mEtxtChannelId.setText(String.valueOf(UUID.randomUUID()));
 
 		mEtxtResponse.setText("");
+		mEtxtOrderAmount.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(2)});
 	}
 
 	@Override

@@ -172,14 +172,24 @@ public class PlatonWebTokenSaleAdapter extends PlatonBaseAdapter<PlatonWebTokenS
 						? null : webSaleOptions.getFormId(),
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getCardToken())
 						? null : webSaleOptions.getCardToken(),
-				//isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt1())
-				//		? null : webSaleOptions.getExt1(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt1())
+						? null : webSaleOptions.getExt1(),
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt2())
 						? null : webSaleOptions.getExt2(),
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt3())
 						? null : webSaleOptions.getExt3(),
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt4())
 						? null : webSaleOptions.getExt4(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt5())
+						? null : webSaleOptions.getExt5(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt6())
+						? null : webSaleOptions.getExt6(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt7())
+						? null : webSaleOptions.getExt7(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt8())
+						? null : webSaleOptions.getExt8(),
+				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt9())
+						? null : webSaleOptions.getExt9(),
 				isSaleFormOptionsNull || TextUtils.isEmpty(webSaleOptions.getExt10())
 						? null : webSaleOptions.getExt10(),
 

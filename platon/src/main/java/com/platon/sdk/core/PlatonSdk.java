@@ -20,11 +20,14 @@ import com.platon.sdk.endpoint.adapter.post.PlatonRecurringAdapter;
 import com.platon.sdk.endpoint.adapter.post.PlatonSaleAdapter;
 import com.platon.sdk.endpoint.adapter.post.PlatonScheduleAdapter;
 import com.platon.sdk.endpoint.adapter.post.PlatonTransactionAdapter;
+import com.platon.sdk.endpoint.adapter.web.PlatonWebC2AAdapter;
+import com.platon.sdk.endpoint.adapter.web.PlatonWebC2AOneClickAdapter;
 import com.platon.sdk.endpoint.adapter.web.PlatonWebOneClickSaleAdapter;
 import com.platon.sdk.endpoint.adapter.web.PlatonWebRecurringAdapter;
 import com.platon.sdk.endpoint.adapter.web.PlatonWebSaleAdapter;
 import com.platon.sdk.endpoint.adapter.web.PlatonWebScheduleAdapter;
 import com.platon.sdk.endpoint.adapter.web.PlatonWebTokenSaleAdapter;
+import com.platon.sdk.endpoint.adapter.web.PlatonWebZeroVerificationAdapter;
 import com.platon.sdk.exception.PlatonSdkNotInitializedException;
 import com.platon.sdk.model.request.PlatonCard;
 
@@ -275,11 +278,35 @@ public final class PlatonSdk {
 	public static class WebPayments {
 
 		/**
+		 * @return adapter for web c2a one click requests
+		 */
+		public static PlatonWebC2AOneClickAdapter getC2AOneClickAdapter() {
+			checkIsInited();
+			return PlatonWebC2AOneClickAdapter.getInstance();
+		}
+
+		/**
+		 * @return adapter for web c2a requests
+		 */
+		public static PlatonWebC2AAdapter getC2AAdapter() {
+			checkIsInited();
+			return PlatonWebC2AAdapter.getInstance();
+		}
+
+		/**
 		 * @return adapter for web sale requests
 		 */
 		public static PlatonWebSaleAdapter getSaleAdapter() {
 			checkIsInited();
 			return PlatonWebSaleAdapter.getInstance();
+		}
+
+		/**
+		 * @return adapter for web zero verification requests
+		 */
+		public static PlatonWebZeroVerificationAdapter getZeroVerificationAdapter() {
+			checkIsInited();
+			return PlatonWebZeroVerificationAdapter.getInstance();
 		}
 
 		/**

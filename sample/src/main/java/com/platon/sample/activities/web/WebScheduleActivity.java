@@ -4,6 +4,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.browser.customtabs.CustomTabsIntent;
+
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 
 import com.platon.sample.R;
 import com.platon.sample.activities.BaseActivity;
+import com.platon.sample.utils.DecimalDigitsInputFilter;
 import com.platon.sdk.callback.PlatonWebCallback;
 import com.platon.sdk.core.PlatonSdk;
 import com.platon.sdk.model.request.option.schedule.PlatonScheduleWebOptions;
@@ -19,6 +22,7 @@ import com.platon.sdk.model.request.order.product.PlatonProduct;
 import com.platon.sdk.model.request.recurring.PlatonRecurringWeb;
 import com.slmyldz.random.Randoms;
 
+import java.util.Locale;
 import java.util.UUID;
 
 import io.kimo.lib.faker.Faker;
@@ -77,7 +81,7 @@ public class WebScheduleActivity extends BaseActivity implements
     }
 
     private void randomize() {
-        mEtxtOrderAmount.setText(String.valueOf(Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F)));
+        mEtxtOrderAmount.setText(String.format(Locale.US, "%.2f", (Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F))));
         mEtxtOrderDescription.setText(Faker.Lorem.sentences());
 
         mEtxtFirstTransId.setText(String.valueOf(UUID.randomUUID()));
@@ -86,6 +90,8 @@ public class WebScheduleActivity extends BaseActivity implements
         mEtxtInitialDelay.setText(String.valueOf(Randoms.Integer(ASAP, MAX_DELAY * 2)));
         mEtxtPeriod.setText(String.valueOf(Randoms.Integer(MIN_PERIOD, MAX_PERIOD * 2)));
         mEtxtRepeatTimes.setText(String.valueOf(Randoms.Integer(UNLIMITED_REPEAT, MAX_REPEAT * 2)));
+
+        mEtxtOrderAmount.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(2)});
     }
 
     @Override

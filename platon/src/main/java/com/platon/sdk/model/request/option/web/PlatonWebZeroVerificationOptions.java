@@ -2,19 +2,18 @@ package com.platon.sdk.model.request.option.web;
 
 import android.os.Parcel;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
-import com.platon.sdk.endpoint.adapter.web.PlatonWebSaleAdapter;
+import com.platon.sdk.endpoint.adapter.web.PlatonWebZeroVerificationAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This class extends {@link PlatonWebOptions} and provide some new fields which handle representation of
- * requests from {@link PlatonWebSaleAdapter}
+ * This class extends {@link PlatonWebZeroVerificationOptions} and provide some new fields which handle representation of
+ * requests from {@link PlatonWebZeroVerificationAdapter}
  */
-public class PlatonWebTokenSaleOptions extends PlatonWebOptions {
+public class PlatonWebZeroVerificationOptions extends PlatonWebOptions {
 
 	/**
 	 * Localization language to be selected on the payment page by default
@@ -32,26 +31,28 @@ public class PlatonWebTokenSaleOptions extends PlatonWebOptions {
 	@Nullable
 	private String mErrorUrl;
 
-	/**
-	 * Specific payment page identifier for web payments
-	 * (In case the Client's account has multiple payment pages configured)
-	 * <p>
-	 * See {@link MethodProperties#FORM_ID}
-	 */
 	@Nullable
-	private String mFormId;
+	private String mCustomerWallet;
 
 	@Nullable
-	private String mCardToken;
+	private String mOrder;
 
-	public PlatonWebTokenSaleOptions() {
+	@Nullable
+	private String mBankId;
+
+	@Nullable
+	private String mPayerId;
+
+	public PlatonWebZeroVerificationOptions() {
 	}
 
-	public PlatonWebTokenSaleOptions(
+	public PlatonWebZeroVerificationOptions(
 			@Nullable final String language,
 			@Nullable final String errorUrl,
-			@Nullable final String formId,
-			@Nullable final String cardToken,
+			@Nullable final String customerWallet,
+			@Nullable final String order,
+			@Nullable final String bankId,
+			@Nullable final String payerId,
 			@Nullable final String ext1,
 			@Nullable final String ext2,
 			@Nullable final String ext3,
@@ -65,8 +66,10 @@ public class PlatonWebTokenSaleOptions extends PlatonWebOptions {
 	) {
 		mLanguage = language;
 		mErrorUrl = errorUrl;
-		mFormId = formId;
-		mCardToken = cardToken;
+		mCustomerWallet = customerWallet;
+		mOrder = order;
+		mBankId = bankId;
+		mPayerId = payerId;
 		mExt1 = ext1;
 		mExt2 = ext2;
 		mExt3 = ext3;
@@ -79,11 +82,13 @@ public class PlatonWebTokenSaleOptions extends PlatonWebOptions {
 		mExt10 = ext10;
 	}
 
-	private PlatonWebTokenSaleOptions(final Builder builder) {
+	private PlatonWebZeroVerificationOptions(final Builder builder) {
 		mLanguage = builder.mLanguage;
 		mErrorUrl = builder.mErrorUrl;
-		mFormId = builder.mFormId;
-		mCardToken = builder.mCardToken;
+		mCustomerWallet = builder.mCustomerWaller;
+		mOrder = builder.mOrder;
+		mPayerId = builder.mPayerId;
+		mBankId = builder.mBankId;
 		mExt1 = builder.mExt1;
 		mExt2 = builder.mExt2;
 		mExt3 = builder.mExt3;
@@ -96,11 +101,14 @@ public class PlatonWebTokenSaleOptions extends PlatonWebOptions {
 		mExt10 = builder.mExt10;
 	}
 
-	protected PlatonWebTokenSaleOptions(final Parcel in) {
+	protected PlatonWebZeroVerificationOptions(final Parcel in) {
 		super(in);
 		mLanguage = in.readString();
 		mErrorUrl = in.readString();
-		mFormId = in.readString();
+		mCustomerWallet = in.readString();
+		mOrder = in.readString();
+		mBankId = in.readString();
+		mPayerId = in.readString();
 	}
 
 	@Nullable
@@ -122,21 +130,39 @@ public class PlatonWebTokenSaleOptions extends PlatonWebOptions {
 	}
 
 	@Nullable
-	public String getFormId() {
-		return mFormId;
+	public String getCustomerWallet() {
+		return mCustomerWallet;
 	}
 
-	public void setFormId(@Nullable final String formId) {
-		mFormId = formId;
+	public void setCustomerWallet(@Nullable final String customerWallet) {
+		mCustomerWallet = customerWallet;
 	}
 
 	@Nullable
-	public String getCardToken() {
-		return mCardToken;
+	public String getOrder() {
+		return mOrder;
 	}
 
-	public void setCardToken(@Nullable final String cardToken) {
-		mCardToken = cardToken;
+	public void setOrder(@Nullable final String order) {
+		mOrder = order;
+	}
+
+	@Nullable
+	public String getBankId() {
+		return mBankId;
+	}
+
+	public void setBankId(@Nullable final String bankId) {
+		mBankId = bankId;
+	}
+
+	@Nullable
+	public String getPayerId() {
+		return mPayerId;
+	}
+
+	public void setPayerId(@Nullable final String payerId) {
+		mPayerId = payerId;
 	}
 
 	@Override
@@ -144,7 +170,10 @@ public class PlatonWebTokenSaleOptions extends PlatonWebOptions {
 		super.writeToParcel(parcel, i);
 		parcel.writeString(mLanguage);
 		parcel.writeString(mErrorUrl);
-		parcel.writeString(mFormId);
+		parcel.writeString(mCustomerWallet);
+		parcel.writeString(mOrder);
+		parcel.writeString(mBankId);
+		parcel.writeString(mPayerId);
 	}
 
 	public static final class Builder {
@@ -156,7 +185,16 @@ public class PlatonWebTokenSaleOptions extends PlatonWebOptions {
 		private String mErrorUrl;
 
 		@Nullable
-		private String mFormId;
+		private String mCustomerWaller;
+
+		@Nullable
+		private String mOrder;
+
+		@Nullable
+		private String mBankId;
+
+		@Nullable
+		private String mPayerId;
 
 		@Nullable
 		private String mExt1;
@@ -188,10 +226,6 @@ public class PlatonWebTokenSaleOptions extends PlatonWebOptions {
 		@Nullable
 		private String mExt10;
 
-		@Nullable
-		private String mCardToken;
-
-
 		public Builder language(@Nullable final String language) {
 			mLanguage = language;
 			return this;
@@ -202,13 +236,23 @@ public class PlatonWebTokenSaleOptions extends PlatonWebOptions {
 			return this;
 		}
 
-		public Builder formId(@Nullable final String formId) {
-			mFormId = formId;
+		public Builder customerWallet(@Nullable final String customerWallet) {
+			mCustomerWaller = customerWallet;
 			return this;
 		}
 
-		public Builder cardToken(@Nullable final String cardToken) {
-			mCardToken = cardToken;
+		public Builder order(@Nullable final String order) {
+			mOrder = order;
+			return this;
+		}
+
+		public Builder bankId(@Nullable final String bankId) {
+			mBankId = bankId;
+			return this;
+		}
+
+		public Builder payerId(@Nullable final String payerId) {
+			mPayerId = payerId;
 			return this;
 		}
 
@@ -262,19 +306,21 @@ public class PlatonWebTokenSaleOptions extends PlatonWebOptions {
 			return this;
 		}
 
-		public PlatonWebTokenSaleOptions build() {
-			return new PlatonWebTokenSaleOptions(this);
+		public PlatonWebZeroVerificationOptions build() {
+			return new PlatonWebZeroVerificationOptions(this);
 		}
 	}
 
 	@NotNull
 	@Override
 	public String toString() {
-		return "PlatonWebTokenSaleOptions{" +
+		return "PlatonWebZeroVerificationOptions{" +
 				"mLanguage='" + mLanguage + '\'' +
 				", mErrorUrl='" + mErrorUrl + '\'' +
-				", mFormId='" + mFormId + '\'' +
-				", mCardToken='" + mCardToken + '\'' +
+				", mCustomerWallet='" + mCustomerWallet + '\'' +
+				", mOrder='" + mOrder + '\'' +
+				", mBankId='" + mBankId + '\'' +
+				", mPayerId='" + mPayerId + '\'' +
 				", mExt1='" + mExt1 + '\'' +
 				", mExt2='" + mExt2 + '\'' +
 				", mExt3='" + mExt3 + '\'' +

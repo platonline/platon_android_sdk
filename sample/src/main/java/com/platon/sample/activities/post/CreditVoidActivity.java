@@ -2,6 +2,8 @@ package com.platon.sample.activities.post;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +12,7 @@ import com.platon.sample.R;
 import com.platon.sample.activities.BaseActivity;
 import com.platon.sample.db.DBHelper;
 import com.platon.sample.db.models.Trans;
+import com.platon.sample.utils.DecimalDigitsInputFilter;
 import com.platon.sdk.callback.PlatonCreditVoidCallback;
 import com.platon.sdk.core.PlatonSdk;
 import com.platon.sdk.model.response.base.PlatonApiError;
@@ -17,6 +20,7 @@ import com.platon.sdk.model.response.credit_void.PlatonCreditVoid;
 import com.slmyldz.random.Randoms;
 import com.stanko.tools.Log;
 
+import java.util.Locale;
 import java.util.Random;
 
 import io.realm.Realm;
@@ -57,6 +61,7 @@ public class CreditVoidActivity extends BaseActivity implements
 		mEtxtPartialAmount = findViewById(R.id.etxt_partial_amount);
 		mEtxtResponse = findViewById(R.id.etxt_response);
 		mBtnCreditVoid = findViewById(R.id.btn_credit_void);
+		mEtxtPartialAmount.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(2)});
 	}
 
 	private void configureViews() {
@@ -80,7 +85,7 @@ public class CreditVoidActivity extends BaseActivity implements
 		mEtxtTransId.setText(mTrans.getTransId());
 		mEtxtPayerEmail.setText(mTrans.getPayerEmail());
 		mEtxtCardNumber.setText(mTrans.getCardNumber());
-		mEtxtPartialAmount.setText(String.valueOf(Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F)));
+		mEtxtPartialAmount.setText(String.format(Locale.US, "%.2f", (Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F))));
 
 		mEtxtResponse.setText("");
 	}

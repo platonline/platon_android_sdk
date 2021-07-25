@@ -1,29 +1,30 @@
 package com.platon.sample.activities.web;
 
-import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.browser.customtabs.CustomTabsIntent;
-import androidx.viewpager.widget.ViewPager;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.browser.customtabs.CustomTabsIntent;
 
 import com.platon.sample.R;
 import com.platon.sample.activities.BaseActivity;
 import com.platon.sample.adapters.ProductPagerAdapter;
+import com.platon.sample.utils.DecimalDigitsInputFilter;
 import com.platon.sdk.callback.PlatonWebCallback;
 import com.platon.sdk.core.PlatonSdk;
-import com.platon.sdk.model.request.option.web.PlatonWebSaleOptions;
-import com.platon.sdk.model.request.order.product.PlatonProductSale;
+import com.platon.sdk.model.request.option.web.PlatonWebZeroVerificationOptions;
+import com.platon.sdk.model.request.order.product.PlatonProductZeroVerification;
 import com.platon.sdk.model.request.payer.PlatonPayerWebSale;
 import com.slmyldz.random.Randoms;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.UUID;
 
@@ -35,28 +36,27 @@ import static com.platon.sample.app.PlatonApp.isValidURL;
 import static com.platon.sdk.constant.api.PlatonApiConstants.Formats.Amount.MAX_AMOUNT;
 import static com.platon.sdk.constant.api.PlatonApiConstants.Formats.Amount.MIN_AMOUNT;
 
-public class WebSaleActivity extends BaseActivity implements
-        ProductPagerAdapter.OnItemCountChangeListener,
-        View.OnClickListener,
-        PlatonWebCallback {
+public class WebZeroVerificationActivity extends BaseActivity implements
+        View.OnClickListener, PlatonWebCallback {
 
     private Button mBtnRandomize;
-    private Button mBtnAddProduct;
-    private ViewPager mVpProducts;
+    private EditText mEtxtOrderAmount;
+    private EditText mEtxtOrderCurrencyCode;
+    private EditText mEtxtOrderDescription;
     private EditText mEtxtSuccessUrl;
-    private EditText mEtxtOrderId;
+    private EditText mEtxtLanguage;
+    private EditText mEtxtPayerEmail;
     private EditText mEtxtPayerFirstName;
     private EditText mEtxtPayerLastName;
+    private EditText mEtxtPayerPhone;
     private EditText mEtxtPayerAddress;
     private EditText mEtxtPayerCountryCode;
     private EditText mEtxtPayerState;
     private EditText mEtxtPayerCity;
     private EditText mEtxtPayerZip;
-    private EditText mEtxtPayerEmail;
-    private EditText mEtxtPayerPhone;
-    private EditText mEtxtLanguage;
+    private EditText mEtxtCustomerWallet;
+    private EditText mEtxtOrderId;
     private EditText mEtxtErrorUrl;
-    private EditText mEtxtFormId;
     private EditText mEtxtExt1;
     private EditText mEtxtExt2;
     private EditText mEtxtExt3;
@@ -67,14 +67,14 @@ public class WebSaleActivity extends BaseActivity implements
     private EditText mEtxtExt8;
     private EditText mEtxtExt9;
     private EditText mEtxtExt10;
+    private CheckBox mCbBankId;
+    private CheckBox mCbPayerId;
     private Button mBtnSale;
-
-    private ProductPagerAdapter mProductPagerAdapter;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_sale);
+        setContentView(R.layout.activity_web_zero_verification);
 
         assignViews();
         configureViews();
@@ -82,10 +82,14 @@ public class WebSaleActivity extends BaseActivity implements
 
     private void assignViews() {
         mBtnRandomize = findViewById(R.id.btn_randomize);
-        mBtnAddProduct = findViewById(R.id.btn_add_product);
-        mVpProducts = findViewById(R.id.vp_products);
         mEtxtSuccessUrl = findViewById(R.id.etxt_success_url);
+        mEtxtOrderAmount = findViewById(R.id.etxt_order_amount);
+        mEtxtOrderCurrencyCode = findViewById(R.id.etxt_order_currency_code);
+        mEtxtOrderDescription = findViewById(R.id.etxt_order_description);
         mEtxtOrderId = findViewById(R.id.etxt_order_id);
+        mEtxtCustomerWallet = findViewById(R.id.etxt_customer_wallet);
+        mCbBankId = findViewById(R.id.cb_bank_id);
+        mCbPayerId = findViewById(R.id.cb_payer_id);
         mEtxtPayerFirstName = findViewById(R.id.etxt_payer_first_name);
         mEtxtPayerLastName = findViewById(R.id.etxt_payer_last_name);
         mEtxtPayerAddress = findViewById(R.id.etxt_payer_address);
@@ -97,7 +101,6 @@ public class WebSaleActivity extends BaseActivity implements
         mEtxtPayerPhone = findViewById(R.id.etxt_payer_phone);
         mEtxtLanguage = findViewById(R.id.etxt_language);
         mEtxtErrorUrl = findViewById(R.id.etxt_error_url);
-        mEtxtFormId = findViewById(R.id.etxt_form_id);
         mEtxtExt1 = findViewById(R.id.etxt_ext_1);
         mEtxtExt2 = findViewById(R.id.etxt_ext_2);
         mEtxtExt3 = findViewById(R.id.etxt_ext_3);
@@ -109,42 +112,26 @@ public class WebSaleActivity extends BaseActivity implements
         mEtxtExt9 = findViewById(R.id.etxt_ext_9);
         mEtxtExt10 = findViewById(R.id.etxt_ext_10);
         mBtnSale = findViewById(R.id.btn_sale);
+
+        mEtxtOrderAmount.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(2)});
     }
 
     private void configureViews() {
         mBtnRandomize.setOnClickListener(this);
-        mBtnAddProduct.setOnClickListener(this);
         mBtnSale.setOnClickListener(this);
-
-        mProductPagerAdapter = new ProductPagerAdapter(this);
-        mProductPagerAdapter.setOnItemCountChangeListener(this);
-        mVpProducts.setAdapter(mProductPagerAdapter);
-
         randomize();
     }
 
     private void randomize() {
         final Random random = new Random();
-
-        final List<PlatonProductSale> productSales = new ArrayList<>();
-        final int size = random.nextInt(5) + 1;
-        for (int i = 0; i < size; i++) {
-            final PlatonProductSale productSale = new PlatonProductSale(
-                    Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F),
-                    Faker.with(this).Lorem.sentences()
-            );
-
-            productSale.setCurrencyCode("UAH");
-            productSale.setSelected(false);
-            productSale.setRecurring(random.nextBoolean());
-
-            productSales.add(productSale);
-        }
-        productSales.get(random.nextInt(productSales.size())).setSelected(true);
-        mProductPagerAdapter.setProductSales(productSales);
+        mEtxtOrderAmount.setText("1.00");
+        mEtxtOrderDescription.setText(Faker.with(this).Lorem.sentences());
+        mEtxtOrderCurrencyCode.setText("UAH");
+        ;
 
         mEtxtSuccessUrl.setText(Faker.Internet.url());
         mEtxtOrderId.setText(String.valueOf(UUID.randomUUID()));
+        mEtxtCustomerWallet.setText(String.valueOf(UUID.randomUUID()));
 
         mEtxtPayerFirstName.setText(Faker.Name.firstName());
         mEtxtPayerLastName.setText(Faker.Name.lastName());
@@ -182,6 +169,8 @@ public class WebSaleActivity extends BaseActivity implements
         mEtxtExt8.setText(Faker.Url.avatar());
         mEtxtExt9.setText(Faker.Url.avatar());
         mEtxtExt10.setText(Faker.Url.avatar());
+        mCbBankId.setChecked(true);
+        mCbPayerId.setChecked(true);
     }
 
     @Override
@@ -189,9 +178,6 @@ public class WebSaleActivity extends BaseActivity implements
         int id = v.getId();
         if (id == R.id.btn_randomize) {
             randomize();
-        } else if (id == R.id.btn_add_product) {
-            mProductPagerAdapter.addProduct(new PlatonProductSale(0.00F, ""));
-            mVpProducts.setCurrentItem(mProductPagerAdapter.getCount() - 1);
         } else if (id == R.id.btn_sale) {
             final String successUrl = String.valueOf(mEtxtSuccessUrl.getText());
             if (!isValidURL(successUrl)) {
@@ -199,15 +185,18 @@ public class WebSaleActivity extends BaseActivity implements
                 return;
             }
 
-            final List<PlatonProductSale> productSales = mProductPagerAdapter.getProductSales();
-            int selectedProducts = 0;
-            for (int i = productSales.size() - 1; i >= 0; i--) {
-                if (selectedProducts > 1) {
-                    Toast.makeText(this, "Only 1 selected product allowed", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (productSales.get(i).isSelected()) selectedProducts++;
-            }
+            final PlatonProductZeroVerification zeroVerification = new PlatonProductZeroVerification(
+                    Float.parseFloat(mEtxtOrderAmount.getText().toString()),
+                    mEtxtOrderDescription.getText().toString()
+            );
+
+            zeroVerification.setCurrencyCode(mEtxtOrderCurrencyCode.getText().toString());
+
+            String bankId = null;
+            if(mCbBankId.isChecked()) bankId = "yes";
+
+            String payerId = null;
+            if(mCbPayerId.isChecked()) payerId = "no";
 
             final PlatonPayerWebSale payer = new PlatonPayerWebSale.Builder()
                     .firstName(String.valueOf(mEtxtPayerFirstName.getText()))
@@ -221,11 +210,9 @@ public class WebSaleActivity extends BaseActivity implements
                     .phone(String.valueOf(mEtxtPayerPhone.getText()))
                     .build();
 
-            final PlatonWebSaleOptions webSaleOptions = new PlatonWebSaleOptions.Builder()
+            final PlatonWebZeroVerificationOptions zeroVerificationOptions = new PlatonWebZeroVerificationOptions.Builder()
                     .language(String.valueOf(mEtxtLanguage.getText()))
                     .errorUrl(String.valueOf(mEtxtErrorUrl.getText()))
-                    .formId(String.valueOf(mEtxtFormId.getText()))
-                    .reqToken("Y")
                     .ext1(String.valueOf(mEtxtExt1.getText()))
                     .ext2(String.valueOf(mEtxtExt2.getText()))
                     .ext3(String.valueOf(mEtxtExt3.getText()))
@@ -236,15 +223,16 @@ public class WebSaleActivity extends BaseActivity implements
                     .ext8(String.valueOf(mEtxtExt8.getText()))
                     .ext9(String.valueOf(mEtxtExt9.getText()))
                     .ext10(String.valueOf(mEtxtExt10.getText()))
+                    .bankId(bankId)
+                    .payerId(payerId)
                     .build();
 
             showProgress();
-            PlatonSdk.WebPayments.getSaleAdapter().sale(
-                    productSales,
+            PlatonSdk.WebPayments.getZeroVerificationAdapter().zeroVerification(
+                    zeroVerification,
                     successUrl,
-                    String.valueOf(mEtxtOrderId.getText()),
                     payer,
-                    webSaleOptions,
+                    zeroVerificationOptions,
                     this
             );
         }
@@ -264,11 +252,5 @@ public class WebSaleActivity extends BaseActivity implements
     public void onFailure(final Call<String> call, final Throwable t) {
         hideProgress();
         Toast.makeText(this, t.getMessage(), Toast.LENGTH_LONG).show();
-    }
-
-    @SuppressLint("DefaultLocale")
-    @Override
-    public void onItemCountChanged() {
-        mBtnAddProduct.setText(String.format("ADD_PRODUCT(%d)", mProductPagerAdapter.getCount()));
     }
 }

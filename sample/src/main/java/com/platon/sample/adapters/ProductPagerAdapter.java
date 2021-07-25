@@ -6,6 +6,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +15,13 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.platon.sample.R;
+import com.platon.sample.utils.DecimalDigitsInputFilter;
 import com.platon.sdk.model.request.order.product.PlatonProductSale;
 import com.slmyldz.random.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static com.platon.sdk.constant.api.PlatonApiConstants.Formats.Amount.MAX_AMOUNT;
 import static com.platon.sdk.constant.api.PlatonApiConstants.Formats.Amount.MIN_AMOUNT;
@@ -67,7 +70,8 @@ public class ProductPagerAdapter extends PagerAdapter {
         final PlatonProductSale productSale = mProductSales.get(position);
 
         final EditText etxtAmount = view.findViewById(R.id.etxt_item_product_amount);
-        etxtAmount.setText(String.valueOf(productSale.getAmount()));
+        etxtAmount.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(2)});
+        etxtAmount.setText(String.format(Locale.US, "%.2f", (productSale.getAmount())));
         etxtAmount.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(final CharSequence charSequence, final int i, final int i1, final int i2) {

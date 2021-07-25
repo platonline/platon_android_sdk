@@ -4,6 +4,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.browser.customtabs.CustomTabsIntent;
+
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 
 import com.platon.sample.R;
 import com.platon.sample.activities.BaseActivity;
+import com.platon.sample.utils.DecimalDigitsInputFilter;
 import com.platon.sdk.callback.PlatonWebCallback;
 import com.platon.sdk.core.PlatonSdk;
 import com.platon.sdk.model.request.option.web.PlatonWebOptions;
@@ -19,6 +22,7 @@ import com.platon.sdk.model.request.order.product.PlatonProductRecurring;
 import com.platon.sdk.model.request.recurring.PlatonRecurringWeb;
 import com.slmyldz.random.Randoms;
 
+import java.util.Locale;
 import java.util.UUID;
 
 import io.kimo.lib.faker.Faker;
@@ -42,6 +46,11 @@ public class WebRecurringActivity extends BaseActivity implements
     private EditText mEtxtExt2;
     private EditText mEtxtExt3;
     private EditText mEtxtExt4;
+    private EditText mEtxtExt5;
+    private EditText mEtxtExt6;
+    private EditText mEtxtExt7;
+    private EditText mEtxtExt8;
+    private EditText mEtxtExt9;
     private EditText mEtxtExt10;
     private Button mBtnRecurringSale;
 
@@ -65,6 +74,11 @@ public class WebRecurringActivity extends BaseActivity implements
         mEtxtExt2 = findViewById(R.id.etxt_ext_2);
         mEtxtExt3 = findViewById(R.id.etxt_ext_3);
         mEtxtExt4 = findViewById(R.id.etxt_ext_4);
+        mEtxtExt5 = findViewById(R.id.etxt_ext_5);
+        mEtxtExt6 = findViewById(R.id.etxt_ext_6);
+        mEtxtExt7 = findViewById(R.id.etxt_ext_7);
+        mEtxtExt8 = findViewById(R.id.etxt_ext_8);
+        mEtxtExt9 = findViewById(R.id.etxt_ext_9);
         mEtxtExt10 = findViewById(R.id.etxt_ext_10);
         mBtnRecurringSale = findViewById(R.id.btn_sale);
     }
@@ -78,7 +92,7 @@ public class WebRecurringActivity extends BaseActivity implements
 
     private void randomize() {
         mEtxtOrderId.setText(String.valueOf(UUID.randomUUID()));
-        mEtxtOrderAmount.setText(String.valueOf(Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F)));
+        mEtxtOrderAmount.setText(String.format(Locale.US, "%.2f", (Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F))));
         mEtxtOrderDescription.setText(Faker.Lorem.sentences());
 
         mEtxtFirstTransId.setText(String.valueOf(UUID.randomUUID()));
@@ -88,7 +102,14 @@ public class WebRecurringActivity extends BaseActivity implements
         mEtxtExt2.setText(Faker.Url.avatar());
         mEtxtExt3.setText(Faker.Url.avatar());
         mEtxtExt4.setText(Faker.Url.avatar());
+        mEtxtExt5.setText(Faker.Url.avatar());
+        mEtxtExt6.setText(Faker.Url.avatar());
+        mEtxtExt7.setText(Faker.Url.avatar());
+        mEtxtExt8.setText(Faker.Url.avatar());
+        mEtxtExt9.setText(Faker.Url.avatar());
         mEtxtExt10.setText(Faker.Url.avatar());
+
+        mEtxtOrderAmount.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(2)});
     }
 
     @Override
@@ -119,6 +140,11 @@ public class WebRecurringActivity extends BaseActivity implements
                     .ext2(String.valueOf(mEtxtExt2.getText()))
                     .ext3(String.valueOf(mEtxtExt3.getText()))
                     .ext4(String.valueOf(mEtxtExt4.getText()))
+                    .ext4(String.valueOf(mEtxtExt5.getText()))
+                    .ext4(String.valueOf(mEtxtExt6.getText()))
+                    .ext4(String.valueOf(mEtxtExt7.getText()))
+                    .ext4(String.valueOf(mEtxtExt8.getText()))
+                    .ext4(String.valueOf(mEtxtExt9.getText()))
                     .ext10(String.valueOf(mEtxtExt10.getText()))
                     .build();
 

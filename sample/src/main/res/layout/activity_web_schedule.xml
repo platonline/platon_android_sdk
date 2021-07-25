@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/order_amount"
             android:importantForAutofill="no"
-            android:inputType="text" />
+            android:inputType="numberDecimal" />
 
         <EditText
             android:id="@+id/etxt_order_description"

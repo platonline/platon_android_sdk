@@ -10,6 +10,24 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/btn_web_c2a"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/c2a_web" />
+
+        <Button
+            android:id="@+id/btn_web_c2a_one_click"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/c2a_one_click_web" />
+
+        <Button
+            android:id="@+id/btn_web_zero_verification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/zero_verification_web" />
+
+        <Button
             android:id="@+id/btn_web_sale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
