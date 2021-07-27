@@ -3,9 +3,7 @@ package com.platon.sample.activities.web;
 import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputFilter;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,10 +21,8 @@ import com.platon.sdk.core.PlatonSdk;
 import com.platon.sdk.model.request.option.web.PlatonC2AOptions;
 import com.platon.sdk.model.request.order.PlatonOrderC2A;
 import com.platon.sdk.model.request.payer.PlatonPayerC2A;
-import com.platon.sdk.util.PlatonSdkUtil;
 import com.slmyldz.random.Randoms;
 
-import java.text.DecimalFormat;
 import java.util.Locale;
 import java.util.Random;
 import java.util.UUID;
@@ -118,19 +114,19 @@ public class WebC2AOneClickActivity extends BaseActivity implements
         final Random random = new Random();
         mEtxtAmount.setText(String.format(Locale.US, "%.2f", (Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F))));
         mEtxtDescription.setText(Faker.with(this).Lorem.sentences());
-        mEtxtSuccessUrl.setText(Faker.Internet.url());
+        mEtxtSuccessUrl.setText(Faker.with(this).Internet.url());
         mEtxtOrderId.setText(String.valueOf(UUID.randomUUID()));
         mEtxtCurrencyCode.setText("UAH");
 
-        mEtxtPayerFirstName.setText(Faker.Name.firstName());
-        mEtxtPayerLastName.setText(Faker.Name.lastName());
-        mEtxtPayerAddress.setText(Faker.Address.secondaryAddress());
-        mEtxtPayerCountryCode.setText(Faker.Address.countryAbbreviation());
-        mEtxtPayerState.setText(Faker.Address.state());
-        mEtxtPayerCity.setText(Faker.Address.city());
-        mEtxtPayerZip.setText(Faker.Address.zipCode());
-        mEtxtPayerEmail.setText(Faker.Internet.email());
-        mEtxtPayerPhone.setText(Faker.Phone.phoneWithAreaCode());
+        mEtxtPayerFirstName.setText(Faker.with(this).Name.firstName());
+        mEtxtPayerLastName.setText(Faker.with(this).Name.lastName());
+        mEtxtPayerAddress.setText(Faker.with(this).Address.secondaryAddress());
+        mEtxtPayerCountryCode.setText(Faker.with(this).Address.countryAbbreviation());
+        mEtxtPayerState.setText(Faker.with(this).Address.state());
+        mEtxtPayerCity.setText(Faker.with(this).Address.city());
+        mEtxtPayerZip.setText(Faker.with(this).Address.zipCode());
+        mEtxtPayerEmail.setText(Faker.with(this).Internet.email());
+        mEtxtPayerPhone.setText(Faker.with(this).Phone.phoneWithAreaCode());
 
         final int randomLanguage = random.nextInt(3);
         final String language;
@@ -147,11 +143,11 @@ public class WebC2AOneClickActivity extends BaseActivity implements
                 break;
         }
         mEtxtLanguage.setText(language);
-        mEtxtErrorUrl.setText(Faker.Internet.url());
-        mEtxtExt1.setText(Faker.Url.avatar());
-        mEtxtExt2.setText(Faker.Url.avatar());
-        mEtxtExt3.setText(Faker.Url.avatar());
-        mEtxtExt4.setText(Faker.Url.avatar());
+        mEtxtErrorUrl.setText(Faker.with(this).Internet.url());
+        mEtxtExt1.setText(Faker.with(this).Url.avatar());
+        mEtxtExt2.setText(Faker.with(this).Url.avatar());
+        mEtxtExt3.setText(Faker.with(this).Url.avatar());
+        mEtxtExt4.setText(Faker.with(this).Url.avatar());
     }
 
     @Override

@@ -109,7 +109,7 @@ public class RecurringActivity extends BaseActivity implements
 
         mEtxtOrderId.setText(String.valueOf(UUID.randomUUID()));
         mEtxtOrderAmount.setText(String.format(Locale.US, "%.2f", (Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F))));
-        mEtxtOrderDescription.setText(Faker.Lorem.sentences());
+        mEtxtOrderDescription.setText(Faker.with(this).Lorem.sentences());
 
         mEtxtPayerEmail.setText(mTrans.getPayerEmail());
         mEtxtCardNumber.setText(mTrans.getCardNumber());

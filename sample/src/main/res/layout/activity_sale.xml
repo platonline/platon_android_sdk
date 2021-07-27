@@ -37,7 +37,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/order_description"
             android:importantForAutofill="no"
-            android:inputType="text" />
+            android:inputType="text"
+            android:maxLength="30"/>
 
         <EditText
             android:id="@+id/etxt_order_currency_code"

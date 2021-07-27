@@ -102,7 +102,7 @@ public class ScheduleActivity extends BaseActivity implements
 
 		final Trans randomTrans = transes.get(new Random().nextInt(transes.size()));
 		mEtxtOrderAmount.setText(String.format(Locale.US, "%.2f", (Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F))));
-		mEtxtOrderDescription.setText(Faker.Lorem.sentences());
+		mEtxtOrderDescription.setText(Faker.with(this).Lorem.sentences());
 
 		mEtxtPayerEmail.setText(randomTrans.getPayerEmail());
 		mEtxtCardNumber.setText(randomTrans.getCardNumber());

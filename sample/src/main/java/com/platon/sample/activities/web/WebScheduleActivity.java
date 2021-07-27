@@ -82,7 +82,7 @@ public class WebScheduleActivity extends BaseActivity implements
 
     private void randomize() {
         mEtxtOrderAmount.setText(String.format(Locale.US, "%.2f", (Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F))));
-        mEtxtOrderDescription.setText(Faker.Lorem.sentences());
+        mEtxtOrderDescription.setText(Faker.with(this).Lorem.sentences());
 
         mEtxtFirstTransId.setText(String.valueOf(UUID.randomUUID()));
         mEtxtRecurringToken.setText(String.valueOf(UUID.randomUUID()));

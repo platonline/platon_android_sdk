@@ -64,6 +64,7 @@ public class GetTransDetailsActivity extends BaseActivity implements
         hideProgress();
         Log.d(response);
         mEtxtResponse.setText(response);
+        mEtxtPayerEmail.setText(response);
     }
 
     private void randomize() {

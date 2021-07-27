@@ -15,16 +15,13 @@ import androidx.browser.customtabs.CustomTabsIntent;
 
 import com.platon.sample.R;
 import com.platon.sample.activities.BaseActivity;
-import com.platon.sample.adapters.ProductPagerAdapter;
 import com.platon.sample.utils.DecimalDigitsInputFilter;
 import com.platon.sdk.callback.PlatonWebCallback;
 import com.platon.sdk.core.PlatonSdk;
 import com.platon.sdk.model.request.option.web.PlatonWebZeroVerificationOptions;
 import com.platon.sdk.model.request.order.product.PlatonProductZeroVerification;
 import com.platon.sdk.model.request.payer.PlatonPayerWebSale;
-import com.slmyldz.random.Randoms;
 
-import java.util.Locale;
 import java.util.Random;
 import java.util.UUID;
 
@@ -33,8 +30,6 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 import static com.platon.sample.app.PlatonApp.isValidURL;
-import static com.platon.sdk.constant.api.PlatonApiConstants.Formats.Amount.MAX_AMOUNT;
-import static com.platon.sdk.constant.api.PlatonApiConstants.Formats.Amount.MIN_AMOUNT;
 
 public class WebZeroVerificationActivity extends BaseActivity implements
         View.OnClickListener, PlatonWebCallback {
@@ -127,21 +122,20 @@ public class WebZeroVerificationActivity extends BaseActivity implements
         mEtxtOrderAmount.setText("1.00");
         mEtxtOrderDescription.setText(Faker.with(this).Lorem.sentences());
         mEtxtOrderCurrencyCode.setText("UAH");
-        ;
 
-        mEtxtSuccessUrl.setText(Faker.Internet.url());
+        mEtxtSuccessUrl.setText(Faker.with(this).Internet.url());
         mEtxtOrderId.setText(String.valueOf(UUID.randomUUID()));
         mEtxtCustomerWallet.setText(String.valueOf(UUID.randomUUID()));
 
-        mEtxtPayerFirstName.setText(Faker.Name.firstName());
-        mEtxtPayerLastName.setText(Faker.Name.lastName());
-        mEtxtPayerAddress.setText(Faker.Address.secondaryAddress());
-        mEtxtPayerCountryCode.setText(Faker.Address.countryAbbreviation());
-        mEtxtPayerState.setText(Faker.Address.state());
-        mEtxtPayerCity.setText(Faker.Address.city());
-        mEtxtPayerZip.setText(Faker.Address.zipCode());
-        mEtxtPayerEmail.setText(Faker.Internet.email());
-        mEtxtPayerPhone.setText(Faker.Phone.phoneWithAreaCode());
+        mEtxtPayerFirstName.setText(Faker.with(this).Name.firstName());
+        mEtxtPayerLastName.setText(Faker.with(this).Name.lastName());
+        mEtxtPayerAddress.setText(Faker.with(this).Address.secondaryAddress());
+        mEtxtPayerCountryCode.setText(Faker.with(this).Address.countryAbbreviation());
+        mEtxtPayerState.setText(Faker.with(this).Address.state());
+        mEtxtPayerCity.setText(Faker.with(this).Address.city());
+        mEtxtPayerZip.setText(Faker.with(this).Address.zipCode());
+        mEtxtPayerEmail.setText(Faker.with(this).Internet.email());
+        mEtxtPayerPhone.setText(Faker.with(this).Phone.phoneWithAreaCode());
 
         final int randomLanguage = random.nextInt(3);
         final String language;
@@ -158,17 +152,17 @@ public class WebZeroVerificationActivity extends BaseActivity implements
                 break;
         }
         mEtxtLanguage.setText(language);
-        mEtxtErrorUrl.setText(Faker.Internet.url());
-        mEtxtExt1.setText(Faker.Url.avatar());
-        mEtxtExt2.setText(Faker.Url.avatar());
-        mEtxtExt3.setText(Faker.Url.avatar());
-        mEtxtExt4.setText(Faker.Url.avatar());
-        mEtxtExt5.setText(Faker.Url.avatar());
-        mEtxtExt6.setText(Faker.Url.avatar());
-        mEtxtExt7.setText(Faker.Url.avatar());
-        mEtxtExt8.setText(Faker.Url.avatar());
-        mEtxtExt9.setText(Faker.Url.avatar());
-        mEtxtExt10.setText(Faker.Url.avatar());
+        mEtxtErrorUrl.setText(Faker.with(this).Internet.url());
+        mEtxtExt1.setText(Faker.with(this).Url.avatar());
+        mEtxtExt2.setText(Faker.with(this).Url.avatar());
+        mEtxtExt3.setText(Faker.with(this).Url.avatar());
+        mEtxtExt4.setText(Faker.with(this).Url.avatar());
+        mEtxtExt5.setText(Faker.with(this).Url.avatar());
+        mEtxtExt6.setText(Faker.with(this).Url.avatar());
+        mEtxtExt7.setText(Faker.with(this).Url.avatar());
+        mEtxtExt8.setText(Faker.with(this).Url.avatar());
+        mEtxtExt9.setText(Faker.with(this).Url.avatar());
+        mEtxtExt10.setText(Faker.with(this).Url.avatar());
         mCbBankId.setChecked(true);
         mCbPayerId.setChecked(true);
     }
@@ -192,11 +186,19 @@ public class WebZeroVerificationActivity extends BaseActivity implements
 
             zeroVerification.setCurrencyCode(mEtxtOrderCurrencyCode.getText().toString());
 
-            String bankId = null;
-            if(mCbBankId.isChecked()) bankId = "yes";
+            String bankId;
+            if (mCbBankId.isChecked()) {
+                bankId = "yes";
+            } else {
+                bankId = "no";
+            }
 
-            String payerId = null;
-            if(mCbPayerId.isChecked()) payerId = "no";
+            String payerId;
+            if (mCbPayerId.isChecked()) {
+                payerId = "yes";
+            } else {
+                payerId = "no";
+            }
 
             final PlatonPayerWebSale payer = new PlatonPayerWebSale.Builder()
                     .firstName(String.valueOf(mEtxtPayerFirstName.getText()))

@@ -85,6 +85,7 @@ public class GetTransStatusActivity extends BaseActivity implements
 			randomize();
 		} else if (id == R.id.btn_get_trans_status) {
 			mEtxtResponse.setText("");
+			mEtxtPayerEmail.setText("");
 
 			final String transId = String.valueOf(mEtxtTransId.getText());
 			final String payerEmail = String.valueOf(mEtxtPayerEmail.getText());

@@ -44,19 +44,19 @@ public class PlatonCard implements Parcelable {
         /**
          * Successful sale with successful result
          */
-        PlatonCard SUCCESS = new PlatonCard(TEST_CARD_NUMBER, 1, 2020, TEST_CARD_CVV);
+        PlatonCard SUCCESS = new PlatonCard(TEST_CARD_NUMBER, 1, 2022, TEST_CARD_CVV);
         /**
          * Unsuccessful sale/recurring payment
          */
-        PlatonCard UNSUCCESS = new PlatonCard(TEST_CARD_NUMBER, 2, 2020, TEST_CARD_CVV);
+        PlatonCard UNSUCCESS = new PlatonCard(TEST_CARD_NUMBER, 2, 2022, TEST_CARD_CVV);
         /**
          * Successful sale after 3DS verification with a manual sending of the result (HTML form)
          */
-        PlatonCard SUCCESS_3D = new PlatonCard(TEST_CARD_NUMBER, 5, 2020, TEST_CARD_CVV);
+        PlatonCard SUCCESS_3D = new PlatonCard(TEST_CARD_NUMBER, 5, 2022, TEST_CARD_CVV);
         /**
          * Unsuccessful sale after 3DS verification with a manual sending of the result (HTML form)
          */
-        PlatonCard UNSUCCESS_3D = new PlatonCard(TEST_CARD_NUMBER, 6, 2020, TEST_CARD_CVV);
+        PlatonCard UNSUCCESS_3D = new PlatonCard(TEST_CARD_NUMBER, 6, 2022, TEST_CARD_CVV);
     }
 
     /**

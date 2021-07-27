@@ -116,15 +116,15 @@ public class WebC2AActivity extends BaseActivity implements
         mEtxtCurrencyCode.setText("UAH");
         mEtxtReqToken.setText("1");
 
-        mEtxtPayerFirstName.setText(Faker.Name.firstName());
-        mEtxtPayerLastName.setText(Faker.Name.lastName());
-        mEtxtPayerAddress.setText(Faker.Address.secondaryAddress());
-        mEtxtPayerCountryCode.setText(Faker.Address.countryAbbreviation());
-        mEtxtPayerState.setText(Faker.Address.state());
-        mEtxtPayerCity.setText(Faker.Address.city());
-        mEtxtPayerZip.setText(Faker.Address.zipCode());
-        mEtxtPayerEmail.setText(Faker.Internet.email());
-        mEtxtPayerPhone.setText(Faker.Phone.phoneWithAreaCode());
+        mEtxtPayerFirstName.setText(Faker.with(this).Name.firstName());
+        mEtxtPayerLastName.setText(Faker.with(this).Name.lastName());
+        mEtxtPayerAddress.setText(Faker.with(this).Address.secondaryAddress());
+        mEtxtPayerCountryCode.setText(Faker.with(this).Address.countryAbbreviation());
+        mEtxtPayerState.setText(Faker.with(this).Address.state());
+        mEtxtPayerCity.setText(Faker.with(this).Address.city());
+        mEtxtPayerZip.setText(Faker.with(this).Address.zipCode());
+        mEtxtPayerEmail.setText(Faker.with(this).Internet.email());
+        mEtxtPayerPhone.setText(Faker.with(this).Phone.phoneWithAreaCode());
 
         final int randomLanguage = random.nextInt(3);
         final String language;
@@ -141,11 +141,11 @@ public class WebC2AActivity extends BaseActivity implements
                 break;
         }
         mEtxtLanguage.setText(language);
-        mEtxtErrorUrl.setText(Faker.Internet.url());
-        mEtxtExt1.setText(Faker.Url.avatar());
-        mEtxtExt2.setText(Faker.Url.avatar());
-        mEtxtExt3.setText(Faker.Url.avatar());
-        mEtxtExt4.setText(Faker.Url.avatar());
+        mEtxtErrorUrl.setText(Faker.with(this).Internet.url());
+        mEtxtExt1.setText(Faker.with(this).Url.avatar());
+        mEtxtExt2.setText(Faker.with(this).Url.avatar());
+        mEtxtExt3.setText(Faker.with(this).Url.avatar());
+        mEtxtExt4.setText(Faker.with(this).Url.avatar());
 
         mEtxtAmount.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(2)});
     }

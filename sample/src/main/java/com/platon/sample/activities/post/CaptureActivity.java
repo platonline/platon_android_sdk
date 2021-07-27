@@ -99,6 +99,7 @@ public class CaptureActivity extends BaseActivity implements
 			randomize();
 		} else if (id == R.id.btn_capture) {
 			mEtxtResponse.setText("");
+			mEtxtPayerEmail.setText("");
 
 			final String transId = String.valueOf(mEtxtTransId.getText());
 			final String payerEmail = String.valueOf(mEtxtPayerEmail.getText());

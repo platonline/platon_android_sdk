@@ -93,21 +93,21 @@ public class WebRecurringActivity extends BaseActivity implements
     private void randomize() {
         mEtxtOrderId.setText(String.valueOf(UUID.randomUUID()));
         mEtxtOrderAmount.setText(String.format(Locale.US, "%.2f", (Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F))));
-        mEtxtOrderDescription.setText(Faker.Lorem.sentences());
+        mEtxtOrderDescription.setText(Faker.with(this).Lorem.sentences());
 
         mEtxtFirstTransId.setText(String.valueOf(UUID.randomUUID()));
         mEtxtRecurringToken.setText(String.valueOf(UUID.randomUUID()));
 
-        mEtxtExt1.setText(Faker.Url.avatar());
-        mEtxtExt2.setText(Faker.Url.avatar());
-        mEtxtExt3.setText(Faker.Url.avatar());
-        mEtxtExt4.setText(Faker.Url.avatar());
-        mEtxtExt5.setText(Faker.Url.avatar());
-        mEtxtExt6.setText(Faker.Url.avatar());
-        mEtxtExt7.setText(Faker.Url.avatar());
-        mEtxtExt8.setText(Faker.Url.avatar());
-        mEtxtExt9.setText(Faker.Url.avatar());
-        mEtxtExt10.setText(Faker.Url.avatar());
+        mEtxtExt1.setText(Faker.with(this).Url.avatar());
+        mEtxtExt2.setText(Faker.with(this).Url.avatar());
+        mEtxtExt3.setText(Faker.with(this).Url.avatar());
+        mEtxtExt4.setText(Faker.with(this).Url.avatar());
+        mEtxtExt5.setText(Faker.with(this).Url.avatar());
+        mEtxtExt6.setText(Faker.with(this).Url.avatar());
+        mEtxtExt7.setText(Faker.with(this).Url.avatar());
+        mEtxtExt8.setText(Faker.with(this).Url.avatar());
+        mEtxtExt9.setText(Faker.with(this).Url.avatar());
+        mEtxtExt10.setText(Faker.with(this).Url.avatar());
 
         mEtxtOrderAmount.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(2)});
     }
