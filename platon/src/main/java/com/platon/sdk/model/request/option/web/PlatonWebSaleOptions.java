@@ -2,7 +2,6 @@ package com.platon.sdk.model.request.option.web;
 
 import android.os.Parcel;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.platon.sdk.constant.api.PlatonApiConstants.MethodProperties;
@@ -101,6 +100,16 @@ public class PlatonWebSaleOptions extends PlatonWebOptions {
 		mLanguage = in.readString();
 		mErrorUrl = in.readString();
 		mFormId = in.readString();
+		mExt1 = in.readString();
+		mExt2 = in.readString();
+		mExt3 = in.readString();
+		mExt4 = in.readString();
+		mExt5 = in.readString();
+		mExt6 = in.readString();
+		mExt7 = in.readString();
+		mExt8 = in.readString();
+		mExt9 = in.readString();
+		mExt10 = in.readString();
 	}
 
 	@Nullable

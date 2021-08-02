@@ -105,7 +105,7 @@ public class PlatonCreditVoidAdapter extends PlatonBaseAdapter<PlatonCreditVoidS
 		return creditVoid(
 				transactionId,
 				partialAmount,
-				PlatonHashUtil.encryptSale(payerEmail, transactionId, cardNumber),
+				PlatonHashUtil.encryptNoSale(payerEmail, transactionId, cardNumber),
 				callback
 		);
 	}

@@ -77,7 +77,7 @@ public class PlatonRecurringAdapter extends PlatonBaseAdapter<PlatonRecurringSer
             @NonNull @Size(min = MIN_CARD_NUMBER, max = MAX_CARD_NUMBER) final String cardNumber,
             @NonNull final PlatonSaleCallback callback
     ) {
-        recurringAsyncSale(order, platonRecurring, PlatonHashUtil.encryptSale(payerEmail, cardNumber), callback);
+        recurringAsyncSale(order, platonRecurring, PlatonHashUtil.encryptNoSale(payerEmail, cardNumber), callback);
     }
 
     /**
@@ -105,7 +105,7 @@ public class PlatonRecurringAdapter extends PlatonBaseAdapter<PlatonRecurringSer
             @NonNull @Size(min = MIN_CARD_NUMBER, max = MAX_CARD_NUMBER) final String cardNumber,
             @NonNull final PlatonSaleCallback callback
     ) {
-        recurringSale(order, platonRecurring, PlatonHashUtil.encryptSale(payerEmail, cardNumber), callback);
+        recurringSale(order, platonRecurring, PlatonHashUtil.encryptNoSale(payerEmail, cardNumber), callback);
     }
 
     /**
@@ -137,7 +137,7 @@ public class PlatonRecurringAdapter extends PlatonBaseAdapter<PlatonRecurringSer
             @NonNull @Size(min = MIN_CARD_NUMBER, max = MAX_CARD_NUMBER) final String cardNumber,
             @NonNull final PlatonSaleCallback callback
     ) {
-        recurringAsyncAuth(order, platonRecurring, PlatonHashUtil.encryptSale(payerEmail, cardNumber), callback);
+        recurringAsyncAuth(order, platonRecurring, PlatonHashUtil.encryptNoSale(payerEmail, cardNumber), callback);
     }
 
     /**
@@ -165,7 +165,7 @@ public class PlatonRecurringAdapter extends PlatonBaseAdapter<PlatonRecurringSer
             @NonNull @Size(min = MIN_CARD_NUMBER, max = MAX_CARD_NUMBER) final String cardNumber,
             @NonNull final PlatonSaleCallback callback
     ) {
-        recurringAuth(order, platonRecurring, PlatonHashUtil.encryptSale(payerEmail, cardNumber), callback);
+        recurringAuth(order, platonRecurring, PlatonHashUtil.encryptNoSale(payerEmail, cardNumber), callback);
     }
 
     /**

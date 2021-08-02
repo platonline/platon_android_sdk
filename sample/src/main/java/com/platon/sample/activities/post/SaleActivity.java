@@ -61,6 +61,17 @@ public class SaleActivity extends BaseActivity implements
 	private EditText mEtxtPayerEmail;
 	private EditText mEtxtPayerPhone;
 	private EditText mEtxtPayerIpAddress;
+	private EditText mEtxtReqToken;
+	private EditText mEtxtExt1;
+	private EditText mEtxtExt2;
+	private EditText mEtxtExt3;
+	private EditText mEtxtExt4;
+	private EditText mEtxtExt5;
+	private EditText mEtxtExt6;
+	private EditText mEtxtExt7;
+	private EditText mEtxtExt8;
+	private EditText mEtxtExt9;
+	private EditText mEtxtExt10;
 	private RadioGroup mRgCard;
 	private CheckBox mCbAsync;
 	private CheckBox mCbRecurringInit;
@@ -103,6 +114,17 @@ public class SaleActivity extends BaseActivity implements
 		mEtxtResponse = findViewById(R.id.etxt_response);
 		mBtnSale = findViewById(R.id.btn_sale);
 		mBtnAuth = findViewById(R.id.btn_auth);
+		mEtxtReqToken = findViewById(R.id.etxt_req_token);
+		mEtxtExt1 = findViewById(R.id.etxt_ext_1);
+		mEtxtExt2 = findViewById(R.id.etxt_ext_2);
+		mEtxtExt3 = findViewById(R.id.etxt_ext_3);
+		mEtxtExt4 = findViewById(R.id.etxt_ext_4);
+		mEtxtExt5 = findViewById(R.id.etxt_ext_5);
+		mEtxtExt6 = findViewById(R.id.etxt_ext_6);
+		mEtxtExt7 = findViewById(R.id.etxt_ext_7);
+		mEtxtExt8 = findViewById(R.id.etxt_ext_8);
+		mEtxtExt9 = findViewById(R.id.etxt_ext_9);
+		mEtxtExt10 = findViewById(R.id.etxt_ext_10);
 	}
 
 	private void configureViews() {
@@ -132,6 +154,7 @@ public class SaleActivity extends BaseActivity implements
 		mEtxtOrderAmount.setText(String.format(Locale.US, "%.2f", (Randoms.Float(MIN_AMOUNT, MAX_AMOUNT * 2.0F))));
 		mEtxtOrderDescription.setText(Faker.with(this).Lorem.sentences());
 		mEtxtOrderCurrencyCode.setText(R.string.uah_currency);
+		mEtxtReqToken.setText("N");
 
 		mEtxtPayerFirstName.setText(Faker.with(this).Name.lastName());
 		mEtxtPayerLastName.setText(Faker.with(this).Name.lastName());
@@ -150,6 +173,17 @@ public class SaleActivity extends BaseActivity implements
 		mCbAsync.setChecked(random.nextBoolean());
 		mCbRecurringInit.setChecked(random.nextBoolean());
 		mEtxtChannelId.setText(String.valueOf(UUID.randomUUID()));
+
+		mEtxtExt1.setText(Faker.with(this).Url.avatar());
+		mEtxtExt2.setText(Faker.with(this).Url.avatar());
+		mEtxtExt3.setText(Faker.with(this).Url.avatar());
+		mEtxtExt4.setText(Faker.with(this).Url.avatar());
+		mEtxtExt5.setText(Faker.with(this).Url.avatar());
+		mEtxtExt6.setText(Faker.with(this).Url.avatar());
+		mEtxtExt7.setText(Faker.with(this).Url.avatar());
+		mEtxtExt8.setText(Faker.with(this).Url.avatar());
+		mEtxtExt9.setText(Faker.with(this).Url.avatar());
+		mEtxtExt10.setText(Faker.with(this).Url.avatar());
 
 		mEtxtResponse.setText("");
 		mEtxtOrderAmount.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(2)});
@@ -205,16 +239,26 @@ public class SaleActivity extends BaseActivity implements
 					.async(mCbAsync.isChecked() ? PlatonOption.YES : PlatonOption.NO)
 					.recurringInit(mCbRecurringInit.isChecked() ? PlatonOption.YES : PlatonOption.NO)
 					.channelId(String.valueOf(mEtxtChannelId.getText()))
+					.ext1(String.valueOf(mEtxtExt1.getText()))
+					.ext2(String.valueOf(mEtxtExt2.getText()))
+					.ext3(String.valueOf(mEtxtExt3.getText()))
+					.ext4(String.valueOf(mEtxtExt4.getText()))
+					.ext5(String.valueOf(mEtxtExt5.getText()))
+					.ext6(String.valueOf(mEtxtExt6.getText()))
+					.ext7(String.valueOf(mEtxtExt7.getText()))
+					.ext8(String.valueOf(mEtxtExt8.getText()))
+					.ext9(String.valueOf(mEtxtExt9.getText()))
+					.ext10(String.valueOf(mEtxtExt10.getText()))
 					.build();
 
 			mTrans = new Trans(payer.getEmail(), platonCard.getNumber());
 
 			showProgress();
 			if (v.getId() == R.id.btn_sale) PlatonSdk.PostPayments.getSaleAdapter().sale(
-					order, platonCard, payer, platonSaleOptions, this
+					order, mEtxtReqToken.getText().toString(), platonCard, payer, platonSaleOptions, this
 			);
 			else PlatonSdk.PostPayments.getSaleAdapter().auth(
-					order, platonCard, payer, platonSaleOptions, this
+					order, mEtxtReqToken.getText().toString(), platonCard, payer, platonSaleOptions, this
 			);
 		}
 	}
@@ -239,7 +283,7 @@ public class SaleActivity extends BaseActivity implements
 		saveTrans(response.getTransactionId());
 
 		showProgress();
-		Platon3dsSubmitUtil.submit3dsData(
+			Platon3dsSubmitUtil.submit3dsData(
 				response, new Platon3dsSubmitUtil.OnSubmit3dsDataListener() {
 					@Override
 					public void on3dsDataSubmitted(final String htmlData) {

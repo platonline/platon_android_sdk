@@ -107,7 +107,7 @@ public class PlatonCaptureAdapter extends PlatonBaseAdapter<PlatonCaptureService
 	) {
 		return capture(
 				transactionId,
-				PlatonHashUtil.encryptSale(payerEmail, transactionId, cardNumber),
+				PlatonHashUtil.encryptNoSale(payerEmail, transactionId, cardNumber),
 				partialAmount,
 				callback
 		);

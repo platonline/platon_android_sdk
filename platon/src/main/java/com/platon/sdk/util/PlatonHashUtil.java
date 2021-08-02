@@ -312,7 +312,19 @@ public class PlatonHashUtil {
      */
     @Nullable
     public static String encryptSale(final String email, final String cardNumber) {
-        return encryptSale(email, "", cardNumber);
+        return encryptNoSale(email, "", cardNumber);
+    }
+
+    /**
+     * md5(strtoupper(strrev(email).CLIENT_PASS.strrev(substr(card_number,0,6).substr(card_number,-4))))
+     *
+     * @param email      - payer email
+     * @param cardNumber - payer card number
+     * @return md5 hash for {@link PlatonSaleAdapter} requests
+     */
+    @Nullable
+    public static String encryptNoSale(final String email, final String cardNumber) {
+        return encryptNoSale(email, "", cardNumber);
     }
 
     /**
@@ -326,6 +338,39 @@ public class PlatonHashUtil {
     @Nullable
     public static String encryptSale(final String email, final String transId, final String cardNumber) {
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(cardNumber)) return null;
+
+        final int cardNumberLength = cardNumber.length();
+        if (cardNumberLength < 6) return null;
+
+        final String reverseEmail = new StringBuilder(email).reverse().toString();
+        final String clientPass = PlatonCredentials.getClientPass();
+
+        final String cardNumberFirstPart = cardNumber.substring(0, 6);
+        final String cardNumberSecondPart = cardNumber.substring(cardNumberLength - 4, cardNumberLength);
+
+        final String cardNumberCombination = cardNumberFirstPart.concat(cardNumberSecondPart);
+        final String reverseCardNumberCombination = new StringBuilder(cardNumberCombination).reverse().toString();
+
+        return md5(
+                reverseEmail
+                        .concat(clientPass)
+                        .concat(transId)
+                        .concat(reverseCardNumberCombination)
+                        .toUpperCase()
+        );
+    }
+
+    /**
+     * md5(strtoupper(strrev(email).CLIENT_PASS.trans_id.strrev(substr(card_number,0,6).substr(card_number,-4))))
+     *
+     * @param email      - payer email
+     * @param transId    - initial transaction id
+     * @param cardNumber - payer card number
+     * @return md5 hash for all {@link BaseAdapter} requests
+     */
+    @Nullable
+    public static String encryptNoSale(final String email, final String transId, final String cardNumber) {
+        if (TextUtils.isEmpty(cardNumber)) return null;
 
         final int cardNumberLength = cardNumber.length();
         if (cardNumberLength < 6) return null;

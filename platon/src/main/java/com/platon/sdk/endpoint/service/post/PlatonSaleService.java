@@ -73,6 +73,17 @@ public interface PlatonSaleService {
             @Field(MethodProperties.CHANNEL_ID) @Nullable @Size(max = CHANNEL) final String channelId,
             @Field(MethodProperties.TERM_URL_3DS) @Nullable @Size(max = TEXT_LONG) final String url3ds,
             @Field(MethodProperties.RECURRING_INIT) @Nullable @PlatonOption final String recurringInit,
-            @Field(MethodProperties.AUTH) @Nullable @PlatonOption final String authenticateOnly
+            @Field(MethodProperties.AUTH) @Nullable @PlatonOption final String authenticateOnly,
+            @Field(MethodProperties.REQ_TOKEN) @Nullable final String reqToken,
+            @Field(MethodProperties.EXT_1) @Nullable final String ext1,
+            @Field(MethodProperties.EXT_2) @Nullable final String ext2,
+            @Field(MethodProperties.EXT_3) @Nullable final String ext3,
+            @Field(MethodProperties.EXT_4) @Nullable final String ext4,
+            @Field(MethodProperties.EXT_5) @Nullable final String ext5,
+            @Field(MethodProperties.EXT_6) @Nullable final String ext6,
+            @Field(MethodProperties.EXT_7) @Nullable final String ext7,
+            @Field(MethodProperties.EXT_8) @Nullable final String ext8,
+            @Field(MethodProperties.EXT_9) @Nullable final String ext9,
+            @Field(MethodProperties.EXT_10) @Nullable final String ext10
     );
 }

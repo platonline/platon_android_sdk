@@ -13,7 +13,8 @@
             android:id="@+id/btn_randomize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/randomize" />
+            android:text="@string/randomize"
+            android:maxLength="30"/>
 
         <EditText
             android:id="@+id/etxt_order_id"
@@ -21,7 +22,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/order_id"
             android:importantForAutofill="no"
-            android:inputType="text" />
+            android:inputType="text"
+            android:maxLength="30"/>
 
         <EditText
             android:id="@+id/etxt_order_amount"
@@ -29,7 +31,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/order_amount"
             android:importantForAutofill="no"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:maxLength="30"/>
 
         <EditText
             android:id="@+id/etxt_order_description"
@@ -45,6 +48,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/order_currency_code"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:maxLength="30"/>
+
+        <EditText
+            android:id="@+id/etxt_req_token"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/req_token"
             android:importantForAutofill="no"
             android:inputType="text" />
 
@@ -130,6 +142,86 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/payer_ip_address"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etxt_ext_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_1"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etxt_ext_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_2"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etxt_ext_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_3"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etxt_ext_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_4"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etxt_ext_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_5"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etxt_ext_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_6"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etxt_ext_7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_7"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etxt_ext_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_8"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etxt_ext_9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_9"
+            android:importantForAutofill="no"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etxt_ext_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ext_10"
             android:importantForAutofill="no"
             android:inputType="text" />
 

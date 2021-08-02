@@ -21,7 +21,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/order_id"
             android:importantForAutofill="no"
-            android:inputType="text" />
+            android:inputType="text"
+            android:maxLength="30"/>
 
         <EditText
             android:id="@+id/etxt_order_amount"
@@ -29,7 +30,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/order_amount"
             android:importantForAutofill="no"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:maxLength="30"/>
 
         <EditText
             android:id="@+id/etxt_order_description"
@@ -37,7 +39,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/order_description"
             android:importantForAutofill="no"
-            android:inputType="text" />
+            android:inputType="text"
+            android:maxLength="30"/>
 
         <View
             android:layout_width="match_parent"

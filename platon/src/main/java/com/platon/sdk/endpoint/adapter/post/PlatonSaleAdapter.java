@@ -64,16 +64,17 @@ public class PlatonSaleAdapter extends PlatonBaseAdapter<PlatonSaleService> impl
 	}
 
 	/**
-	 * For params description see {@link #sale(PlatonOrderSale, PlatonCard, PlatonPayerSale, PlatonSaleOptions, PlatonSaleCallback)}}
+	 * For params description see {@link #sale(PlatonOrderSale, String, PlatonCard, PlatonPayerSale, PlatonSaleOptions, PlatonSaleCallback)}}
 	 * PlatonSale request without optional fields.
 	 */
 	public Call sale(
 			@NonNull final PlatonOrderSale order,
+			@NonNull final String reqToken,
 			@NonNull final PlatonCard platonCard,
 			@NonNull final PlatonPayerSale payerSale,
 			@NonNull final PlatonSaleCallback platonSaleCallback
 	) {
-		return sale(order, platonCard, payerSale, null, platonSaleCallback);
+		return sale(order, reqToken, platonCard, payerSale, null, platonSaleCallback);
 	}
 
 	/**
@@ -89,29 +90,31 @@ public class PlatonSaleAdapter extends PlatonBaseAdapter<PlatonSaleService> impl
 	 */
 	public Call sale(
 			@NonNull final PlatonOrderSale order,
+			@NonNull final String reqToken,
 			@NonNull final PlatonCard platonCard,
 			@NonNull final PlatonPayerSale payerSale,
 			@Nullable final PlatonSaleOptions platonSaleOptions,
 			@NonNull final PlatonSaleCallback platonSaleCallback
 	) {
-		return performSale(order, platonCard, payerSale, platonSaleOptions, platonSaleCallback, PlatonOption.NO);
+		return performSale(order, reqToken, platonCard, payerSale, platonSaleOptions, platonSaleCallback, PlatonOption.NO);
 	}
 
 	/**
-	 * For params description see {@link #sale(PlatonOrderSale, PlatonCard, PlatonPayerSale, PlatonSaleOptions, PlatonSaleCallback)}}
+	 * For params description see {@link #sale(PlatonOrderSale, String, PlatonCard, PlatonPayerSale, PlatonSaleOptions, PlatonSaleCallback)}}
 	 * Auth request without optional fields.
 	 */
 	public Call auth(
 			@NonNull final PlatonOrderSale order,
+			@NonNull final String reqToken,
 			@NonNull final PlatonCard platonCard,
 			@NonNull final PlatonPayerSale payerSale,
 			@NonNull final PlatonSaleCallback platonSaleCallback
 	) {
-		return auth(order, platonCard, payerSale, null, platonSaleCallback);
+		return auth(order, reqToken, platonCard, payerSale, null, platonSaleCallback);
 	}
 
 	/**
-	 * For params description see {@link #sale(PlatonOrderSale, PlatonCard, PlatonPayerSale, PlatonSaleOptions, PlatonSaleCallback)}}
+	 * For params description see {@link #sale(PlatonOrderSale, String, PlatonCard, PlatonPayerSale, PlatonSaleOptions, PlatonSaleCallback)}}
 	 * <p>
 	 * Dual Message System (DMS)
 	 * DMS is represented by {@link MethodProperties#AUTH} and {@link PlatonAction#CAPTURE} transactions.
@@ -127,22 +130,24 @@ public class PlatonSaleAdapter extends PlatonBaseAdapter<PlatonSaleService> impl
 	 */
 	public Call auth(
 			@NonNull final PlatonOrderSale order,
+			@NonNull final String reqToken,
 			@NonNull final PlatonCard platonCard,
 			@NonNull final PlatonPayerSale payerSale,
 			@Nullable final PlatonSaleOptions platonSaleOptions,
 			@NonNull final PlatonSaleCallback platonSaleCallback
 	) {
-		return performSale(order, platonCard, payerSale, platonSaleOptions, platonSaleCallback, PlatonOption.YES);
+		return performSale(order, reqToken, platonCard, payerSale, platonSaleOptions, platonSaleCallback, PlatonOption.YES);
 	}
 
 	/**
-	 * For params description see {@link #sale(PlatonOrderSale, PlatonCard, PlatonPayerSale, PlatonSaleOptions, PlatonSaleCallback)}}
+	 * For params description see {@link #sale(PlatonOrderSale, String, PlatonCard, PlatonPayerSale, PlatonSaleOptions, PlatonSaleCallback)}}
 	 *
 	 * @param auth indicates whether the SALE request with AUTH.
 	 */
 	@SuppressWarnings({"unchecked", "ConstantConditions"})
 	private Call performSale(
 			@NonNull final PlatonOrderSale order,
+			@NonNull final String reqToken,
 			@NonNull final PlatonCard platonCard,
 			@NonNull final PlatonPayerSale payerSale,
 			@Nullable final PlatonSaleOptions platonSaleOptions,
@@ -187,8 +192,29 @@ public class PlatonSaleAdapter extends PlatonBaseAdapter<PlatonSaleService> impl
 				PlatonCredentials.getTermUrl3Ds(),
 				isSaleOptionsNull || TextUtils.isEmpty(platonSaleOptions.getRecurringInit()) ?
 						null : platonSaleOptions.getRecurringInit(),
+				auth,
+				reqToken,
+				isSaleOptionsNull || TextUtils.isEmpty(platonSaleOptions.getExt1())
+						? null : platonSaleOptions.getExt1(),
+				isSaleOptionsNull || TextUtils.isEmpty(platonSaleOptions.getExt2())
+						? null : platonSaleOptions.getExt2(),
+				isSaleOptionsNull || TextUtils.isEmpty(platonSaleOptions.getExt3())
+						? null : platonSaleOptions.getExt3(),
+				isSaleOptionsNull || TextUtils.isEmpty(platonSaleOptions.getExt4())
+						? null : platonSaleOptions.getExt4(),
+				isSaleOptionsNull || TextUtils.isEmpty(platonSaleOptions.getExt5())
+						? null : platonSaleOptions.getExt5(),
+				isSaleOptionsNull || TextUtils.isEmpty(platonSaleOptions.getExt6())
+						? null : platonSaleOptions.getExt6(),
+				isSaleOptionsNull || TextUtils.isEmpty(platonSaleOptions.getExt7())
+						? null : platonSaleOptions.getExt7(),
+				isSaleOptionsNull || TextUtils.isEmpty(platonSaleOptions.getExt8())
+						? null : platonSaleOptions.getExt8(),
+				isSaleOptionsNull || TextUtils.isEmpty(platonSaleOptions.getExt9())
+						? null : platonSaleOptions.getExt9(),
+				isSaleOptionsNull || TextUtils.isEmpty(platonSaleOptions.getExt10())
+						? null : platonSaleOptions.getExt10()
 
-				auth
 		);
 		call.enqueue(enqueueWithCallback(platonSaleCallback, this));
 

@@ -78,7 +78,7 @@ public class PlatonTransactionAdapter extends PlatonBaseAdapter<PlatonTransactio
 			@NonNull @Size(min = MIN_CARD_NUMBER, max = MAX_CARD_NUMBER) final String cardNumber,
 			@NonNull final PlatonTransactionStatusCallback callback
 	) {
-		getTransactionStatus(transactionId, PlatonHashUtil.encryptSale(payerEmail, transactionId, cardNumber), callback);
+		getTransactionStatus(transactionId, PlatonHashUtil.encryptNoSale(payerEmail, transactionId, cardNumber), callback);
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class PlatonTransactionAdapter extends PlatonBaseAdapter<PlatonTransactio
 			@NonNull final PlatonTransactionDetailsCallback callback
 	) {
 		getTransactionDetails(
-				transactionId, PlatonHashUtil.encryptSale(payerEmail, transactionId, cardNumber), callback
+				transactionId, PlatonHashUtil.encryptNoSale(payerEmail, transactionId, cardNumber), callback
 		);
 	}
 
