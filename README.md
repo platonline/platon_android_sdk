@@ -30,7 +30,12 @@ Platon Андроид СДК (Platon Android SDK)
 Скачать
 =======
 
-Вы можете скачать артефакты из GitHub Releases [вкладки](https://github.com/platonline/platon_android_sdk/releases).
+Вы можете скачать артефакты из GitHub Releases [вкладки](https://github.com/platonline/platon_android_sdk/releases/tag/v1.0.3).
+
+Чтобы импортировать СДК в проект вам нужно:
+
+1. Поместить скачаный ранее артефакт в папку "libs/" в директории модуля.
+2. Добавить `implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')` в `dependencies` блок в `build.gradle` файле вашего модуля.
 
 Также вы можете импортировать СДК в проект с помощью Gradle:
 
